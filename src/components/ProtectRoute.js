@@ -11,7 +11,7 @@ function ProtectRoute({ Component }) {
     //mostra o componente
     return <Component />;
   } else {
-    //navega o usuário pra página de login
+    //navega o usuário pra página de HOME(que faz o login)
     return <Navigate to="/" />;
   }
 }

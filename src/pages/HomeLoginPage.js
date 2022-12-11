@@ -36,7 +36,7 @@ function HomeLoginPage() {
             navigate("/admin")
         } */
 
-      navigate("/profile");
+      navigate("/tabela");
     } catch (error) {
       console.log(error);
       if (error.response.status === 401) {

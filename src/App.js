@@ -9,6 +9,8 @@ import NotificationPage from "./pages/NotificationPage";
 import TabelaCidadao from "./pages/TabelaCidadao";
 import FormCadastroPessoa from "./pages/FormCadatroPessoa";
 import HomeLoginPage from "./pages/HomeLoginPage";
+import FormUpdatePessoa from "./pages/FormUpdatePessoa";
+import NovoAcesso from "./pages/novoAcesso";
 
 function App() {
   return (
@@ -18,16 +20,27 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          //Essas rotas está aqui desprotegidas, para editar
+
           <Route path="/tabela" element={<TabelaCidadao />} />
-          <Route path="/novocidadao" element={<FormCadastroPessoa />} />
+
           <Route
             path="/tabela"
             element={<ProtectRoute Component={TabelaCidadao} />}
           />
+          <Route path="/novocidadao" element={<FormCadastroPessoa />} />
           <Route
             path="/novocidadao"
             element={<ProtectRoute Component={FormCadastroPessoa} />}
+          />
+          <Route path="/novoaacesso" element={<NovoAcesso />} />
+          <Route
+            path="/novoacesso"
+            element={<ProtectRoute Component={NovoAcesso} />}
+          />
+          <Route path="/update-pessoa" element={<FormUpdatePessoa />} />
+          <Route
+            path="/update-pessoa"
+            element={<ProtectRoute Component={FormUpdatePessoa} />}
           />
           <Route
             path="/notificacoes"
