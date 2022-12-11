@@ -14,6 +14,7 @@ import NovoAcesso from './pages/novoAcesso';
 import ProfilePage from './pages/ProfilePage';
 //
 import { Toaster } from 'react-hot-toast';
+import AdminPage from './pages/adminPage';
 
 function App() {
   return (
@@ -52,6 +53,10 @@ function App() {
           <Route
             path="/notificacoes"
             element={<ProtectRoute Component={NotificationPage} />}
+          />
+          <Route
+            path="/admin"
+            element={<ProtectRoute Component={AdminPage } />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
