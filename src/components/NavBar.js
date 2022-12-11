@@ -34,6 +34,9 @@ function NavBar() {
                 <Link className="nav-link" to="/notificacoes">
                   Notificações
                 </Link>
+                <Link className="nav-link" to="/tabela">
+                  Tabela
+                </Link>
               </>
             )}
             {/* Não está logado */}

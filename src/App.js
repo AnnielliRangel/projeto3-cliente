@@ -11,6 +11,7 @@ import FormCadastroPessoa from "./pages/FormCadatroPessoa";
 import HomeLoginPage from "./pages/HomeLoginPage";
 import FormUpdatePessoa from "./pages/FormUpdatePessoa";
 import NovoAcesso from "./pages/novoAcesso";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
           <Route path="/" element={<HomeLoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
 
-          <Route path="/tabela" element={<TabelaCidadao />} />
+          <Route
+            path="/profile"
+            element={<ProtectRoute Component={ProfilePage} />}
+          />
 
           <Route
             path="/tabela"
