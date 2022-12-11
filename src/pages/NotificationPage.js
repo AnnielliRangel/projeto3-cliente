@@ -2,6 +2,8 @@ import { Container, Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import api from "../api/api";
 
+//Essa página poderia ser de uso exclusivo do ADMIM (sugestão Annielli)
+
 function NotificationPage() {
   const [logs, setLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

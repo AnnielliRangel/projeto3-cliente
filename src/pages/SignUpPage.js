@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import api from "../api/api.js";
+import { Link } from "react-router-dom";
 
 function SignUpPage() {
-  const navigate = useNavigate();
-
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -13,32 +10,8 @@ function SignUpPage() {
     confirmPassword: "",
   });
 
-  //esse state vai guardar a IMAGEM escolhida pelo usuário
-  const [img, setImg] = useState();
-
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleImage(e) {
-    //console.log(e.target.files[0]);
-    setImg(e.target.files[0]);
-
-  }
-
-  async function handleUpload(e) {
-    try {
-      const uploadData = new FormData();
-      uploadData.append("picture", img)
-
-      const response = await api.post("/uploadImage/upload", uploadData )
-
-      console.log(uploadData);
-
-      return response.data.url
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   async function handleSubmit(e) {
@@ -48,18 +21,6 @@ function SignUpPage() {
     if (form.password !== form.confirmPassword) {
       alert("Senhas incompatíveis");
       return;
-    }
-
-    //vou chamar a função handleUpload()
-    
-    const imgURL = await handleUpload()
-    //disparo a requisição de cadastro para o meu servidor
-    try {
-      await api.post("/user/sign-up", {...form, profilePic: imgURL});
-
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
     }
   }
 
@@ -113,23 +74,10 @@ function SignUpPage() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Foto de Perfil</Form.Label>
-          <Form.Control type="file" onChange={handleImage} />
-        </Form.Group>
-
         <Button className="my-3" variant="dark" type="submit">
-          Cadastrar usuário
+          Criar Cadastro
         </Button>
       </Form>
-      <Form.Text>
-        Já possui cadastro? Faça já o
-        <Link className="text-warning fw-bold text-decoration-none" to="/login">
-          {" "}
-          login
-        </Link>
-        .
-      </Form.Text>
     </Container>
   );
 }

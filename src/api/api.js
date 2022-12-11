@@ -4,7 +4,7 @@ import axios from "axios";
 
 const apiURLs = {
   development: "http://localhost:8080",
-  production: "https://turma92wd.cyclic.app",
+  production: "LINK da CyCLIC AQUI",
 };
 
 //instancia que sabe qual é a BASEURL QUE DEVE SER USADA NAS REQUISIÇÕES DO AXIOS

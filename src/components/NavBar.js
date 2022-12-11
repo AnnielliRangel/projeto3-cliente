@@ -1,5 +1,6 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import logo from "../assets/concierge-32330_960_720.png";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 
@@ -9,16 +10,21 @@ function NavBar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand>Enap 92 - WD</Navbar.Brand>
+        <Navbar.Brand>
+          <img
+            alt="atendimento vetor"
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top "
+          />{" "}
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             {/* Se o usuário estiver logado */}
             {loggedInUser && (
               <>
-                <Link className="nav-link" to="/">
-                  Página inicial
-                </Link>
                 <Link className="nav-link" to="/profile">
                   Perfil
                 </Link>
@@ -34,10 +40,8 @@ function NavBar() {
             {!loggedInUser && (
               <>
                 <Link className="nav-link" to="/">
-                  Página inicial
-                </Link>
-                <Link className="nav-link" to="/login">
-                  Login
+                  Controle de Atendimento ao Cidadão e acessos ao Serviço
+                  Público
                 </Link>
                 <Link className="nav-link" to="/sign-up">
                   Cadastre-se

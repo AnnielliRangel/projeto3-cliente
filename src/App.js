@@ -1,15 +1,14 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import ProfilePage from "./pages/ProfilePage";
 import ErrorPage from "./pages/ErrorPage";
 import { AuthContextComponent } from "./contexts/authContext";
 import ProtectRoute from "./components/ProtectRoute";
 import NavBar from "./components/NavBar";
-import TasksPage from "./pages/TasksPage";
 import NotificationPage from "./pages/NotificationPage";
+import TabelaCidadao from "./pages/TabelaCidadao";
+import FormCadastroPessoa from "./pages/FormCadatroPessoa";
+import HomeLoginPage from "./pages/HomeLoginPage";
 
 function App() {
   return (
@@ -17,16 +16,18 @@ function App() {
       <AuthContextComponent>
         <NavBar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomeLoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          //Essas rotas está aqui desprotegidas, para editar
+          <Route path="/tabela" element={<TabelaCidadao />} />
+          <Route path="/novocidadao" element={<FormCadastroPessoa />} />
           <Route
-            path="/profile"
-            element={<ProtectRoute Component={ProfilePage} />}
+            path="/tabela"
+            element={<ProtectRoute Component={TabelaCidadao} />}
           />
           <Route
-            path="/tasks"
-            element={<ProtectRoute Component={TasksPage} />}
+            path="/novocidadao"
+            element={<ProtectRoute Component={FormCadastroPessoa} />}
           />
           <Route
             path="/notificacoes"
