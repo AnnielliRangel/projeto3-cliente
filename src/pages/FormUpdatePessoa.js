@@ -16,6 +16,7 @@ import ListAcessos from "../components/listAcessos";
 export default function FormUpdatePessoa() {
   const { userId } = useParams();
   const navigate = useNavigate();
+  const [img, setImg] = useState();
 
   const [form, setForm] = useState({
     nome: "",
@@ -69,6 +70,36 @@ export default function FormUpdatePessoa() {
       toast.error("Algo deu errado. Tente novamente.");
     }
   }
+  function handleImage(e) {
+    //console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
+  }
+  console.log(img);
+  /*async function handleUpload(e) {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/uploadImage/upload", uploadData);
+
+      console.log(uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  vou chamar a função handleUpload()
+
+  const imgURL = await handleUpload();
+  disparo a requisição de cadastro para o meu servidor
+  try {
+    await api.post("/user/sign-up", { ...form, profilePic: imgURL });
+
+  navigate("/tabela");
+  } catch (error) {
+  console.log(error);
+  } */
 
   return (
     <Container>
@@ -158,49 +189,24 @@ export default function FormUpdatePessoa() {
                 <Row className="justify-content-md-center">
                   <Col>
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="acessibilidade">
-                        Necessidade especial
-                      </Form.Label>
-                      <Form.Select
-                        id="acessibilidade"
-                        name="acessibilidade"
-                        value={form.acessibilidade}
-                        onChange={handleChange}
-                      >
-                        <option>Selecione uma opção</option>
-                        <option value="nenhuma">Nenhuma</option>
-                        <option value="fisica">Deficiência física</option>
-                        <option value="visual">Deficiência visual</option>
-                        <option value="intelectual">
-                          Deficiência intelectual
-                        </option>
-                        <option value="pscossocial">
-                          Deficiência psicossocial
-                        </option>
-                        <option value="multiplas">
-                          Deficiências multiplas
-                        </option>
-                      </Form.Select>
+                      <Form.Label>Foto de Perfil</Form.Label>
+                      <Form.Control type="file" onChange={handleImage} />
                     </Form.Group>
                   </Col>
                   <Col>
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="profissao">Profissão</Form.Label>
+                      <Form.Label htmlFor="acessibilidade">
+                        Atendimento Prioritário{" "}
+                      </Form.Label>
                       <Form.Select
-                        id="profissao"
-                        name="profissao"
-                        value={form.profissao}
+                        id="acessibilidade"
+                        name="acessibilidade"
                         onChange={handleChange}
+                        value={form.acessibilidade}
                       >
-                        <option>Nenhuma</option>
-                        <option value="parte">Parte</option>
-                        <option value="advogado">Advogado/a</option>
-                        <option value="servico">Serviços</option>
-                        <option value="requerente">Requerente</option>
-                        <option value="testemunha">Testemunha</option>
-                        <option value="mediador">Mediador</option>
-                        <option value="visita">Visita</option>
-                        <option value="outro">Outro</option>
+                        <option>SELECIONE</option>
+                        <option value="nenhuma">Nenhuma</option>
+                        <option value="prioridade">Prioridade por Lei</option>
                       </Form.Select>
                     </Form.Group>
                   </Col>

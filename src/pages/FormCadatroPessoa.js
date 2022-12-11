@@ -30,7 +30,7 @@ function FormCadastroPessoa() {
   async function handleSubimit(e) {
     e.preventDefault();
     try {
-      await api.post("AcessCidadao/novo", form);
+      await api.post("Cidadao/create-cidadao", form);
       setForm({
         nome: "",
         dataNasc: "",
@@ -44,7 +44,7 @@ function FormCadastroPessoa() {
       });
       toast.success("Cadastro realizado com sucesso.");
       setReload(!reload);
-      navigate("/");
+      navigate("/tabela");
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado. Tente novamente.");
@@ -205,21 +205,22 @@ function FormCadastroPessoa() {
                   </Row>
                   <Row style={{ display: "flex", justifyContent: "initial" }}>
                     <Col>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                        <Form.Check
-                          htmlFor="acessibilidade"
-                          type="checkbox"
-                          label="ATENDIMENTO PRIORITÁRIO"
-                          value={form.acessibilidade}
+                      <Form.Group className="mb-3">
+                        <Form.Label htmlFor="acessibilidade">
+                          Atendimento Prioritário{" "}
+                        </Form.Label>
+                        <Form.Select
                           id="acessibilidade"
                           name="acessibilidade"
-                        />
+                          onChange={handleChange}
+                          value={form.acessibilidade}
+                        >
+                          <option>SELECIONE</option>
+                          <option value="nenhuma">Nenhuma</option>
+                          <option value="prioridade">Prioridade por Lei</option>
+                        </Form.Select>
                       </Form.Group>
                     </Col>
-                    <Col></Col>
                   </Row>
                 </Form>
               </Card.Text>
@@ -237,7 +238,7 @@ function FormCadastroPessoa() {
                   </Button>
                 </Col>
                 <Col style={{ textAlign: "center" }}>
-                  <Link to={"/"}>
+                  <Link to={"/tabela"}>
                     <Button variant="secondary" type="submit">
                       Cancelar
                     </Button>

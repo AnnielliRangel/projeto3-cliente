@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 
 function SignUpPage() {
