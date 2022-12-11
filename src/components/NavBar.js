@@ -6,6 +6,17 @@ import { AuthContext } from "../contexts/authContext";
 
 function NavBar() {
   const { loggedInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { setLoggedInUser } = useContext(AuthContext);
+  function signOut() {
+    //removendo o loggedInUser do localStorage
+    localStorage.removeItem("loggedInUser");
+
+    //atualizar o meu context
+    setLoggedInUser(null);
+
+    navigate("/");
+  }
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -22,20 +33,37 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
+            {/* falta fazer: SE é ADMIM
+          {loggedInUser && LOGGEDINADMIN(
+              <>
+                <Link className="nav-link" to="/profile">
+                  TODOS OS PERFIS
+                </Link>
+                {loggedInUser && (
+              <>
+                <Link className="nav-link" to="/notificacoes">
+                  NOTIFICAÇÕES
+                </Link>
+
+          
+          */}
             {/* Se o usuário estiver logado */}
             {loggedInUser && (
               <>
                 <Link className="nav-link" to="/profile">
                   Perfil
                 </Link>
-                <Link className="nav-link" to="/tasks">
-                  Minhas Tarefas
+
+                <Link className="nav-link" to="/novocidadao">
+                  Cadastra Novo Cidadão
                 </Link>
-                <Link className="nav-link" to="/notificacoes">
-                  Notificações
-                </Link>
+
                 <Link className="nav-link" to="/tabela">
                   Tabela
+                </Link>
+
+                <Link className="nav-link" to="/" onClick={signOut}>
+                  Logout
                 </Link>
               </>
             )}
