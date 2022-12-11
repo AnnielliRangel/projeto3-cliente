@@ -30,7 +30,7 @@ function FormCadastroPessoa() {
   async function handleSubimit(e) {
     e.preventDefault();
     try {
-      await api.post("AcessCidadao/novo", form);
+      await api.post("Cidadao/create-cidadao", form);
       setForm({
         nome: "",
         dataNasc: "",
@@ -44,7 +44,7 @@ function FormCadastroPessoa() {
       });
       toast.success("Cadastro realizado com sucesso.");
       setReload(!reload);
-      navigate("/");
+      navigate("/tabela");
     } catch (error) {
       console.log(error);
       toast.error("Algo deu errado. Tente novamente.");
@@ -237,7 +237,7 @@ function FormCadastroPessoa() {
                   </Button>
                 </Col>
                 <Col style={{ textAlign: "center" }}>
-                  <Link to={"/"}>
+                  <Link to={"/tabela"}>
                     <Button variant="secondary" type="submit">
                       Cancelar
                     </Button>
