@@ -34,17 +34,17 @@ function App() {
             path="/tabela"
             element={<ProtectRoute Component={TabelaCidadao} />}
           />
-          <Route path="/novocidadao" element={<FormCadastroPessoa />} />
+
           <Route
             path="/novocidadao"
             element={<ProtectRoute Component={FormCadastroPessoa} />}
           />
-          <Route path="/novoaacesso" element={<NovoAcesso />} />
+
           <Route
             path="/novoacesso"
             element={<ProtectRoute Component={NovoAcesso} />}
           />
-          <Route path="/update-pessoa" element={<FormUpdatePessoa />} />
+
           <Route
             path="/update-pessoa"
             element={<ProtectRoute Component={FormUpdatePessoa} />}
