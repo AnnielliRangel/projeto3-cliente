@@ -14,11 +14,11 @@ Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
 
 Dada a necessidade de controle aos prédios públicos e seus serviços, assim como a inexistência em vários locais públicos desse controle informatizado, nos propusemos o desenvolvimento deste aplicativo.
 
-# Rotas
-
-as rotas principais são as de usuário:
+# Rotas - as rotas principais são as de usuário:
 
 ## /profile:
+
+Profile dos usuários (admin/user)
 
 ### (páginas dos usuários), login, signup, e de informações cadastrais dos usuários
 
@@ -28,13 +28,17 @@ as rotas principais são as de usuário:
 
 ### Chegada/ Geração de protocolo de atendimento -> aguardando -> em atendimento -> finalizado
 
+### dados básicos dos Cidadãos
+
+### consulta (filtros por nome, numero do documento, e pendentes (atendimento/aguardando)
+
 ## /novocidadao
 
 ## /update-pessoa
 
-### para atualizar as informações
+### para atualizar as informações dos cidadaãos - USER tem acesso
 
-## As princi
+## ADMIN - terá acesso a todos os users
 
 # Getting Started with Create React App
 
