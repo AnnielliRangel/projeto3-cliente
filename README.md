@@ -1,3 +1,29 @@
+#Frontend - Bem Vindo ao Projeto do App ⧉ Controle de Atendimento ao Cidadão e acesso ao Serviço Público →
+Controle de atendimento Serviços Públicos
+
+obs: as fotos e nomes foram reaproveitadas principalmente da documentação dos Labs de aula.
+
+Trata esta página, do 2º projeto entregue pela equipe:
+
+Annielli A. R. Cunha
+Bruno Prestes
+Sergio A. Francalino
+Anderson T. Toma
+
+Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
+
+Dada a necessidade de controle aos prédios públicos e seus serviços, assim como a inexistência em vários locais públicos desse controle informatizado, nos propusemos o desenvolvimento deste aplicativo.
+
+# Rotas
+
+as rotas principais são as de usuário:
+
+## /profile (páginas dos usuários), login, signup, e de informações cadastrais
+
+## Rotas
+
+## As princi
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -204,7 +204,7 @@ function TabelaCidadao() {
                     <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
                       <td>
                         <img
-                          src={cidadao.img}
+                          src={cidadao.profilePic}
                           alt="foto cidadao"
                           style={{ width: '50px' }}
                         />
