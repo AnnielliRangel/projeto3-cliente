@@ -1,20 +1,48 @@
-import { Button, Col, Container, Card, Row } from "react-bootstrap";
+import { Button, Col, Container, Card, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useContext, useState } from "react";
-import { AuthContext } from "../contexts/authContext";
+import { useEffect, useState } from "react";
 import api from "../api/api";
 import EditUser from "../components/EditUser";
 
 function ProfilePage() {
   const navigate = useNavigate();
-
-  const { setLoggedInUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [form, setForm] = useState({
     name: "",
   });
   const [reload, setReload] = useState(false);
+  const [img, setImg] = useState();
+  function handleImage(e) {
+    //console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
+  }
+  async function handleUpload(e) {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
 
+      const response = await api.post("/uploadImage/upload", uploadData);
+
+      console.log(uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const imgURL = await handleUpload();
+    //disparo a requisição de cadastro para o meu servidor
+    try {
+      await api.post("/user/profile", { ...form, profilePic: imgURL });
+
+      navigate("/profile");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -29,59 +57,41 @@ function ProfilePage() {
     fetchUser();
   }, [reload]);
 
-  function signOut() {
-    //removendo o loggedInUser do localStorage
-    localStorage.removeItem("loggedInUser");
-
-    //atualizar o meu context
-    setLoggedInUser(null);
-
-    navigate("/");
-  }
-
-  async function handleDeleteUser() {
-    try {
-      await api.delete("/user/delete");
-      signOut();
-    } catch (error) {
-      console.log(error);
-      alert("Algo deu errado no delete do user");
-    }
-  }
-
   return (
     <div>
       <Container className="mt-5">
         <Row className="align-items-center mb-5">
           <Col>
+            <img
+              src={user.profilePic}
+              alt="profile Pic"
+              className="rounded"
+              style={{ width: "100px", borderRadius: "50px" }}
+            />
+            <Form className="w-50" onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>Atualizar Foto de Perfil</Form.Label>
+                <Form.Control type="file" onChange={handleImage} />
+              </Form.Group>
+            </Form>
+          </Col>
+          <Col>
             <Card>
-              <h1>{user.name}</h1>
+              <h2>{user.name} </h2>
               <p>{user.email}</p>
+              <EditUser
+                form={form}
+                setForm={setForm}
+                setReload={setReload}
+                reload={reload}
+              />
+              <Row></Row>
             </Card>
           </Col>
-          <Col>
-            <img src={user.profilePic} alt="profile Pic" className="rounded" />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <EditUser
-              form={form}
-              setForm={setForm}
-              setReload={setReload}
-              reload={reload}
-            />
-          </Col>
-          <Col>
-            <Button variant="danger" onClick={handleDeleteUser}>
-              Excluir perfil
-            </Button>
-          </Col>
 
           <Col>
-            <Link to="/tasks">
-              <Button variant="dark">Minhas Tarefas</Button>
+            <Link to="/notificacoes">
+              <Button variant="secondary">Notificações</Button>
             </Link>
           </Col>
         </Row>
