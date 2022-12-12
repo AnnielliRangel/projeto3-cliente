@@ -78,11 +78,7 @@ function ProfilePage() {
               Excluir perfil
             </Button>
           </Col>
-          <Col>
-            <Button variant="dark" onClick={signOut}>
-              Sign Out
-            </Button>
-          </Col>
+
           <Col>
             <Link to="/tasks">
               <Button variant="dark">Minhas Tarefas</Button>

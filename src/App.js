@@ -14,6 +14,7 @@ import NovoAcesso from './pages/novoAcesso';
 import ProfilePage from './pages/ProfilePage';
 //
 import { Toaster } from 'react-hot-toast';
+import AdminPage from './pages/adminPage';
 
 function App() {
   return (
@@ -34,17 +35,17 @@ function App() {
             path="/tabela"
             element={<ProtectRoute Component={TabelaCidadao} />}
           />
-          <Route path="/novocidadao" element={<FormCadastroPessoa />} />
+
           <Route
             path="/novocidadao"
             element={<ProtectRoute Component={FormCadastroPessoa} />}
           />
-          <Route path="/novoaacesso" element={<NovoAcesso />} />
+
           <Route
             path="/novoacesso"
             element={<ProtectRoute Component={NovoAcesso} />}
           />
-          <Route path="/update-pessoa" element={<FormUpdatePessoa />} />
+
           <Route
             path="/update-pessoa"
             element={<ProtectRoute Component={FormUpdatePessoa} />}
@@ -52,6 +53,10 @@ function App() {
           <Route
             path="/notificacoes"
             element={<ProtectRoute Component={NotificationPage} />}
+          />
+          <Route
+            path="/admin"
+            element={<ProtectRoute Component={AdminPage } />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
