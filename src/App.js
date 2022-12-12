@@ -42,7 +42,7 @@ function App() {
           />
 
           <Route
-            path="/novoacesso/:userId"
+            path="/novoacesso/:cidadaoId"
             element={<ProtectRoute Component={NovoAcesso} />}
           />
 

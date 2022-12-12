@@ -114,10 +114,12 @@ function TabelaCidadao() {
     }
     //
   }
+  
   // search bar
   function handleChange(e) {
     setSearch(e.target.value);
   }
+
   // filtrando o map com o search
   function filtrar(cidadao, search) {
     //console.log(cidadao, search, 'variaveis do search');
