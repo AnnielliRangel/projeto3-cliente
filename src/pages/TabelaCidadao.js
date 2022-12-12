@@ -19,7 +19,7 @@ function TabelaCidadao() {
   //
   // ? botão logout? -> set loggedInUser... func signOut + button
   //
-  const [listaGeral, setListaGeral] = useState({});
+  const [listaGeral, setListaGeral] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
   const [search, setSearch] = useState('');
@@ -58,7 +58,7 @@ function TabelaCidadao() {
     }
 
     getListaCidadaos();
-  }, [reload, listaGeral]);
+  }, [reload]);
   //
 
   //horas
