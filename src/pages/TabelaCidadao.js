@@ -187,7 +187,7 @@ function TabelaCidadao() {
               <th>Nome</th>
               <th>Documento</th>
               <th> 👩‍🦯 👨‍🦽 </th>
-              <th>acesso</th>
+              <th>registro</th>
               <th>status</th>
               <th>info</th>
             </tr>
