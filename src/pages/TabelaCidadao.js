@@ -230,7 +230,7 @@ function TabelaCidadao() {
                         {!cidadao.noLocal ? (
                           <Link to={`/NovoAcesso/${cidadao._id}`}>
                             <Button variant="success" size="sm">
-                              Regist. acesso
+                              Novo Registro
                             </Button>
                           </Link>
                         ) : (
