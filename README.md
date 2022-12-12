@@ -18,9 +18,21 @@ Dada a necessidade de controle aos prédios públicos e seus serviços, assim co
 
 as rotas principais são as de usuário:
 
-## /profile (páginas dos usuários), login, signup, e de informações cadastrais
+## /profile:
 
-## Rotas
+### (páginas dos usuários), login, signup, e de informações cadastrais dos usuários
+
+## /tabela
+
+### tabela que mostra os cidadãos e da acesso aos registros de serviço e permite alterar status de atendimento:
+
+### Chegada/ Geração de protocolo de atendimento -> aguardando -> em atendimento -> finalizado
+
+## /novocidadao
+
+## /update-pessoa
+
+### para atualizar as informações
 
 ## As princi
 
