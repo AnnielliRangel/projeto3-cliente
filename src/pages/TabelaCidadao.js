@@ -185,7 +185,7 @@ function TabelaCidadao() {
             <tr>
               <th>Foto</th>
               <th>Nome</th>
-              <th>Documento</th>
+              {/* <th>Documento</th> */}
               <th> 👩‍🦯 👨‍🦽 </th>
               <th>registro</th>
               <th>status</th>
@@ -211,12 +211,13 @@ function TabelaCidadao() {
                       </td>
                       <td>
                         <Link to={`/usuario/${cidadao._id}`}>
-                          {cidadao.nome}
+                          {cidadao.nome} <br /> {cidadao.numDoc}{' '}
+                          {cidadao.numtipoDoc}
                         </Link>
                       </td>
-                      <td>
+                      {/* <td>
                         {cidadao.numDoc} {cidadao.numtipoDoc}
-                      </td>
+                      </td> */}
                       <td
                         style={
                           cidadao.acessibilidade === 'nenhuma'
