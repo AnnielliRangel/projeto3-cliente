@@ -26,11 +26,32 @@ function FormCadastroPessoa() {
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
+  function handleImage(e) {
+    //console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
+  }
+
+  async function handleUpload(e) {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", img);
+
+      const response = await api.post("/uploadImage/upload", uploadData);
+
+      console.log(uploadData);
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function handleSubimit(e) {
     e.preventDefault();
+    const imgURL = await handleUpload();
+
     try {
-      await api.post("Cidadao/create-cidadao", form);
+      await api.post("Cidadao/create-cidadao", { ...form, profilePic: imgURL });
       setForm({
         nome: "",
         dataNasc: "",
@@ -51,37 +72,6 @@ function FormCadastroPessoa() {
     }
   }
 
-  function handleImage(e) {
-    //console.log(e.target.files[0]);
-    setImg(e.target.files[0]);
-  }
-  console.log(img);
-  /*async function handleUpload(e) {
-    try {
-      const uploadData = new FormData();
-      uploadData.append("picture", img);
-
-      const response = await api.post("/uploadImage/upload", uploadData);
-
-      console.log(uploadData);
-
-      return response.data.url;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  vou chamar a função handleUpload()
-
-  const imgURL = await handleUpload();
-  disparo a requisição de cadastro para o meu servidor
-  try {
-    await api.post("/user/sign-up", { ...form, profilePic: imgURL });
-
-  navigate("/tabela");
-  } catch (error) {
-  console.log(error);
-  } */
-
   return (
     <div>
       <h1 style={{ textAlign: "center", padding: "50px" }}>
@@ -98,17 +88,6 @@ function FormCadastroPessoa() {
             style={{ width: "70rem", marginTop: "50px" }}
             className="mb-2"
           >
-            <Row style={{ display: "flex", justifyContent: "center" }}>
-              <Card.Img
-                variant="top"
-                src={form.img}
-                style={{
-                  borderRadius: "20%",
-                  width: "15rem",
-                  marginTop: "50px",
-                }}
-              />
-            </Row>
             <Card.Body>
               <Card.Text>
                 <Form>
