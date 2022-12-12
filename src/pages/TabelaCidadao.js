@@ -1,48 +1,80 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Button, Table, Spinner, Form, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Button, Table, Spinner, Form, InputGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 //
-import toast from "react-hot-toast";
-
+// ! import toast from 'react-hot-toast';
 //
-
+// ? import { AuthContext } from '../contexts/authContext';
+// no lugar do axios:
+import api from '../api/api';
+//! no app.js front
+/* 
+<Route
+            path="/tabelaCidadao"
+            element={<ProtectRoute Component={TabelaCidadao} />}
+          />
+           */
 //
 function TabelaCidadao() {
+  //
+  // ? botão logout? -> set loggedInUser... func signOut + button
   //
   const [listaGeral, setListaGeral] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [filtraNoLocal, setFiltraNoLocal] = useState(false);
   // endereço da nossa coleção
-  var collectionAdress = "https://ironrest.cyclic.app/AcessCidadao/";
+
+  // ! var collectionAdress = 'https://ironrest.cyclic.app/AcessCidadao/';
+
+  // var collectionAdress = 'http://localhost:8080/cidadao/all-cidadaos/';
+
   // buscando a lista de cidadaos - GET
   useEffect(() => {
     async function getListaCidadaos() {
-      const response = await axios.get(collectionAdress);
+      const response = await api.get('/cidadao/all-cidadaos/');
       //console.log(response.data);
-      setListaGeral(response.data);
+
+      // ! atenção, se quebrar, retirar o sort!!
+      const clone = [...response.data];
+      clone.sort((a, b) => {
+        return a.updatedAt - b.updatedAt;
+      });
+      setListaGeral(
+        clone.sort((a, b) => {
+          return b.noLocal - a.noLocal;
+        })
+      );
+
+      // ! sort nao funciona!
+      /* 
+      function teste(a, b) {
+        return a.acessos[0].protocolo - b.acessos[0].protocolo > 0 ? 1 : 0;
+      }
+      setListaGeral(response.data.sort(teste)); */
+
       setIsLoading(false);
     }
 
     getListaCidadaos();
-  }, [reload, collectionAdress]);
+  }, [reload, listaGeral]);
   //
+
   //horas
   function dataHora() {
     let agora = new Date();
     let hora =
       agora.getDate() +
-      "/" +
+      '/' +
       (1 + Number.parseInt(agora.getMonth())).toString() +
-      "/" +
+      '/' +
       agora.getFullYear() +
-      " " +
+      ' ' +
       agora.getHours() +
-      "h" +
+      'h' +
       agora.getMinutes() +
-      "m";
+      'm';
 
     return hora;
   }
@@ -55,23 +87,24 @@ function TabelaCidadao() {
       //clonando o form para que possamos fazer as alterações necessárias
 
       //cidadao.acessos[0];
-      let clone = { ...cidadao }; //array da saida sempre no acessos[0] , na criação é sempre usado o unshift()
-      delete clone._id;
+      //let clone = { ...cidadao }; //array da saida sempre no acessos[0] , na criação é sempre usado o unshift()
+      //delete clone._id;
       // se pessoa esta saindo anotar que não está mais no local
-      clone.noLocal = false;
-      clone.acessos[0].saida = dataHora();
+      //clone.noLocal = false;
+      //clone.acessos[0].saida = dataHora();
       //console.log(clone, 'clone da saida');
+      //! teste
+      const clone2 = { saida: dataHora() };
+      //
+      // ! end anterior: https://ironrest.cyclic.app/AcessCidadao/
+      await api.put(`/registro/status/${cidadao._id}`, clone2);
 
-      await axios.put(
-        `https://ironrest.cyclic.app/AcessCidadao/${cidadao._id}`,
-        clone,
-      );
-
-      toast.success("Saída anotada, atualizando página...");
+      //console.log("'Atualizando Status...'");
+      //! toast.success('Atualizando Status...');
       setReload(!reload);
     } catch (error) {
-      //console.log(error);
-      toast.error("Algo deu errado. Tente novamente.");
+      console.log(error);
+      //! toast.error('Algo deu errado. Tente novamente.');
     }
     //
   }
@@ -90,15 +123,15 @@ function TabelaCidadao() {
           .includes(search.toLowerCase())) ||
       cidadao.numDoc
         .toLowerCase()
-        .replaceAll("-", "")
-        .replaceAll(".", "")
-        .replaceAll("/", "")
+        .replaceAll('-', '')
+        .replaceAll('.', '')
+        .replaceAll('/', '')
         .includes(
           search
             .toLowerCase()
-            .replaceAll("-", "")
-            .replaceAll(".", "")
-            .replaceAll("/", ""),
+            .replaceAll('-', '')
+            .replaceAll('.', '')
+            .replaceAll('/', '')
         )
     );
   }
@@ -115,7 +148,7 @@ function TabelaCidadao() {
               size="md"
               onClick={() => {
                 setReload(!reload);
-                toast.success("Página atualizada");
+                //toast.success('Página atualizada');
               }}
             >
               Reload
@@ -125,7 +158,7 @@ function TabelaCidadao() {
             <Form.Group>
               <Form.Check
                 type="checkbox"
-                label="Saídas pendentes"
+                label="pendentes"
                 name="active"
                 checked={filtraNoLocal}
                 onChange={() => {
@@ -154,9 +187,9 @@ function TabelaCidadao() {
               <th>Nome</th>
               <th>Documento</th>
               <th> 👩‍🦯 👨‍🦽 </th>
-              <th>Último acesso</th>
-              <th>Saida</th>
-              <th>Local</th>
+              <th>acesso</th>
+              <th>status</th>
+              <th>info</th>
             </tr>
           </thead>
           <tbody>
@@ -164,16 +197,16 @@ function TabelaCidadao() {
               listaGeral
                 .filter((cidadao) => filtrar(cidadao, search))
                 .filter((cidadao) =>
-                  filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true,
+                  filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true
                 )
                 .map((cidadao) => {
                   return (
-                    <tr style={{ fontSize: "0.8rem" }} key={cidadao._id}>
+                    <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
                       <td>
                         <img
                           src={cidadao.img}
                           alt="foto cidadao"
-                          style={{ width: "60px" }}
+                          style={{ width: '50px' }}
                         />
                       </td>
                       <td>
@@ -186,9 +219,9 @@ function TabelaCidadao() {
                       </td>
                       <td
                         style={
-                          cidadao.acessibilidade === "nenhuma"
+                          cidadao.acessibilidade === 'nenhuma'
                             ? {}
-                            : { color: "red" }
+                            : { color: 'red' }
                         }
                       >
                         {cidadao.acessibilidade}
@@ -208,24 +241,31 @@ function TabelaCidadao() {
                       <td>
                         {cidadao.noLocal ? (
                           <Button
-                            variant="danger"
+                            variant={
+                              cidadao.status === 'aguardando'
+                                ? 'danger'
+                                : 'warning'
+                            }
                             size="sm"
                             onClick={() => {
                               handleSaida(cidadao);
                             }}
                           >
-                            Regist. saída
+                            {cidadao.status}{' '}
+                            <span className="badge bg-secondary">
+                              {cidadao.acessos[0].protocolo}
+                            </span>
                           </Button>
                         ) : (
-                          ""
+                          ''
                         )}
                       </td>
 
                       <td>
-                        {cidadao.noLocal ? cidadao.acessos[0].local : ""} <br />{" "}
+                        {cidadao.noLocal ? cidadao.acessos[0].local : ''} <br />{' '}
                         {cidadao.noLocal
                           ? `obs: ${cidadao.acessos[0].obs}`
-                          : ""}
+                          : ''}
                       </td>
                     </tr>
                   );
