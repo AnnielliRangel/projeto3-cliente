@@ -24,19 +24,15 @@ function HomeLoginPage() {
     try {
       const response = await api.post("/user/login", form);
 
-      //validar se o usuário confirmou o email dele
-
-      //setItem -> coloca algo dentro do localStorage
       localStorage.setItem("loggedInUser", JSON.stringify(response.data));
 
-      //atualizar o contexto
       setLoggedInUser({ ...response.data });
 
-      /*  if (response.data.user.role === "ADMIN") {
-            navigate("/admin")
-        } */
-
-      navigate("/tabela");
+      if (response.data.user.role === "ADMIN") {
+        navigate("/admin");
+      } else {
+        navigate("/tabela");
+      }
     } catch (error) {
       console.log(error);
       if (error.response.status === 401) {
