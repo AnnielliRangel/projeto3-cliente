@@ -1,12 +1,18 @@
-import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 
-//
+// Instead of axios - api.js
+import api from '../api/api.js' 
+
+//<Route
+//             path="/novoacesso/:userId"
+//             element={<ProtectRoute Component={novoAcesso} />}
+//           />
+
 export default function NovoAcesso() {
-  //Pegasndo o userID definito como parametro em <Route> do (App.js)
+  //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
   const { userID } = useParams();
 
   //Instanciando o useNavigate() na constante navigate
@@ -31,9 +37,7 @@ export default function NovoAcesso() {
   //
   useEffect(() => {
     async function getCidadao() {
-      const response = await axios.get(
-        `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
-      );
+      const response = await api.get(`/registro/novoacesso/{cidadao._id}`);
       /* console.log(response.data); */
       setCidadao(response.data);
       setIsLoading(false);
@@ -42,9 +46,9 @@ export default function NovoAcesso() {
   }, [reload, userID]);
 
   async function handleEntrance(cidadao) {
-    /*    console.log(cidadao, "Cidadão ingressando no recinto"); */
+    /* console.log(cidadao, "Cidadão ingressando no recinto"); */
     /* cidadao.preventDefault(); */
-
+    // Hora da Entrada
     try {
       function dataHora() {
         let agora = new Date();
@@ -83,12 +87,9 @@ export default function NovoAcesso() {
       clone.acessos.unshift(novoAcesso);
       /*  console.log(clone); */
 
-      await axios.put(
-        `https://ironrest.cyclic.app/AcessCidadao/${userID}`,
-        clone,
-      );
+      await api.put(`/registro/novoacesso/{cidadao._id}`, clone);
 
-      toast.success("Acesso registrado com sucesso!!");
+      toast.success(`Acesso de ${cidadao} registrado com sucesso!`);
       setReload(!reload);
       navigate("/");
     } catch (error) {
