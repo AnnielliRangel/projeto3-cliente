@@ -44,7 +44,7 @@ export default function NovoAcesso() {
       setIsLoading(false);
     }
     getCidadao();
-  }, [reload,cidadaoID]);
+  }, [reload, cidadaoID]);
 
   async function handleEntrance(cidadao) {
     /* console.log(cidadao, "Cidadão ingressando no recinto"); */
@@ -108,13 +108,13 @@ export default function NovoAcesso() {
                 <legend> NOVO ACESSO</legend>
                 <h1>⧉{cidadao.nome} </h1>
                 <img
-                  src={cidadao.img}
+                  src={cidadao.profilePic}
                   alt="foto cidadao"
                   style={{ width: "160px" }}
                 />
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
+                {/* <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>*/}
                 <legend> Nº {cidadao.numDoc}</legend>
               </Card.Subtitle>
             </Card.Header>
