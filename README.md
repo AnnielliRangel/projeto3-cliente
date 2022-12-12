@@ -38,7 +38,7 @@ Profile dos usuários (admin/user)
 
 ### para atualizar as informações dos cidadaãos - USER tem acesso
 
-## ADMIN - terá acesso a todos os users
+## uauário ADMIN - terá acesso a todos os users
 
 # Getting Started with Create React App
 
