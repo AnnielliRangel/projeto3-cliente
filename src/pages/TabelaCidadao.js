@@ -114,21 +114,16 @@ function TabelaCidadao() {
     }
     //
   }
-  
   // search bar
   function handleChange(e) {
     setSearch(e.target.value);
   }
-
   // filtrando o map com o search
+
   function filtrar(cidadao, search) {
     //console.log(cidadao, search, 'variaveis do search');
     return (
       cidadao.nome.toLowerCase().includes(search.toLowerCase()) ||
-      (cidadao.noLocal &&
-        cidadao.acessos[0].local
-          .toLowerCase()
-          .includes(search.toLowerCase())) ||
       cidadao.numDoc
         .toLowerCase()
         .replaceAll('-', '')
@@ -143,6 +138,7 @@ function TabelaCidadao() {
         )
     );
   }
+
   //
   //-------------------------------//
   //
@@ -179,7 +175,7 @@ function TabelaCidadao() {
             <InputGroup>
               <Form.Control
                 type="text"
-                placeholder="Procura por Nome, Local, Documento"
+                placeholder="Procura por Nome, Documento"
                 onChange={handleChange}
                 value={search}
               />
@@ -219,8 +215,7 @@ function TabelaCidadao() {
                       </td>
                       <td>
                         <Link to={`/update-pessoa/${cidadao._id}`}>
-                          {cidadao.nome} <br /> {cidadao.numDoc}{' '}
-                          {cidadao.numtipoDoc}
+                          {cidadao.nome} <br /> doc: {cidadao.numDoc}{' '}
                         </Link>
                       </td>
                       {/* <td>
