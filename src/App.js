@@ -10,7 +10,7 @@ import TabelaCidadao from './pages/TabelaCidadao';
 import FormCadastroPessoa from './pages/FormCadatroPessoa';
 import HomeLoginPage from './pages/HomeLoginPage';
 import FormUpdatePessoa from './pages/FormUpdatePessoa';
-import NovoAcesso from './pages/novoAcesso';
+import novoAcesso from './pages/novoAcesso';
 import ProfilePage from './pages/ProfilePage';
 //
 import { Toaster } from 'react-hot-toast';
@@ -42,8 +42,8 @@ function App() {
           />
 
           <Route
-            path="/novoacesso"
-            element={<ProtectRoute Component={NovoAcesso} />}
+            path="/novoacesso/:userId"
+            element={<ProtectRoute Component={novoAcesso} />}
           />
 
           <Route
@@ -56,7 +56,7 @@ function App() {
           />
           <Route
             path="/admin"
-            element={<ProtectRoute Component={AdminPage } />}
+            element={<ProtectRoute Component={AdminPage} />}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
