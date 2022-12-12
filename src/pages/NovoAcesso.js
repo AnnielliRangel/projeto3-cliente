@@ -38,7 +38,7 @@ export default function NovoAcesso() {
   //
   useEffect(() => {
     async function getCidadao() {
-      const response = await api.get(`/oneCidadao/${cidadaoID}`);
+      const response = await api.get(`/cidadao/oneCidadao/${cidadaoID}`);
       /* console.log(response.data); */
       setCidadao(response.data);
       setIsLoading(false);
