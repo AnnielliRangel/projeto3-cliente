@@ -13,7 +13,7 @@ import api from '../api/api.js'
 
 export default function NovoAcesso() {
   //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
-  const { userID } = useParams();
+  const { cidadaoID } = useParams();
 
   //Instanciando o useNavigate() na constante navigate
   const navigate = useNavigate();
@@ -37,13 +37,13 @@ export default function NovoAcesso() {
   //
   useEffect(() => {
     async function getCidadao() {
-      const response = await api.get(`/registro/novoacesso/{cidadao._id}`);
+      const response = await api.get(`/cidadao/oneCidadao/{cidadaoID}`);
       /* console.log(response.data); */
       setCidadao(response.data);
       setIsLoading(false);
     }
     getCidadao();
-  }, [reload, userID]);
+  }, [reload,cidadaoID]);
 
   async function handleEntrance(cidadao) {
     /* console.log(cidadao, "Cidadão ingressando no recinto"); */
@@ -87,7 +87,7 @@ export default function NovoAcesso() {
       clone.acessos.unshift(novoAcesso);
       /*  console.log(clone); */
 
-      await api.put(`/registro/novoacesso/{cidadao._id}`, clone);
+      await api.put(`/registro/create-registro/{cidadaoID}`, clone);
 
       toast.success(`Acesso de ${cidadao} registrado com sucesso!`);
       setReload(!reload);
