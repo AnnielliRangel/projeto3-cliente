@@ -10,7 +10,7 @@ import TabelaCidadao from './pages/TabelaCidadao';
 import FormCadastroPessoa from './pages/FormCadatroPessoa';
 import HomeLoginPage from './pages/HomeLoginPage';
 import FormUpdatePessoa from './pages/FormUpdatePessoa';
-import NovoAcesso from './pages/NovoAcesso';
+import NovoAcesso from './pages/NewAcesso';
 import ProfilePage from './pages/ProfilePage';
 //
 import { Toaster } from 'react-hot-toast';
@@ -43,7 +43,7 @@ function App() {
 
           <Route
             path="/novoacesso/:userId"
-            element={<ProtectRoute Component={NovoAcesso} />}
+            element={<ProtectRoute Component={NewAcesso} />}
           />
 
           <Route
