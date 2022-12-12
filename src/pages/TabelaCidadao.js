@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Table, Spinner, Form, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //
-// ! import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 //
 // ? import { AuthContext } from '../contexts/authContext';
 // no lugar do axios:
@@ -98,9 +98,15 @@ function TabelaCidadao() {
       //
       // ! end anterior: https://ironrest.cyclic.app/AcessCidadao/
       await api.put(`/registro/status/${cidadao._id}`, clone2);
-
+      let mensagem = 'Atualizando Status...';
       //console.log("'Atualizando Status...'");
-      //! toast.success('Atualizando Status...');
+      if (cidadao.status === 'aguardando') {
+        mensagem = `iniciando atendimento prot ${cidadao.acessos[0].protocolo}`;
+      }
+      if (cidadao.status === 'atendimento') {
+        mensagem = `finalizando prot ${cidadao.acessos[0].protocolo} / saida`;
+      }
+      toast.success(mensagem);
       setReload(!reload);
     } catch (error) {
       console.log(error);
