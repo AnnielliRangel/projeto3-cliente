@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Table, Spinner, Form, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 //
-// ! import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 //
 // ? import { AuthContext } from '../contexts/authContext';
 // no lugar do axios:
@@ -19,7 +19,7 @@ function TabelaCidadao() {
   //
   // ? botão logout? -> set loggedInUser... func signOut + button
   //
-  const [listaGeral, setListaGeral] = useState({});
+  const [listaGeral, setListaGeral] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
   const [search, setSearch] = useState('');
@@ -58,7 +58,7 @@ function TabelaCidadao() {
     }
 
     getListaCidadaos();
-  }, [reload, listaGeral]);
+  }, [reload]);
   //
 
   //horas
@@ -98,9 +98,15 @@ function TabelaCidadao() {
       //
       // ! end anterior: https://ironrest.cyclic.app/AcessCidadao/
       await api.put(`/registro/status/${cidadao._id}`, clone2);
-
+      let mensagem = 'Atualizando Status...';
       //console.log("'Atualizando Status...'");
-      //! toast.success('Atualizando Status...');
+      if (cidadao.status === 'aguardando') {
+        mensagem = `iniciando atendimento prot ${cidadao.acessos[0].protocolo}`;
+      }
+      if (cidadao.status === 'atendimento') {
+        mensagem = `finalizando prot ${cidadao.acessos[0].protocolo} / saida`;
+      }
+      toast.success(mensagem);
       setReload(!reload);
     } catch (error) {
       console.log(error);
@@ -108,10 +114,12 @@ function TabelaCidadao() {
     }
     //
   }
+  
   // search bar
   function handleChange(e) {
     setSearch(e.target.value);
   }
+
   // filtrando o map com o search
   function filtrar(cidadao, search) {
     //console.log(cidadao, search, 'variaveis do search');
@@ -185,9 +193,9 @@ function TabelaCidadao() {
             <tr>
               <th>Foto</th>
               <th>Nome</th>
-              <th>Documento</th>
+              {/* <th>Documento</th> */}
               <th> 👩‍🦯 👨‍🦽 </th>
-              <th>acesso</th>
+              <th>registro</th>
               <th>status</th>
               <th>info</th>
             </tr>
@@ -210,13 +218,14 @@ function TabelaCidadao() {
                         />
                       </td>
                       <td>
-                        <Link to={`/usuario/${cidadao._id}`}>
-                          {cidadao.nome}
+                        <Link to={`/update-pessoa/${cidadao._id}`}>
+                          {cidadao.nome} <br /> {cidadao.numDoc}{' '}
+                          {cidadao.numtipoDoc}
                         </Link>
                       </td>
-                      <td>
+                      {/* <td>
                         {cidadao.numDoc} {cidadao.numtipoDoc}
-                      </td>
+                      </td> */}
                       <td
                         style={
                           cidadao.acessibilidade === 'nenhuma'
@@ -228,9 +237,9 @@ function TabelaCidadao() {
                       </td>
                       <td>
                         {!cidadao.noLocal ? (
-                          <Link to={`/NovoAcesso/${cidadao._id}`}>
+                          <Link to={`/novoacesso/${cidadao._id}`}>
                             <Button variant="success" size="sm">
-                              Regist. acesso
+                              Novo Registro
                             </Button>
                           </Link>
                         ) : (
