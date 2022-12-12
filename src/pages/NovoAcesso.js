@@ -92,7 +92,7 @@ export default function NovoAcesso() {
 
       toast.success(`Acesso de ${cidadao} registrado com sucesso!`);
       setReload(!reload);
-      navigate("/");
+      navigate("/tabela");
     } catch (error) {
       toast.error("Algo deu errado! Tente novamente...");
     }
@@ -114,7 +114,7 @@ export default function NovoAcesso() {
                 />
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                {/* <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>*/}
+                <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
                 <legend> Nº {cidadao.numDoc}</legend>
               </Card.Subtitle>
             </Card.Header>
@@ -195,7 +195,7 @@ export default function NovoAcesso() {
               >
                 Salvar
               </Button>
-              <Link to={"/"}>
+              <Link to={"/tabela"}>
                 <Button variant="secondary" type="submit">
                   Cancelar
                 </Button>
