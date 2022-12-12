@@ -216,7 +216,7 @@ function TabelaCidadao() {
                         />
                       </td>
                       <td>
-                        <Link to={`/usuario/${cidadao._id}`}>
+                        <Link to={`/update-pessoa/${cidadao._id}`}>
                           {cidadao.nome} <br /> {cidadao.numDoc}{' '}
                           {cidadao.numtipoDoc}
                         </Link>
@@ -235,7 +235,7 @@ function TabelaCidadao() {
                       </td>
                       <td>
                         {!cidadao.noLocal ? (
-                          <Link to={`/NovoAcesso/${cidadao._id}`}>
+                          <Link to={`/novoacesso/${cidadao._id}`}>
                             <Button variant="success" size="sm">
                               Novo Registro
                             </Button>
