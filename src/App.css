@@ -27,6 +27,11 @@ body {
   margin: 30px auto;
 }
 
+.tabela > tr > td {
+  background-color: #E6DDC4;
+  color: #181D31;
+}
+
 .col-center {
   text-align: center;
 }

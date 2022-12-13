@@ -193,7 +193,7 @@ function TabelaCidadao() {
         </div>
       </Container>
       <Container className="container-table">
-        <Table striped bordered hover responsive variant="dark">
+        <Table className='tabela' striped bordered hover responsive>
           <thead>
             <tr>
               <th className="col-center">Foto</th>
@@ -243,7 +243,7 @@ function TabelaCidadao() {
                       <td className="col-center">
                         {!cidadao.noLocal ? (
                           <Link to={`/novoacesso/${cidadao._id}`}>
-                            <Button variant="success" size="sm">
+                            <Button variant="success">
                               Novo Registro
                             </Button>
                           </Link>
