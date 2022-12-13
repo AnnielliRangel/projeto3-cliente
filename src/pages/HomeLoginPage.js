@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Button, Container, Form, Card } from "react-bootstrap";
+import { Button, Container, Form, Card, Row, Col, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 import { AuthContext } from "../contexts/authContext";
@@ -83,17 +83,10 @@ function HomeLoginPage() {
           </Card.Body>
       </Card>
 
-      <Form.Text>
-        Se esse é o seu primeiro acesso,
-        <Link
-          className="text-warning fw-bold text-decoration-none"
-          to="/sign-up"
-        >
-          {" "}
-          Clique aqui
-        </Link>
-        .
-      </Form.Text>
+      <Alert variant='warning'>
+        Se esse é o seu primeiro acesso,{' '}
+        <Alert.Link to="/sign-up">Clique aqui</Alert.Link>
+      </Alert>
     </Container>
   );
 }
