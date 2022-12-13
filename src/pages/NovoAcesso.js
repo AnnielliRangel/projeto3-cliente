@@ -19,7 +19,6 @@ export default function NovoAcesso() {
 
   //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
   const { cidadaoID } = useParams();
-  console.log(cidadaoID)
 
   //Instanciando o useNavigate() na constante navigate
   const navigate = useNavigate();
@@ -44,14 +43,13 @@ export default function NovoAcesso() {
   useEffect(() => {
     async function getCidadao() {
       const response = await api.get(`/cidadao/oneCidadao/${cidadaoID}`);
-      /* console.log(response.data); */
       setCidadao(response.data);
       setIsLoading(false);
     }
     getCidadao();
   }, [reload, cidadaoID]);
 
-  async function handleEntrance(cidadao) {
+  async function handleEntrance(e) {
     e.preventDefault();
     
     try {
@@ -70,10 +68,7 @@ export default function NovoAcesso() {
 
         return hora;
       }
-      const clone = { ...cidadao };
-      delete clone._id;
-
-      clone.noLocal = true;
+      
 
       const novoAcesso = {
         entrada: dataHora(),
@@ -82,10 +77,8 @@ export default function NovoAcesso() {
         local: form.local,
         obs: form.obs,
       };
-      clone.acessos.unshift(novoAcesso);
-      /*  console.log(clone); */
 
-      await api.put(`/registro/create-registro/${cidadaoID}`, clone);
+      await api.post(`/registro/create-registro/${cidadaoID}`, novoAcesso);
 
       toast.success(`Acesso de ${cidadao} registrado com sucesso!`);
       setReload(!reload);
@@ -196,7 +189,7 @@ export default function NovoAcesso() {
               <Button
                 variant="success"
                 type="submit"
-                onClick={() => handleEntrance(e, cidadao)}
+                onClick={(e) => handleEntrance(e)}
               >
                 Salvar
               </Button>
