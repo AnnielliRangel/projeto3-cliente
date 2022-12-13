@@ -1,4 +1,5 @@
 import { Container, Form, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api/api";
 
@@ -83,6 +84,11 @@ function ServicesPage() {
           <Button variant="primary" className="m-3" onClick={handleSubmit}>
            Salvar
           </Button>
+          <Link to={"/tabela"}>
+                <Button variant="secondary" type="submit">
+                  Cancelar
+                </Button>
+              </Link>
         </Form>
       </Container>
 
@@ -126,6 +132,7 @@ function ServicesPage() {
                 >
                   Descontinuar Serviço
                 </Button>
+              
               </Card.Footer>
             </Card>
           );
