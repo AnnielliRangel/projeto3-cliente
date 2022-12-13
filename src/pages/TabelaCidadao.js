@@ -38,10 +38,10 @@ function TabelaCidadao() {
 
       // ! atenção, se quebrar, retirar o sort!!
       const clone = [...response.data];
-      clone.sort((a, b) => {
+      await clone.sort((a, b) => {
         return a.updatedAt - b.updatedAt;
       });
-      setListaGeral(
+      await setListaGeral(
         clone.sort((a, b) => {
           return b.noLocal - a.noLocal;
         })
@@ -114,7 +114,7 @@ function TabelaCidadao() {
     }
     //
   }
-  
+
   // search bar
   function handleChange(e) {
     setSearch(e.target.value);

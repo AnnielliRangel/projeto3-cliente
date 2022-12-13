@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 import { AuthContext } from "../contexts/authContext";
-import Card from "react-bootstrap/Card";
 
 function HomeLoginPage() {
   const navigate = useNavigate();
@@ -44,45 +43,44 @@ function HomeLoginPage() {
 
   return (
     <Container
-      style={{ height: "100vh" }}
       className="d-flex flex-column align-items-center justify-content-center"
     >
-      <Card>
-        <Card.Title style={{ margin: "10vh" }}>
-          Bem Vindo ao Sistema de Controle de Atendimento ao Cidadão e acessos
-          ao Serviço Público
-        </Card.Title>
+        <Card className="card-login">
+          <Card.Header>
+            Bem Vindo ao Sistema de Controle de Acessos
+          </Card.Header>
+          <Card.Body>
+          
+            <Card.Title>Faça seu Login</Card.Title>
 
-        <Card>
-          <Card.Title>Login </Card.Title>
+            <Form onSubmit={handleSubmit} className="m-3">
+              <Form.Group className="mb-3">
+                <Form.Label>Endereço de e-mail</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Insira o endereço de e-mail cadastrado"
+                />
+              </Form.Group>
 
-          <Form onSubmit={handleSubmit} className="m-5">
-            <Form.Group className="mb-3">
-              <Form.Label>Endereço de e-mail</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Insira o endereço de e-mail cadastrado"
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Senha</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                placeholder="Insira a senha cadastrada"
-              />
-            </Form.Group>
-            <Button className="my-3" variant="success" type="submit">
-              Entrar
-            </Button>
-          </Form>
-        </Card>
+              <Form.Group className="mb-3">
+                <Form.Label>Senha</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  placeholder="Insira a senha cadastrada"
+                />
+              </Form.Group>
+              
+              <Button className="my-3" variant="success" type="submit">
+                Entrar
+              </Button>
+            </Form>
+          </Card.Body>
       </Card>
 
       <Form.Text>
