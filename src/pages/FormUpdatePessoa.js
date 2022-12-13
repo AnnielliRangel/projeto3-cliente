@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/api.js";
 
+import NavBar from "../components/NavBar.js"
+
 import {
   Col,
   Container,
@@ -13,31 +15,29 @@ import {
 
 import toast from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ListAcessos from "../components/listAcessos";
+import ListAcessos from "../components/listAcessos.js";
 
 export default function FormUpdatePessoa() {
   const { userId } = useParams();
   const navigate = useNavigate();
-  const [img, setImg] = useState();
+  const [profilePic, setProfilePic] = useState();
 
   const [form, setForm] = useState({
     nome: "",
     numDoc: "",
-    tipoDoc: "",
     dataNasc: "",
+    tipoDoc: "",
     acessibilidade: "",
     genero: "",
-    age: "",
-    profilePic: "",
     acessos: []
   });
 
   useEffect(() => {
     async function getPessoa() {
-      const response = await api.get(`oneCidadao/${userId}`);
+      const response = await api.get(`/cidadao/oneCidadao/${userId}`);
       setForm(response.data);
     }
-    getPessoa();
+    getPessoa()
   }, [userId]);
 
   function handleChange(e) {
@@ -69,22 +69,24 @@ export default function FormUpdatePessoa() {
       toast.error("Algo deu errado. Tente novamente.");
     }
   }
+
   function handleImage(e) {
-    setImg(e.target.files[0]);
+    setProfilePic(e.target.files[0]);
   }
   
 
   return (
-    <Container>
+    <Container fluid>
+      {<NavBar/>}
       <Row className="justify-content-md-center">
-        <Card className="card-login">
+        <Card className="card-form">
           <Card.Header>Formulário de atualização</Card.Header>
           <Card.Body>
             <Card.Text>
               <Form>
                 <Row className="justify-content-md-center">
                   <Col>
-                    <Form.Group className="mb-3" controlId="nome">
+                    <Form.Group className="mb-3">
                       <Form.Label>Nome</Form.Label>
                       <Form.Control
                         type="text"
@@ -96,20 +98,20 @@ export default function FormUpdatePessoa() {
                       <Form.Text className="text-muted"></Form.Text>
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="dataNasc">
-                      <Form.Label>Data Nasc.</Form.Label>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Nro. Documento</Form.Label>
                       <Form.Control
-                        type="date"
-                        placeholder="Data Nascimento"
-                        name="dataNasc"
-                        value={form.dataNasc}
+                        type="text"
+                        placeholder="Digite o nro do seu documento"
+                        name="numDoc"
+                        value={form.numDoc}
                         onChange={handleChange}
                       />
                       <Form.Text className="text-muted"></Form.Text>
                     </Form.Group>
                   </Col>
                   <Col md="auto">
-                    <Form.Group className="mb-3" controlId="foto">
+                    <Form.Group className="mb-3">
                       <Figure.Image
                         width={171}
                         height={180}
@@ -121,35 +123,44 @@ export default function FormUpdatePessoa() {
                 </Row>
 
                 <Row className="justify-content-md-center">
+
                   <Col>
+
                     <Form.Group className="mb-3">
-                      <Form.Label>Tipo de Documento</Form.Label>
-                      <Form.Select
-                        name="tipoDoc"
-                        value={form.tipoDoc}
-                        onChange={handleChange}
-                      >
-                        <option>SELECIONE</option>
-                        <option value="cpf">CPF</option>
-                        <option value="rg">RG</option>
-                        <option value="cnh">CNH</option>
-                        <option value="oab">OAB</option>
-                        <option value="passaporte">Passaporte</option>
-                      </Form.Select>
-                    </Form.Group>
+                            <Form.Label htmlFor="tipoDoc">
+                              Tipo de Documento
+                            </Form.Label>
+                            <Form.Select
+                              id="tipoDoc"
+                              name="tipoDoc"
+                              value={form.tipoDoc}
+                              onChange={handleChange}
+                            >
+                              <option>SELECIONE</option>
+                              <option value="cpf">CPF</option>
+                              <option value="rg">RG</option>
+                              <option value="cnh">CNH</option>
+                              <option value="oab">OAB</option>
+                              <option value="passaporte">Passaporte</option>
+                            </Form.Select>
+                      </Form.Group> 
+                    
                   </Col>
 
                   <Col>
-                    <Form.Group className="mb-3" controlId="numDoc">
-                      <Form.Label>Número de documento </Form.Label>
-                      <Form.Control
-                        type="number"
-                        placeholder="somente números"
-                        name="numDoc"
-                        value={form.numDoc}
-                        onChange={handleChange}
-                      />
+
+                  <Form.Group className="mb-3">
+                        <Form.Label>Data Nascimento</Form.Label>
+                        <Form.Control
+                          type="Date"
+                          placeholder="Insira a data de nascimento"
+                          name="dataNasc"
+                          value={form.dataNasc}
+                          onChange={handleChange}
+                        />
                     </Form.Group>
+
+                    
                   </Col>
                 </Row>
 
@@ -157,13 +168,13 @@ export default function FormUpdatePessoa() {
                   <Col>
                     <Form.Group className="mb-3">
                       <Form.Label>Foto de Perfil</Form.Label>
-                      <Form.Control type="file" onChange={handleImage} />
+                      <Form.Control type="file" onChange={(e) => handleImage(e)} />
                     </Form.Group>
                   </Col>
                   <Col>
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="acessibilidade">
-                        Atendimento Prioritário{" "}
+                      <Form.Label>
+                        Atendimento Prioritário
                       </Form.Label>
                       <Form.Select
                         id="acessibilidade"
@@ -182,7 +193,7 @@ export default function FormUpdatePessoa() {
                 <Row className="justify-content-md-center">
                   <Col>
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="genero">Genero</Form.Label>
+                      <Form.Label>Genero</Form.Label>
                       <Form.Select
                         name="genero"
                         value={form.genero}
@@ -193,19 +204,6 @@ export default function FormUpdatePessoa() {
                         <option value="masculino">Masculino</option>
                         <option value="outro">Outro</option>
                       </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col>
-                    <Form.Group className="mb-3" controlId="foto">
-                      <Form.Label>Foto</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="link para foto"
-                        name="img"
-                        value={form.img}
-                        onChange={handleChange}
-                      />
-                      <Form.Text className="text-muted"></Form.Text>
                     </Form.Group>
                   </Col>
                 </Row>
@@ -240,9 +238,10 @@ export default function FormUpdatePessoa() {
           </Card.Body>
         </Card>
       </Row>
+
       <Row className="justify-content-md-center">
         <Card
-          className="card-login"
+          className="card-form"
         >
           <Card.Header>Histórico de visitas</Card.Header>
           <Card.Body>
