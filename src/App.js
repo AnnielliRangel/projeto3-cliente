@@ -25,6 +25,7 @@ function App() {
         {/*<NavBar />*/}
         <Routes>
           <Route path="/" element={<HomeLoginPage />} />
+          
           <Route path="/sign-up" element={<SignUpPage />} />
 
           <Route
@@ -43,12 +44,12 @@ function App() {
           />
 
           <Route
-            path="/novoacesso/:cidadaoID"
+            path="/novoacesso"
             element={<ProtectRoute Component={NovoAcesso} />}
           />
 
           <Route
-            path="/update-pessoa"
+            path="/update-pessoa/:userId"
             element={<ProtectRoute Component={FormUpdatePessoa} />}
           />
           <Route
