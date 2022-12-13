@@ -1,38 +1,39 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  color: #E6DDC4;
+}
+
+body {
+  background-color: #181D31;
+  color: #E6DDC4;
+}
+
+.card-login {
+  background-color: #678983;
+  color: #F0E9D2;
+  width: 90vw;
+  max-width: 35rem;
+  margin: 15rem auto;
+}
+
+.container-main {
+  width: 90vw;
+  margin: 10px auto;
+}
+
+.container-table {
+  width: 90vw;
+  margin: 30px auto;
+}
+
+.col-center {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.link-table {
+  text-decoration: none;
+  color: #E6DDC4;
+  cursor: pointer;
+  font-size: 1rem;
 }
