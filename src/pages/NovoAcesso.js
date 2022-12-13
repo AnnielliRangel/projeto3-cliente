@@ -52,7 +52,7 @@ export default function NovoAcesso() {
   }, [reload, cidadaoID]);
 
   async function handleEntrance(cidadao) {
-    cidadao.preventDefault();
+    e.preventDefault();
     
     try {
       function dataHora() {
@@ -196,7 +196,7 @@ export default function NovoAcesso() {
               <Button
                 variant="success"
                 type="submit"
-                onClick={() => handleEntrance(cidadao)}
+                onClick={() => handleEntrance(e, cidadao)}
               >
                 Salvar
               </Button>
