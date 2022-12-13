@@ -114,7 +114,7 @@ export default function FormUpdatePessoa() {
                         width={171}
                         height={180}
                         alt="foto"
-                        src={form.img}
+                        src={form.profilePic}
                       />
                     </Form.Group>
                   </Col>
