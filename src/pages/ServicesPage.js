@@ -63,17 +63,18 @@ function ServicesPage() {
       <Container className="border rounded mt-3">
         <Form>
           <Form.Group className="mt-3">
-            <Form.Label><h2>Cadastra Serviço Público </h2></Form.Label>
+            <Form.Label><h2>Cadastro de Serviço Público </h2></Form.Label>
             <Form.Control
               type="text"
-              placeholder="Insira o nome do serviço público aqui!"
+              placeholder="Insira o nome do serviço público"
               name="details"
               value={form.details}
               onChange={handleChange}
+              autoFocus
             />
           </Form.Group>
           <Form.Group className="mt-3">
-            <Form.Label>Data de Disponibilidade</Form.Label>
+            <Form.Label>Data da Disponibildade / Descontinuidade</Form.Label>
             <Form.Control
               type="date"
               name="dateFin"
@@ -93,7 +94,7 @@ function ServicesPage() {
       </Container>
 
       <Container className="border rounded mt-3">
-        <h3 className="mt-3">Serviços Públicos Disponíveis</h3>
+        <h3 className="mt-3">Lista de serviços públicos</h3>
         {services.map((service) => {
           return (
             <Card key={service._id} className="m-4">
@@ -105,9 +106,11 @@ function ServicesPage() {
                     defaultValue={form.status}
                     onChange={(e) => handleSelect(e, service._id)}
                   >
-                    <option value="disponivel">Disponível</option>
-                    <option value="aprovacao">Em Aprovação</option>
-                    <option value="descontinuado">Descontinuado</option>
+                    <option value="Disponivel">Disponível</option>
+                    <option value="Descontinuado">Descontinuado</option>
+                    <option value="Suspenso">Suspenso</option>
+                    <option value="Em Aprovação">Em Aprovação</option>
+                    
                   </Form.Select>
                 )}
               </Card.Body>
