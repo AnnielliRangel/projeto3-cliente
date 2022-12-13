@@ -45,8 +45,9 @@ export default function FormUpdatePessoa() {
   }
 
   async function handleDelete(e) {
-    await api.delete(`delete/${userId}`);
-    navigate("/");
+    await api.delete(`/cidadao/delete/${userId}`);
+    toast.success("Registro deletado com sucesso.");
+    navigate("/tabela");
   }
 
   async function handleSubimit(e) {
@@ -54,14 +55,15 @@ export default function FormUpdatePessoa() {
     try {
       const clone = { ...form };
 
-      delete clone._id;
+      delete clone._id
+      delete clone.acessos
 
       await api.put(
-        `edit/${userId}`,
+        `/cidadao/edit/${userId}`,
         clone,
       );
 
-      navigate("/");
+      navigate("/tabela");
 
       toast.success("Cadastro atualizado com sucesso.");
     } catch (error) {
@@ -219,7 +221,7 @@ export default function FormUpdatePessoa() {
                       >
                         Salvar
                       </Button>
-                      <Link to={"/"}>
+                      <Link to={"/tabela"}>
                         <Button
                           variant="warning"
                           style={{ marginRight: "25px" }}
