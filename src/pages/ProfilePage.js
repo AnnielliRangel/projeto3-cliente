@@ -96,6 +96,15 @@ function ProfilePage() {
           </Col>
         </Row>
       </Container>
+      <Row>
+        <Col style={{ textAlign: "center" }}>
+          <Link to={"/tabela"}>
+            <Button variant="secondary" type="submit">
+              Voltar
+            </Button>
+          </Link>
+        </Col>
+      </Row>
     </div>
   );
 }
