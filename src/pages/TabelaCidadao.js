@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Table, Spinner, Form, InputGroup } from 'react-bootstrap';
+import { Button, Table, Spinner, Form, InputGroup, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.js'
 //
@@ -150,7 +150,7 @@ function TabelaCidadao() {
   return (
     <div className="mx-2">
       {<NavBar />}
-      <div className="container my-3 max-width">
+      <Container className="container-main">
         <div className="row">
           <div className="col-sm-3">
             <Button
@@ -188,17 +188,17 @@ function TabelaCidadao() {
             </InputGroup>
           </div>
         </div>
-      </div>
-      <div className="mx-0">
+      </Container>
+      <Container className="container-table">
         <Table striped bordered hover responsive variant="dark">
           <thead>
             <tr>
-              <th>Foto</th>
+              <th className='col-center'>Foto</th>
               <th>Nome</th>
               {/* <th>Documento</th> */}
-              <th> 👩‍🦯 👨‍🦽 </th>
-              <th>registro</th>
-              <th>status</th>
+              {/* <th> 👩‍🦯 👨‍🦽 </th> */}
+              <th className='col-center'>Iniciar Visita</th>
+              <th className='col-center'>Status</th>
               <th>info</th>
             </tr>
           </thead>
@@ -212,7 +212,7 @@ function TabelaCidadao() {
                 .map((cidadao) => {
                   return (
                     <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
-                      <td>
+                      <td className='col-center'>
                         <img
                           src={cidadao.profilePic}
                           alt="foto cidadao"
@@ -228,7 +228,7 @@ function TabelaCidadao() {
                       {/* <td>
                         {cidadao.numDoc} {cidadao.numtipoDoc}
                       </td> */}
-                      <td
+                      {/* <td
                         style={
                           cidadao.acessibilidade === 'nenhuma'
                             ? {}
@@ -236,8 +236,8 @@ function TabelaCidadao() {
                         }
                       >
                         {cidadao.acessibilidade}
-                      </td>
-                      <td>
+                      </td> */}
+                      <td className='col-center'>
                         {!cidadao.noLocal ? (
                           <Link to={`/novoacesso/${cidadao._id}`}>
                             <Button variant="success" size="sm">
@@ -249,7 +249,7 @@ function TabelaCidadao() {
                         )}
                       </td>
 
-                      <td>
+                      <td className='col-center'>
                         {cidadao.noLocal ? (
                           <Button
                             variant={
@@ -284,7 +284,7 @@ function TabelaCidadao() {
           </tbody>
         </Table>
         {isLoading && <Spinner animation="border" variant="warning" />}
-      </div>
+      </Container>
     </div>
   );
 }

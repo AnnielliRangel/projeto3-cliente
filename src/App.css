@@ -16,3 +16,17 @@ body {
   max-width: 35rem;
   margin: 15rem auto;
 }
+
+.container-main {
+  width: 90vw;
+  margin: 10px auto;
+}
+
+.container-table {
+  width: 90vw;
+  margin: 30px auto;
+}
+
+.col-center {
+  text-align: center;
+}
