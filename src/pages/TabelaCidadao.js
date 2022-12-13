@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Button, Table, Spinner, Form, InputGroup, Container } from 'react-bootstrap';
+import {
+  Button,
+  Table,
+  Spinner,
+  Form,
+  InputGroup,
+  Container,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import NavBar from '../components/NavBar.js'
+import NavBar from '../components/NavBar.js';
 //
 import toast from 'react-hot-toast';
 //
@@ -126,10 +133,6 @@ function TabelaCidadao() {
     //console.log(cidadao, search, 'variaveis do search');
     return (
       cidadao.nome.toLowerCase().includes(search.toLowerCase()) ||
-      (cidadao.noLocal &&
-        cidadao.acessos[0].local
-          .toLowerCase()
-          .includes(search.toLowerCase())) ||
       cidadao.numDoc
         .toLowerCase()
         .replaceAll('-', '')
@@ -181,7 +184,7 @@ function TabelaCidadao() {
             <InputGroup>
               <Form.Control
                 type="text"
-                placeholder="Procura por Nome, Local, Documento"
+                placeholder="Procura por Nome, Documento"
                 onChange={handleChange}
                 value={search}
               />
@@ -193,12 +196,12 @@ function TabelaCidadao() {
         <Table striped bordered hover responsive variant="dark">
           <thead>
             <tr>
-              <th className='col-center'>Foto</th>
+              <th className="col-center">Foto</th>
               <th>Nome</th>
               {/* <th>Documento</th> */}
               {/* <th> 👩‍🦯 👨‍🦽 </th> */}
-              <th className='col-center'>Iniciar Visita</th>
-              <th className='col-center'>Status</th>
+              <th className="col-center">Iniciar Visita</th>
+              <th className="col-center">Status</th>
               <th>info</th>
             </tr>
           </thead>
@@ -212,7 +215,7 @@ function TabelaCidadao() {
                 .map((cidadao) => {
                   return (
                     <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
-                      <td className='col-center'>
+                      <td className="col-center">
                         <img
                           src={cidadao.profilePic}
                           alt="foto cidadao"
@@ -221,8 +224,8 @@ function TabelaCidadao() {
                       </td>
                       <td>
                         <Link to={`/update-pessoa/${cidadao._id}`}>
-                          {cidadao.nome} <br /> {cidadao.numDoc}{' '}
-                          {cidadao.numtipoDoc}
+                          {cidadao.nome} <br />
+                          doc: {cidadao.numDoc}
                         </Link>
                       </td>
                       {/* <td>
@@ -237,7 +240,7 @@ function TabelaCidadao() {
                       >
                         {cidadao.acessibilidade}
                       </td> */}
-                      <td className='col-center'>
+                      <td className="col-center">
                         {!cidadao.noLocal ? (
                           <Link to={`/novoacesso/${cidadao._id}`}>
                             <Button variant="success" size="sm">
@@ -249,7 +252,7 @@ function TabelaCidadao() {
                         )}
                       </td>
 
-                      <td className='col-center'>
+                      <td className="col-center">
                         {cidadao.noLocal ? (
                           <Button
                             variant={
