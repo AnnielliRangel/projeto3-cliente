@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import setores from "../Setores.json";
-
+import servicos from "../Servicos.json";
 
 // Instead of axios - api.js
 import api from '../api/api.js' 
@@ -15,7 +15,8 @@ import api from '../api/api.js'
 
 export default function NovoAcesso() {
   const listSetores = setores;
-  
+  const listServices = servicos;
+
   //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
   const { cidadaoID } = useParams();
   console.log(cidadaoID)
@@ -51,14 +52,12 @@ export default function NovoAcesso() {
   }, [reload, cidadaoID]);
 
   async function handleEntrance(cidadao) {
-    /* console.log(cidadao, "Cidadão ingressando no recinto"); */
-    /* cidadao.preventDefault(); */
-    // Hora da Entrada
+    cidadao.preventDefault();
+    
     try {
       function dataHora() {
         let agora = new Date();
-        let hora =
-          agora.getDate() +
+        let hora = agora.getDate() +
           "/" +
           (1 + Number.parseInt(agora.getMonth())).toString() +
           "/" +
@@ -71,12 +70,6 @@ export default function NovoAcesso() {
 
         return hora;
       }
-
-      /* let agora = new Date();
-      const horaEntrada = agora.toISOString().slice(0, 16).replace("T", " h ");
-      console.log(horaEntrada); */
-
-      //cidadao.acessos[0] -> propriedade  ARRAY na collection "AcessCidadao"
       const clone = { ...cidadao };
       delete clone._id;
 
@@ -149,7 +142,7 @@ export default function NovoAcesso() {
                     </Form.Group>
                   </Col>
                   <Col>
-                    <Form.Group className="mb-3">
+                  <Form.Group className="mb-3">
                       <Form.Label>
                         <legend>Serviço Público</legend>
                       </Form.Label>
@@ -158,9 +151,14 @@ export default function NovoAcesso() {
                         defaultValue={form.servicoPublico}
                         onChange={handleChange}
                       >
-                        <option>
-                          <legend>Selecione Serviço</legend>
-                        </option>
+                        <option>Selecione Serviço</option>
+                        {listServices.map((service) => {
+                          return (
+                            <option key={service.label} value={service.label}>
+                              {service.label}
+                            </option>
+                          );
+                        })}
                       </Form.Select>
                     </Form.Group>
                   </Col>
