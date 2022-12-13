@@ -97,10 +97,9 @@ export default function NovoAcesso() {
               <Card.Title>
                 <legend> NOVO ACESSO</legend>
                 <h1>⧉{cidadao.nome} </h1>
-                <img
+                <img style={{ width: "100px", borderRadius: "50px" }}
                   src={cidadao.profilePic}
                   alt="foto cidadao"
-                  style={{ width: "190px" }}
                 />
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
