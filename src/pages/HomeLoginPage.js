@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { Button, Container, Form, Card, Row, Col, Alert } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Container, Form, Card, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 import { AuthContext } from "../contexts/authContext";
 
