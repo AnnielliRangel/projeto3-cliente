@@ -4,8 +4,6 @@ import { Table } from "react-bootstrap";
 
 function ListAcessos({ acessos }) {
 
-  console.log(acessos)
-  
   return (
     <Table responsive>
       <thead>

@@ -1,8 +1,7 @@
-import { Button, Col, Container, Card, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Container, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/api";
-import EditUser from "../components/EditUser";
 
 function ProfilePage() {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ function ProfilePage() {
   const [form, setForm] = useState({
     name: "",
   });
-  const [reload, setReload] = useState(false);
   const [img, setImg] = useState();
   function handleImage(e) {
     //console.log(e.target.files[0]);
@@ -43,10 +41,11 @@ function ProfilePage() {
       console.log(error);
     }
   }
+
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await api.get("/user/profile");
+        const response = await api.get("/user/oneUser/");
         setUser(response.data);
         setForm({ name: response.data.name });
       } catch (error) {
@@ -55,57 +54,18 @@ function ProfilePage() {
     }
 
     fetchUser();
-  }, [reload]);
+  }, []);
 
   return (
-    <div>
-      <Container className="mt-5">
-        <Row className="align-items-center mb-5">
-          <Col>
-            <img
-              src={user.profilePic}
-              alt="profile Pic"
-              className="rounded"
-              style={{ width: "100px", borderRadius: "50px" }}
-            />
-            <Form className="w-50" onSubmit={handleSubmit}>
-              <Form.Group>
-                <Form.Label>Atualizar Foto de Perfil</Form.Label>
-                <Form.Control type="file" onChange={handleImage} />
-              </Form.Group>
-            </Form>
-          </Col>
-          <Col>
-            <Card>
-              <h2>{user.name} </h2>
-              <p>{user.email}</p>
-              <EditUser
-                form={form}
-                setForm={setForm}
-                setReload={setReload}
-                reload={reload}
-              />
-              <Row></Row>
-            </Card>
-          </Col>
 
-          <Col>
-            <Link to="/notificacoes">
-              <Button variant="secondary">Notificações</Button>
-            </Link>
-          </Col>
-        </Row>
+    <Card className="card-form">
+      <Container fluid>
+        <Card.Header>Perfil do usuário</Card.Header>
+        <Card.Body>
+          <img src="{user.profilePic}"/>
+        </Card.Body>
       </Container>
-      <Row>
-        <Col style={{ textAlign: "center" }}>
-          <Link to={"/tabela"}>
-            <Button variant="secondary" type="submit">
-              Voltar
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-    </div>
+    </Card>
   );
 }
 
