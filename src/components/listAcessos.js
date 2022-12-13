@@ -3,6 +3,9 @@ import { Table } from "react-bootstrap";
 //Essa tabela era exibida no perfil individual do cidadão, com o histórico de entradas e saídas
 
 function ListAcessos({ acessos }) {
+
+  console.log(acessos)
+  
   return (
     <Table responsive>
       <thead>
