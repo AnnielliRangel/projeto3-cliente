@@ -1,0 +1,31 @@
+[ 
+    {
+        "label": "Consulta Processual", 
+        "value": "consulta-processual"
+    },
+    {
+        "label": "Justiça Gratuita", 
+        "value": "justica-gratuita"
+    },
+    {
+        "label": "Campanha de Vacinação", 
+        "value": "campanha-de-vacinacao"
+    },
+    {
+        "label": "Petição Inicial", 
+        "value": "peticao-inicial"
+    },
+    {
+        "label": "Senha de Acesso", 
+        "value": "senha-de-acesso"
+    },
+    {
+        "label": "Alimentação Servidor", 
+        "value": "alimentacao-servidor"
+    }
+    ,
+    {
+        "label": "Outros", 
+        "value": "outros"
+    }
+]
