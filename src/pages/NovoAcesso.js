@@ -4,6 +4,7 @@ import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import setores from "../Setores.json";
 import servicos from "../Servicos.json";
+import obsMotivos from "../Motivos.json";
 
 // Instead of axios - api.js
 import api from '../api/api.js' 
@@ -16,6 +17,7 @@ import api from '../api/api.js'
 export default function NovoAcesso() {
   const listSetores = setores;
   const listServices = servicos;
+  const listMotivos = obsMotivos;
 
   //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
   const { cidadaoID } = useParams();
@@ -97,10 +99,9 @@ export default function NovoAcesso() {
               <Card.Title>
                 <legend> NOVO ACESSO</legend>
                 <h1>⧉{cidadao.nome} </h1>
-                <img
+                <img style={{ width: "190px", borderRadius: "8%" }}
                   src={cidadao.profilePic}
                   alt="foto cidadao"
-                  style={{ width: "190px" }}
                 />
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
@@ -158,7 +159,7 @@ export default function NovoAcesso() {
                   <Col>
                     <Form.Group className="mb-3">
                       <Form.Label htmlFor="obs">
-                        <legend>Observação → motivo</legend>
+                        <legend>Observação → Motivo?</legend>
                       </Form.Label>
                       <Form.Select
                         id="obs"
@@ -166,19 +167,14 @@ export default function NovoAcesso() {
                         onChange={handleChange}
                         defaultValue={form.obs}
                       >
-                        <option>
-                          <legend>Selecione Motivo</legend>
-                        </option>
-                        <option value="audiencia">Audiência</option>
-                        <option value="Reunião">Reunião</option>
-                        <option value="correios">Correio</option>
-                        <option value="entrega">Entrega</option>
-                        <option value="licitacao">Licitação</option>
-                        <option value="conciliacao">Conciliação</option>
-                        <option value="almoco">Almoço</option>
-                        <option value="trabalho">Trabalho</option>
-                        <option value="visita">Visita</option>
-                        <option value="outros">Outros</option>
+                        <option>Selecione Motivo</option>
+                        {listMotivos.map((obs) => {
+                          return (
+                            <option key={obs.label} value={obs.label}>
+                              {obs.label}
+                            </option>
+                          );
+                        })}
                       </Form.Select>
                     </Form.Group>
                   </Col>
