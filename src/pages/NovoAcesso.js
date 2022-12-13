@@ -52,7 +52,7 @@ export default function NovoAcesso() {
   }, [reload, cidadaoID]);
 
   async function handleEntrance(cidadao) {
-    e.preventDefault();
+    cidadao.preventDefault();
     
     try {
       function dataHora() {
