@@ -1,15 +1,19 @@
 [ 
     {
         "label": "Consulta Processual", 
-        "value": "consulta-processual"
+        "value": "Consulta Processual"
     },
     {
         "label": "Justiça Gratuita", 
-        "value": "justica-gratuita"
+        "value": "Justiça Gratuita"
     },
     {
-        "label": "Campanha de Vacinação", 
-        "value": "campanha-de-vacinacao"
+        "label": "Vacinação Servidor", 
+        "value": "Vacinação Servidor"
+    },
+    {
+        "label": "Vacinação Dependente", 
+        "value": "Vacinação Dependente"
     },
     {
         "label": "Petição Inicial", 
@@ -20,10 +24,17 @@
         "value": "senha-de-acesso"
     },
     {
-        "label": "Alimentação Servidor", 
-        "value": "alimentacao-servidor"
-    }
-    ,
+        "label": "Almoço Corporativo", 
+        "value": "Almoço Corporativo"
+    },
+    {
+        "label": "Café Corporativo", 
+        "value": "Café Corporativo"
+    },    
+    {
+        "label": "Lanche Corporativo", 
+        "value": "Lanche Corporativo"
+    },    
     {
         "label": "Outros", 
         "value": "outros"
