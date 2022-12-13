@@ -30,3 +30,10 @@ body {
 .col-center {
   text-align: center;
 }
+
+.link-table {
+  text-decoration: none;
+  color: #E6DDC4;
+  cursor: pointer;
+  font-size: 1rem;
+}
