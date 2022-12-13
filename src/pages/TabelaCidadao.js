@@ -190,7 +190,7 @@ function TabelaCidadao() {
         </div>
       </div>
       <div className="mx-0">
-        <Table striped bordered hover responsive size="sm">
+        <Table striped bordered hover responsive variant="dark">
           <thead>
             <tr>
               <th>Foto</th>
