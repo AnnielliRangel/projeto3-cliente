@@ -159,7 +159,7 @@ export default function NovoAcesso() {
                   <Col>
                     <Form.Group className="mb-3">
                       <Form.Label htmlFor="obs">
-                        <legend>Observação → Motivo?</legend>
+                        <legend>Observação → Motivo</legend>
                       </Form.Label>
                       <Form.Select
                         id="obs"
