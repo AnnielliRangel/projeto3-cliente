@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  color: #E6DDC4;
 }
 
 body {
@@ -25,7 +24,12 @@ body {
   margin: 50px auto 50px auto;
 }
 
-.option-select {
+.card-user {
+  width: 25rem;
+  max-width: 25rem;
+}
+
+.card-user * {
   color: #181D31;
 }
 
