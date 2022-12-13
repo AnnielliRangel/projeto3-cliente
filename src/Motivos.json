@@ -1,4 +1,8 @@
-[
+[ 
+    {
+        "label": "Alimentação", 
+        "value": "Alimentação"
+    },
     {
         "label": "Capacitação", 
         "value": "Capacitação"
