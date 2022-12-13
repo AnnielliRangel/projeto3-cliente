@@ -223,9 +223,9 @@ function TabelaCidadao() {
                         />
                       </td>
                       <td>
-                        <Link to={`/update-pessoa/${cidadao._id}`}>
-                          {cidadao.nome} <br />
-                          doc: {cidadao.numDoc}
+                        <Link className="link-table" to={`/update-pessoa/${cidadao._id}`}>
+                          <p>{cidadao.nome.toUpperCase()}</p>
+                          <p>Num. doc: {cidadao.numDoc}</p>
                         </Link>
                       </td>
                       {/* <td>
