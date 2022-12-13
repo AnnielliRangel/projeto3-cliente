@@ -1,5 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import api from "../api/api.js";
+
 import {
   Col,
   Container,
@@ -9,6 +10,7 @@ import {
   Card,
   Figure,
 } from "react-bootstrap";
+
 import toast from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ListAcessos from "../components/listAcessos";
@@ -20,22 +22,19 @@ export default function FormUpdatePessoa() {
 
   const [form, setForm] = useState({
     nome: "",
-    dataNasc: "",
     numDoc: "",
     tipoDoc: "",
-    profissao: "",
+    dataNasc: "",
     acessibilidade: "",
     genero: "",
-    img: "",
-    acessos: [],
-    noLocal: false,
+    age: "",
+    profilePic: "",
+    acessos: []
   });
 
   useEffect(() => {
     async function getPessoa() {
-      const response = await axios.get(
-        `https://ironrest.cyclic.app/AcessCidadao/${userId}`,
-      );
+      const response = await api.get(`oneCidadao/${userId}`);
       setForm(response.data);
     }
     getPessoa();
@@ -46,7 +45,7 @@ export default function FormUpdatePessoa() {
   }
 
   async function handleDelete(e) {
-    await axios.delete(`https://ironrest.cyclic.app/AcessCidadao/${userId}`);
+    await api.delete(`delete/${userId}`);
     navigate("/");
   }
 
@@ -57,8 +56,8 @@ export default function FormUpdatePessoa() {
 
       delete clone._id;
 
-      await axios.put(
-        `https://ironrest.cyclic.app/AcessCidadao/${userId}`,
+      await api.put(
+        `edit/${userId}`,
         clone,
       );
 
@@ -71,46 +70,14 @@ export default function FormUpdatePessoa() {
     }
   }
   function handleImage(e) {
-    //console.log(e.target.files[0]);
     setImg(e.target.files[0]);
   }
-  console.log(img);
-  /*async function handleUpload(e) {
-    try {
-      const uploadData = new FormData();
-      uploadData.append("picture", img);
-
-      const response = await api.post("/uploadImage/upload", uploadData);
-
-      console.log(uploadData);
-
-      return response.data.url;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  vou chamar a função handleUpload()
-
-  const imgURL = await handleUpload();
-  disparo a requisição de cadastro para o meu servidor
-  try {
-    await api.post("/user/sign-up", { ...form, profilePic: imgURL });
-
-  navigate("/tabela");
-  } catch (error) {
-  console.log(error);
-  } */
+  
 
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <Card
-          border="primary"
-          key="primary"
-          text="dark"
-          style={{ width: "70rem", marginTop: "30px" }}
-          className="mb-2"
-        >
+        <Card className="card-login">
           <Card.Header>Formulário de atualização</Card.Header>
           <Card.Body>
             <Card.Text>
@@ -275,11 +242,7 @@ export default function FormUpdatePessoa() {
       </Row>
       <Row className="justify-content-md-center">
         <Card
-          border="primary"
-          key="primary"
-          text="dark"
-          style={{ width: "70rem" }}
-          className="mb-2"
+          className="card-login"
         >
           <Card.Header>Histórico de visitas</Card.Header>
           <Card.Body>

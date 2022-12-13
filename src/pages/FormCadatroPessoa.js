@@ -18,8 +18,6 @@ function FormCadastroPessoa() {
     numDoc: "",
     acessibilidade: "",
     genero: "",
-    img: "",
-    email:"cidadao@gmail.com",
     acessos: [],
     noLocal: false,
   });
@@ -60,8 +58,6 @@ function FormCadastroPessoa() {
         numDoc: "",
         acessibilidade: "",
         genero: "",
-        img: "",
-        email:"cidadao@gmail.com",
         acessos: [],
         noLocal: false,
       });
