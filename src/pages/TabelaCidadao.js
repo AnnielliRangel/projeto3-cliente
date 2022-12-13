@@ -223,15 +223,9 @@ function TabelaCidadao() {
                         />
                       </td>
                       <td>
-<<<<<<< HEAD
-                        <Link className='link-table' to={`/update-pessoa/${cidadao._id}`}>
-                          <p>{cidadao.nome.toUpperCase()}</p>
-                          <p>Num. Doc.: {cidadao.numDoc}</p>
-=======
                         <Link to={`/update-pessoa/${cidadao._id}`}>
                           {cidadao.nome} <br />
                           doc: {cidadao.numDoc}
->>>>>>> 6f10a5e81af21795fad32bae8f920c080b4359fc
                         </Link>
                       </td>
                       {/* <td>
@@ -249,8 +243,8 @@ function TabelaCidadao() {
                       <td className="col-center">
                         {!cidadao.noLocal ? (
                           <Link to={`/novoacesso/${cidadao._id}`}>
-                            <Button variant="success">
-                              Iniciar Visita
+                            <Button variant="success" size="sm">
+                              Novo Registro
                             </Button>
                           </Link>
                         ) : (
