@@ -1,0 +1,38 @@
+[ 
+    {
+        "label": "Alimentação", 
+        "value": "Alimentação"
+    },
+    {
+        "label": "Capacitação", 
+        "value": "Capacitação"
+    },
+    {
+        "label": "Entrega", 
+        "value": "Entrega"
+    },
+    {
+        "label": "Intimação", 
+        "value": "Intimação"
+    },
+    {
+        "label": "Reunião", 
+        "value": "Reunião"
+    },
+    {
+        "label": "Trabalho", 
+        "value": "Trabalho"
+    },
+    {
+        "label": "Visitação", 
+        "value": "Visitação"
+    },
+    {
+        "label": "Vacinação", 
+        "value": "Vacinação"
+    },    
+    {
+        "label": "Outros", 
+        "value": "outros"
+    }
+]
