@@ -1,18 +1,30 @@
-#Frontend - Bem Vindo ao Projeto do App ⧉ Controle de Atendimento ao Cidadão e acesso ao Serviço Público →
-Controle de atendimento Serviços Públicos
+# Frontend - Bem Vindo ao Projeto do App ⧉ Controle de Atendimento ao Cidadão e acesso ao Serviço Público →
 
-obs: as fotos e nomes foram reaproveitadas principalmente da documentação dos Labs de aula.
+## Controle de atendimento Serviços Públicos
 
-Trata esta página, do 2º projeto entregue pela equipe:
+##
 
-Annielli A. R. Cunha
-Bruno Prestes
-Sergio A. Francalino
-Anderson T. Toma
+## obs: as fotos e nomes foram reaproveitadas principalmente da documentação dos Labs de aula.
 
-Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
+Trata esta página, do 3º projeto requisitada pela IronHack:
 
-Dada a necessidade de controle aos prédios públicos e seus serviços, assim como a inexistência em vários locais públicos desse controle informatizado, nos propusemos o desenvolvimento deste aplicativo.
+## Annielli A. R. Cunha
+
+## Bruno Prestes
+
+## Sergio A. Francalino
+
+## Anderson T. Toma
+
+## Alunos do bootcamp, turma 92 da Ironhack: https://www.ironhack.com/br
+
+Dada a necessidade de controle de atendimento aos serviços públicos e seus prédios, assim como a inexistência em vários locais públicos desse controle informatizado, nos propusemos o desenvolvimento deste aplicativo.
+
+## Utilizou-se como base (proteção de rotas e usuário) o template criado em aula.
+
+# Backend relacionado
+
+### Este Frontend está relaciona ao backend no github: https://github.com/AnnielliRangel/projeto3-servidor
 
 # Rotas - as rotas principais são as de usuário:
 
@@ -28,17 +40,23 @@ Profile dos usuários (admin/user)
 
 ### Chegada/ Geração de protocolo de atendimento -> aguardando -> em atendimento -> finalizado
 
-### dados básicos dos Cidadãos
+### Clicando sobre os nomes dos cidadão é possível editá-los
 
-### consulta (filtros por nome, numero do documento, e pendentes (atendimento/aguardando)
+### A Tabela tamém permite a consulta (filtros por nome, numero do documento, e pendentes (atendimento/aguardando) ativando checkbox
 
 ## /novocidadao
 
+### Formulário de registro de novo Cidadão
+
 ## /update-pessoa
+
+### página de destino a partir da Tabela, onde se edita o cidadão á criado
 
 ### para atualizar as informações dos cidadaãos - USER tem acesso
 
-## uauário ADMIN - terá acesso a todos os users
+## usuário ADMIN - terá acesso a todos os users
+
+#
 
 # Getting Started with Create React App
 
