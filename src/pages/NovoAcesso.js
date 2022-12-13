@@ -2,6 +2,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
+import setores from "../Setores.json";
+
 
 // Instead of axios - api.js
 import api from '../api/api.js' 
@@ -12,6 +14,8 @@ import api from '../api/api.js'
 //           />
 
 export default function NovoAcesso() {
+  const listSetores = setores;
+  
   //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
   const { cidadaoID } = useParams();
   console.log(cidadaoID)
@@ -92,7 +96,7 @@ export default function NovoAcesso() {
 
       toast.success(`Acesso de ${cidadao} registrado com sucesso!`);
       setReload(!reload);
-      navigate("/");
+      navigate("/tabela");
     } catch (error) {
       toast.error("Algo deu errado! Tente novamente...");
     }
@@ -110,12 +114,12 @@ export default function NovoAcesso() {
                 <img
                   src={cidadao.profilePic}
                   alt="foto cidadao"
-                  style={{ width: "160px" }}
+                  style={{ width: "190px" }}
                 />
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                {/* <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>*/}
-                <legend> Nº {cidadao.numDoc}</legend>
+                <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
+                <legend> Nº. {cidadao.numDoc} Emissor: {cidadao.emissor}</legend>
               </Card.Subtitle>
             </Card.Header>
 
@@ -124,7 +128,7 @@ export default function NovoAcesso() {
                 <Row>
                   <Col>
                     <Form.Group className="mb-3">
-                      <Form.Label>
+                    <Form.Label>
                         <legend>Local de Destino</legend>
                       </Form.Label>
                       <Form.Select
@@ -133,9 +137,14 @@ export default function NovoAcesso() {
                         onChange={handleChange}
                         autoFocus
                       >
-                        <option>
-                          <legend>Selecione Destino</legend>
-                        </option>
+                        <option>Selecione Destino</option>
+                        {listSetores.map((setor) => {
+                          return (
+                            <option key={setor.label} value={setor.label}>
+                              {setor.label}
+                            </option>
+                          );
+                        })}
                       </Form.Select>
                     </Form.Group>
                   </Col>
@@ -185,22 +194,21 @@ export default function NovoAcesso() {
                 </Row>
               </Form>
             </Card.Body>
-
-            <Card.Footer>
+            <Card.Footer className="d-flex justify-content-around">
               <Button
-                className="justify-content-between"
                 variant="success"
                 type="submit"
                 onClick={() => handleEntrance(cidadao)}
               >
                 Salvar
               </Button>
-              <Link to={"/"}>
+              <Link to={"/tabela"}>
                 <Button variant="secondary" type="submit">
                   Cancelar
                 </Button>
               </Link>
             </Card.Footer>
+           
           </Card>
         )}
       </fieldset>

@@ -5,6 +5,8 @@ import { AuthContext } from "../contexts/authContext";
 import api from "../api/api";
 //import EditUser from "../components/EditUser";
 
+import NavBar from "../components/NavBar";
+
 function AdminPage() {
   const navigate = useNavigate();
 
@@ -51,6 +53,7 @@ function AdminPage() {
   }
   return (
     <div>
+      {<NavBar />}
       Informações do ADMIN
       <p>ver todos os perfis. get(/all-users)</p>
       <p>editar e excluir perfil</p>
