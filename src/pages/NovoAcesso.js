@@ -110,12 +110,12 @@ export default function NovoAcesso() {
                 <img
                   src={cidadao.profilePic}
                   alt="foto cidadao"
-                  style={{ width: "160px" }}
+                  style={{ width: "190px" }}
                 />
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
-                <legend> Nº {cidadao.numDoc}</legend>
+                <legend> Nº. {cidadao.numDoc} Emissor: {cidadao.emissor}</legend>
               </Card.Subtitle>
             </Card.Header>
 
@@ -185,10 +185,8 @@ export default function NovoAcesso() {
                 </Row>
               </Form>
             </Card.Body>
-
-            <Card.Footer>
+            <Card.Footer className="d-flex justify-content-around">
               <Button
-                className="justify-content-between"
                 variant="success"
                 type="submit"
                 onClick={() => handleEntrance(cidadao)}
@@ -201,6 +199,7 @@ export default function NovoAcesso() {
                 </Button>
               </Link>
             </Card.Footer>
+           
           </Card>
         )}
       </fieldset>
