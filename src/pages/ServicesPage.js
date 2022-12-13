@@ -2,24 +2,24 @@ import { Container, Form, Button, Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import api from "../api/api";
 
-function TasksPage() {
+function ServicesPage() {
   const [form, setForm] = useState({
     details: "",
     dateFin: "",
   });
-  const [tasks, setTasks] = useState([]);
+  const [services, setServices] = useState([]);
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    async function fetchTasks() {
+    async function fetchServices() {
       try {
-        const response = await api.get("/task/my-tasks");
-        setTasks(response.data);
+        const response = await api.get("/service/my-services");
+        setServices(response.data);
       } catch (error) {
         console.log(error);
       }
     }
-    fetchTasks();
+    fetchServices();
   }, [reload]);
 
   function handleChange(e) {
@@ -29,7 +29,7 @@ function TasksPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await api.post("/task/create-task", form);
+      await api.post("/service/create-service", form);
       setReload(!reload);
       setForm({
         details: "",
@@ -37,42 +37,42 @@ function TasksPage() {
       });
     } catch (error) {
       console.log(error);
-      alert("Algo deu errado na criação da task");
+      alert("Algo deu errado na criação do serviço");
     }
   }
 
-  async function handleSelect(e, idTask) {
-    await api.put(`/task/edit/${idTask}`, { status: e.target.value });
+  async function handleSelect(e, idService) {
+    await api.put(`/service/edit/${idService}`, { status: e.target.value });
   }
 
-  async function handleDeleteTask(e, idTask) {
-    await api.delete(`/task/delete/${idTask}`);
+  async function handleDeleteService(e, idService) {
+    await api.delete(`/service/delete/${idService}`);
     setReload(!reload);
   }
 
-  async function handleTaskComplete(e, idTask) {
-    await api.put(`/task/complete/${idTask}`);
+  async function handleServiceComplete(e, idService) {
+    await api.put(`/service/complete/${idService}`);
     setReload(!reload);
   }
 
-  console.log(tasks);
+  console.log(services);
 
   return (
     <div>
       <Container className="border rounded mt-3">
         <Form>
           <Form.Group className="mt-3">
-            <Form.Label>Tarefa</Form.Label>
+            <Form.Label><h2>Cadastra Serviço Público </h2></Form.Label>
             <Form.Control
               type="text"
-              placeholder="Escreva sua tarefa"
+              placeholder="Insira o nome do serviço público aqui!"
               name="details"
               value={form.details}
               onChange={handleChange}
             />
           </Form.Group>
           <Form.Group className="mt-3">
-            <Form.Label>Data de Finalização</Form.Label>
+            <Form.Label>Data de Disponibilidade</Form.Label>
             <Form.Control
               type="date"
               name="dateFin"
@@ -81,50 +81,50 @@ function TasksPage() {
             />
           </Form.Group>
           <Button variant="primary" className="m-3" onClick={handleSubmit}>
-            Salvar Tarefa
+           Salvar
           </Button>
         </Form>
       </Container>
 
       <Container className="border rounded mt-3">
-        <h1 className="mt-3">Tarefas</h1>
-        {tasks.map((task) => {
+        <h3 className="mt-3">Serviços Públicos Disponíveis</h3>
+        {services.map((service) => {
           return (
-            <Card key={task._id} className="m-4">
+            <Card key={service._id} className="m-4">
               <Card.Body>
-                <p>{task.details}</p>
+                <h4>{service.details}</h4>
 
-                {!task.complete && (
+                {!service.complete && (
                   <Form.Select
                     defaultValue={form.status}
-                    onChange={(e) => handleSelect(e, task._id)}
+                    onChange={(e) => handleSelect(e, service._id)}
                   >
-                    <option value="aberto">Em Aberto</option>
-                    <option value="andamento">Em Andamento</option>
-                    <option value="finalizando">Finalizando</option>
+                    <option value="disponivel">Disponível</option>
+                    <option value="aprovacao">Em Aprovação</option>
+                    <option value="descontinuado">Descontinuado</option>
                   </Form.Select>
                 )}
               </Card.Body>
-              <Card.Footer>
-                {task.complete ? (
-                  <p>Tarefa finalizada no dia: {task.dateFin.slice(0, 10)}</p>
+              <Card.Footer className="d-flex justify-content-around">
+                {service.complete ? (
+                  <p>Serviço Indisponível desde: {service.dateFin.slice(0, 10)}</p>
                 ) : (
-                  <p>Data final esperada: {task.dateFin.slice(0, 10)}</p>
+                  <p>Disponível Somente Até: {service.dateFin.slice(0, 10)}</p>
                 )}
 
                 <Button
                   variant="danger"
                   size="sm"
-                  onClick={(e) => handleDeleteTask(e, task._id)}
+                  onClick={(e) => handleDeleteService(e, service._id)}
                 >
-                  Excluir Task
+                  Excluir Serviço
                 </Button>
                 <Button
                   variant="success"
                   size="sm"
-                  onClick={(e) => handleTaskComplete(e, task._id)}
+                  onClick={(e) => handleServiceComplete(e, service._id)}
                 >
-                  Concluir Task
+                  Descontinuar Serviço
                 </Button>
               </Card.Footer>
             </Card>
@@ -135,4 +135,4 @@ function TasksPage() {
   );
 }
 
-export default TasksPage;
+export default ServicesPage;

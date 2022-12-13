@@ -62,6 +62,10 @@ function NavBar() {
                   Tabela
                 </Link>
 
+                <Link className="nav-link" to="/services">
+                  Serviços
+                </Link>
+
                 <Link className="nav-link" to="/" onClick={signOut}>
                   Logout
                 </Link>

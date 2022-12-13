@@ -12,6 +12,7 @@ import HomeLoginPage from './pages/HomeLoginPage';
 import FormUpdatePessoa from './pages/FormUpdatePessoa';
 import NovoAcesso from './pages/NovoAcesso';
 import ProfilePage from './pages/ProfilePage';
+import ServicesPage from './pages/ServicesPage';
 //
 import { Toaster } from 'react-hot-toast';
 import AdminPage from './pages/adminPage';
@@ -53,6 +54,10 @@ function App() {
           <Route
             path="/notificacoes"
             element={<ProtectRoute Component={NotificationPage} />}
+          />
+          <Route
+            path="/services"
+            element={<ProtectRoute Component={ServicesPage} />}
           />
           <Route
             path="/admin"
