@@ -1,19 +1,18 @@
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/api";
+import NavBar from "../components/NavBar.js";
 
 function ProfilePage() {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [form, setForm] = useState({
-    name: "",
-  });
-  const [img, setImg] = useState();
+  const [img, setImg] = useState()
+
   function handleImage(e) {
-    //console.log(e.target.files[0]);
     setImg(e.target.files[0]);
   }
+
   async function handleUpload(e) {
     try {
       const uploadData = new FormData();
@@ -21,51 +20,70 @@ function ProfilePage() {
 
       const response = await api.post("/uploadImage/upload", uploadData);
 
-      console.log(uploadData);
-
       return response.data.url;
     } catch (error) {
       console.log(error);
     }
   }
-  async function handleSubmit(e) {
-    e.preventDefault();
 
-    const imgURL = await handleUpload();
-    //disparo a requisição de cadastro para o meu servidor
-    try {
-      await api.post("/user/profile", { ...form, profilePic: imgURL });
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
 
-      navigate("/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //   const imgURL = await handleUpload();
+  //   //disparo a requisição de cadastro para o meu servidor
+  //   try {
+  //     await api.post("/user/profile", { ...form, profilePic: imgURL });
+
+  //     navigate("/profile");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await api.get("/user/oneUser/");
+        const userLogged = localStorage.getItem("loggedInUser");
+        const user = JSON.parse(userLogged);
+        const userId = user.user._id;
+
+        const response = await api.get(`/user/oneUser/${userId}`);
         setUser(response.data);
-        setForm({ name: response.data.name });
+        //setForm({ name: response.data.name });
       } catch (error) {
         console.log(error);
       }
     }
 
     fetchUser();
+    console.log(user);
   }, []);
 
   return (
+    <Container fluid>
+      <Row>
+        <NavBar />
+      </Row>
 
-    <Card className="card-form">
-      <Container fluid>
-        <Card.Header>Perfil do usuário</Card.Header>
-        <Card.Body>
-          <img src="{user.profilePic}"/>
-        </Card.Body>
-      </Container>
-    </Card>
+      <Row>
+        <Col>
+          <Card className="card-user">
+            <Card.Img onClick={handleImage} variant="top" src={user.profilePic} />
+            <Card.Body>
+              <Card.Text>Usuário: {user.name}</Card.Text>
+              <Card.Text>E-mail: {user.email}</Card.Text>
+              <Card.Text>
+                Tipo de usuário:{" "}
+                {user.role === "USER" ? "Usuário Padrão" : "Administrador"}
+              </Card.Text>
+              <Card.Text>
+                Status do usuário: {user.active === true ? "Ativo" : "Desativado"}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
