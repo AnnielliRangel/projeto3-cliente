@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Table, Spinner, Form, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar.js'
 //
 import toast from 'react-hot-toast';
 //
@@ -148,6 +149,7 @@ function TabelaCidadao() {
   //
   return (
     <div className="mx-2">
+      {<NavBar />}
       <div className="container my-3 max-width">
         <div className="row">
           <div className="col-sm-3">
