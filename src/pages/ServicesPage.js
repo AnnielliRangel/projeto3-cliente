@@ -92,7 +92,7 @@ function ServicesPage() {
 
           <Col>
           <Form.Group className="mt-3">
-            <Form.Label>Nome da Unidade Prestadora</Form.Label>
+            <Form.Label>Unidade Prestadora</Form.Label>
             <Form.Control
               type="text"
               placeholder="Insira o nome do setor / local "
@@ -145,7 +145,7 @@ function ServicesPage() {
                       size="sm"
                       onClick={(e) => handleDeleteService(e, service._id)}
                     >
-                      Excluir Serviço
+                      Delete
                     </Button>
                     → Serviço Descontinuado em:{" "}
                     {service.dateFin.slice(0, 10)}
