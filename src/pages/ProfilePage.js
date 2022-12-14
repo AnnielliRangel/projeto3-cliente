@@ -62,11 +62,10 @@ function ProfilePage() {
   return (
     <Container fluid>
       <Row>
-        <NavBar />
-      </Row>
-
-      <Row>
-        <Col>
+        <Col sm={2}>
+          <NavBar />
+        </Col>
+        <Col sm={10}>
           <Card className="card-user">
             <Card.Img onClick={handleImage} variant="top" src={user.profilePic} />
             <Card.Body>
