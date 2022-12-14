@@ -1,11 +1,11 @@
 import { Container, Card, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import NavBar from "../components/NavBar.js";
 
 function ProfilePage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [user, setUser] = useState({});
   const [img, setImg] = useState()
 
