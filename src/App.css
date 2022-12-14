@@ -77,7 +77,9 @@ td * {
 }
 
 .menu-bar {
+  display: fixed;
   background-color: #F0E9D2;
+  height: 100vh;
   color: #181D31;
 }
 
