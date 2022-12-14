@@ -43,9 +43,12 @@ body {
   margin: 30px auto;
 }
 
-.tabela > tr > td {
-  background-color: #E6DDC4;
-  color: #181D31;
+.tabela * {
+  color: #F0E9D2;
+}
+
+td * {
+  color: #F0E9D2;
 }
 
 .col-center {

@@ -1,14 +1,13 @@
-import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
+import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api/api";
+import NavBar from "../components/NavBar";
 
 function ServicesPage() {
   const [form, setForm] = useState({
     details: "",
-    dateFin: Date.now,
-    localSetor: "",
-    unidade: 0,
+    dateFin: "",
   });
   const [services, setServices] = useState([]);
   const [reload, setReload] = useState(false);
@@ -37,109 +36,95 @@ function ServicesPage() {
       setForm({
         details: "",
         dateFin: "",
-        localSetor: "",
-        unidade: "",
       });
     } catch (error) {
       console.log(error);
-      alert("Algo deu errado! Serviço já cadastrado");
+      alert("Algo deu errado na criação do serviço");
     }
   }
 
-  // async function handleSelect(e, idService) {
-  //   await api.put(`/service/edit/${idService}`, { status: e.target.value });
-  // }
+  async function handleSelect(e, idService) {
+    await api.put(`/service/edit/${idService}`, { status: e.target.value });
+  }
 
   async function handleDeleteService(e, idService) {
     await api.delete(`/service/delete/${idService}`);
     setReload(!reload);
   }
 
-  async function handleServiceDiscontinued(e, idService) {
-    await api.put(`/service/discontinued/${idService}`);
+  async function handleServiceComplete(e, idService) {
+    await api.put(`/service/complete/${idService}`);
     setReload(!reload);
   }
 
-  // console.log(services);
-
   return (
-    <div>
-      <Container className="border rounded mt-3">
-        <Form>
-          <Form.Group className="mt-3">
-            <Form.Label>
-              <h2>Cadastro de Serviço Público </h2>
-            </Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Insira o nome do serviço público"
-              name="details"
-              value={form.details}
-              onChange={handleChange}
-              autoFocus
-            />
-          </Form.Group>
-          <Form.Group className="mt-3">
-            <Form.Label>Data de Validade / Disponibilidade do Serviço</Form.Label>
-            <Form.Control
-              type="date"
-              name="dateFin"
-              value={form.dateFin}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Row>
+    <Container fluid>
+      <Row>
+        <Col sm={2}>
+          <NavBar/>
+        </Col>
+        <Col sm={10}>
+          <Container>
+            <Form>
+              <Form.Group className="mt-3">
+                <Form.Label><h2>Cadastro de Serviço Público </h2></Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Insira o nome do serviço público"
+                  name="details"
+                  value={form.details}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group className="mt-3">
+                <Form.Label>Data da Disponibildade / Descontinuidade</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="dateFin"
+                  value={form.dateFin}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Button variant="primary" className="m-3" onClick={handleSubmit}>
+              Salvar
+              </Button>
+              <Link to={"/tabela"}>
+                    <Button variant="secondary" type="submit">
+                      Cancelar
+                    </Button>
+                  </Link>
+            </Form>
+          </Container>
 
-          <Col>
-          <Form.Group className="mt-3">
-            <Form.Label>Nome da Unidade Prestadora</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Insira o nome do setor / local "
-              name="localSetor"
-              value={form.localSetor}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          </Col>
-          {/* <Col>
-          <Form.Group className="mt-3">
-            <Form.Label>Nº da Unidade</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder={form.unidade}
-              name="unidade"
-              value={form.unidade}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          </Col>
-          */}
+          <Container>
+            <h3 className="mt-3">Lista de serviços públicos</h3>
+            {services.map((service) => {
+              return (
+                <Card key={service._id} className="m-4">
+                  <Card.Body>
+                    <h4>{service.details}</h4>
 
-          </Row>
-          <Button variant="primary" className="m-3" onClick={handleSubmit}>
-            Salvar
-          </Button>
-          <Link to={"/tabela"}>
-            <Button variant="secondary" type="submit">
-              Cancelar
-            </Button>
-          </Link>
-        </Form>
-      </Container>
+                    {!service.complete && (
+                      <Form.Select
+                        defaultValue={form.status}
+                        onChange={(e) => handleSelect(e, service._id)}
+                      >
+                        <option value="Disponivel">Disponível</option>
+                        <option value="Descontinuado">Descontinuado</option>
+                        <option value="Suspenso">Suspenso</option>
+                        <option value="Em Aprovação">Em Aprovação</option>
+                        
+                      </Form.Select>
+                    )}
+                  </Card.Body>
+                  <Card.Footer className="d-flex justify-content-around">
+                    {service.complete ? (
+                      <p>Serviço Indisponível desde: {service.dateFin.slice(0, 10)}</p>
+                    ) : (
+                      <p>Disponível Somente Até: {service.dateFin.slice(0, 10)}</p>
+                    )}
 
-      <Container className="border rounded mt-3">
-        <h3 className="mt-3">Gestao dos Serviços</h3>
-        {services.map((service) => {
-          return (
-            <Card key={service._id} className="m-4">
-              <Card.Body>
-                <h4>{service.details} → Local: {service.localSetor}</h4>
-              </Card.Body>
-              <Card.Footer className="d-flex justify-content-around">
-                {service.discontinued ? (
-                  <p>
-                    {" "}
                     <Button
                       variant="danger"
                       size="sm"
@@ -147,28 +132,23 @@ function ServicesPage() {
                     >
                       Excluir Serviço
                     </Button>
-                    → Serviço Descontinuado em:{" "}
-                    {service.dateFin.slice(0, 10)}
-                  </p>
-                ) : (
-                  <p>
-                    <Button                      
+                    <Button
                       variant="success"
                       size="sm"
-                      onClick={(e) => handleServiceDiscontinued(e, service._id)}
+                      onClick={(e) => handleServiceComplete(e, service._id)}
                     >
-                    Cessar Serviço
+                      Descontinuar Serviço
                     </Button>
-                    → Serviço Disponível até:{" "}
-                    {service.dateFin.slice(0, 10)}
-                  </p>
-                )}
-              </Card.Footer>
-            </Card>
-          );
-        })}
-      </Container>
-    </div>
+                  
+                  </Card.Footer>
+                </Card>
+              );
+            })}
+          </Container>
+
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
