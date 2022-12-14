@@ -2,6 +2,7 @@ import { Container, Form, Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api/api";
+import NavBar from "../components/NavBar";
 
 function ServicesPage() {
   const [form, setForm] = useState({
@@ -62,13 +63,17 @@ function ServicesPage() {
 
   // console.log(services);
   return (
-   <div>
-      <Container className="border rounded mt-3">
-        <Form>
-          <Form.Group className="mt-3">
-            <Form.Label>
-              <h2>Cadastro de Serviço Público </h2>
-            </Form.Label>
+    <Container className="container-principal" fluid>
+      <Row>
+        <Col sm={2}>
+          <NavBar/>
+        </Col>
+        <Col sm={10}>
+          <Container>
+            <Form>
+        
+           <Form.Group className="mt-3">
+            <Form.Label>Nome do Serviço</Form.Label>
             <Form.Control
               type="text"
               placeholder="Insira o nome do serviço público"
@@ -77,55 +82,39 @@ function ServicesPage() {
               onChange={handleChange}
               autoFocus
             />
-          </Form.Group>
-          <Form.Group className="mt-3">
-            <Form.Label>Data de Validade / Disponibilidade do Serviço</Form.Label>
+    
+           </Form.Group>
+           <Form.Group className="mt-3">
+            <Form.Label>Validade / Disponibilidade do Serviço</Form.Label>
             <Form.Control
               type="date"
               name="dateFin"
               value={form.dateFin}
               onChange={handleChange}
             />
-          </Form.Group>
-          <Row>
-
-          <Col>
-          <Form.Group className="mt-3">
-            <Form.Label>Nome da Unidade Prestadora</Form.Label>
+          
+           </Form.Group>
+           <Form.Group className="mt-3">
+            <Form.Label>Unidade Prestadora</Form.Label>
             <Form.Control
               type="text"
               placeholder="Insira o nome do setor / local "
               name="localSetor"
               value={form.localSetor}
               onChange={handleChange}
-            />
-          </Form.Group>
-          </Col>
-          {/* <Col>
-          <Form.Group className="mt-3">
-            <Form.Label>Nº da Unidade</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder={form.unidade}
-              name="unidade"
-              value={form.unidade}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          </Col>
-          */}
+            />           
+           </Form.Group>
 
-          </Row>
-          <Button variant="primary" className="m-3" onClick={handleSubmit}>
+           <Button variant="primary" className="m-3" onClick={handleSubmit}>
             Salvar
-          </Button>
-          <Link to={"/tabela"}>
+           </Button>
+           <Link to={"/tabela"}>
             <Button variant="secondary" type="submit">
               Cancelar
             </Button>
-          </Link>
-        </Form>
-      </Container>
+           </Link>      
+           </Form>
+          </Container>  
 
       <Container className="border rounded mt-3">
         <h3 className="mt-3">Gestao dos Serviços</h3>
@@ -166,8 +155,10 @@ function ServicesPage() {
             </Card>
           );
         })}
-      </Container>
-    </div>
+    </Container>
+   </Col>
+   </Row>
+   </Container>
   );
 }
 
