@@ -52,7 +52,7 @@ function NavBar() {
   return (
     <Nav
       defaultActiveKey="/home"
-      className="flex-sm-column"
+      className="menu-bar flex-lg-column"
       onSelect={handleSelect}
     >
       <Container className="brand-nav">
@@ -66,12 +66,12 @@ function NavBar() {
         </Row>
       </Container>
 
-      <Container className="nav-item">
-        <Row>
-            <Col lg='auto' className="menu-ico">
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
               <HouseDoorFill size={30} />
             </Col>
-            <Col lg='auto' className="menu-text">
+            <Col lg={10} className="menu-text">
               <Nav.Link className="text-item" eventKey="link-1">
                 Home
               </Nav.Link>
@@ -79,12 +79,12 @@ function NavBar() {
         </Row>
       </Container>
 
-      <Container className="nav-item">
-        <Row>
-            <Col lg='auto' className="menu-ico">
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
               <PersonPlusFill size={30} />
             </Col>
-            <Col lg='auto' className="menu-text">
+            <Col lg={10} className="menu-text">
               <Nav.Link className="text-item" eventKey="link-2">
                 Cadastrar Pessoas
               </Nav.Link>
@@ -92,12 +92,12 @@ function NavBar() {
         </Row>
       </Container>
 
-      <Container className="nav-item">
-        <Row>
-            <Col lg='auto' className="menu-ico">
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
               <Hammer size={30} />
             </Col>
-            <Col lg='auto' className="menu-text">
+            <Col lg={10} className="menu-text">
               <Nav.Link className="text-item" eventKey="link-3">
                 Cadastrar Serviços
               </Nav.Link>
@@ -105,12 +105,12 @@ function NavBar() {
         </Row>
       </Container>
 
-      <Container className="nav-item">
-        <Row>
-            <Col lg='auto' className="menu-ico">
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
               <FilePersonFill size={30} />
             </Col>
-            <Col lg='auto' className="menu-text">
+            <Col lg={10} className="menu-text">
               <Nav.Link className="text-item" eventKey="link-4">
                 Ver meu perfil
               </Nav.Link>
@@ -118,12 +118,12 @@ function NavBar() {
         </Row>
       </Container>
 
-      <Container className="nav-item">
-        <Row>
-            <Col lg='auto' className="menu-ico">
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
               <DoorOpenFill size={30} />
             </Col>
-            <Col lg='auto' className="menu-text">
+            <Col lg={10} className="menu-text">
               <Nav.Link className="text-item" eventKey="link-5">
                 Logout
               </Nav.Link>
