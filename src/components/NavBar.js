@@ -1,6 +1,5 @@
-import { Nav } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/concierge-32330_960_720.png";
+import { Col, Container, Nav, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 import {
@@ -13,7 +12,7 @@ import {
 } from "react-bootstrap-icons";
 
 function NavBar() {
-  const { loggedInUser } = useContext(AuthContext);
+  //const { loggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { setLoggedInUser } = useContext(AuthContext);
 
@@ -56,32 +55,81 @@ function NavBar() {
       className="flex-sm-column"
       onSelect={handleSelect}
     >
-      <ShieldLockFill color="royalblue" size={50} />
-      <h3>GateControl</h3>
+      <Container className="brand-nav">
+        <Row>
+          <Col className="logo" sm='auto'>
+            <ShieldLockFill color="royalblue" size={50}/>
+          </Col>
+          <Col sm='auto'>
+            <h3 className="brand-title">GateControl</h3>
+          </Col>
+        </Row>
+      </Container>
 
-      <Nav.Link eventKey="link-1">
-        <HouseDoorFill size={25} />
-        Home
-      </Nav.Link>
-      <Nav.Link eventKey="link-2">
-        <PersonPlusFill size={25} />
-        Cadastrar Pessoa
-      </Nav.Link>
-      <Nav.Link eventKey="link-3">
-        <Hammer size={25} />
-        Cadastrar Serviços
-      </Nav.Link>
-      <Nav.Link eventKey="link-4">
-        <FilePersonFill size={25} />
-        Ver meu Perfil
-      </Nav.Link>
-      <Nav.Link eventKey="link-5">
-        <DoorOpenFill size={25} />
-        Logout
-      </Nav.Link>
-      {/* <Nav.Link eventKey="disabled" disabled>
-        Disabled
-      </Nav.Link> */}
+      <Container className="nav-item">
+        <Row>
+            <Col lg='auto' className="menu-ico">
+              <HouseDoorFill size={30} />
+            </Col>
+            <Col lg='auto' className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-1">
+                Home
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="nav-item">
+        <Row>
+            <Col lg='auto' className="menu-ico">
+              <PersonPlusFill size={30} />
+            </Col>
+            <Col lg='auto' className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-2">
+                Cadastrar Pessoas
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="nav-item">
+        <Row>
+            <Col lg='auto' className="menu-ico">
+              <Hammer size={30} />
+            </Col>
+            <Col lg='auto' className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-3">
+                Cadastrar Serviços
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="nav-item">
+        <Row>
+            <Col lg='auto' className="menu-ico">
+              <FilePersonFill size={30} />
+            </Col>
+            <Col lg='auto' className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-4">
+                Ver meu perfil
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="nav-item">
+        <Row>
+            <Col lg='auto' className="menu-ico">
+              <DoorOpenFill size={30} />
+            </Col>
+            <Col lg='auto' className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-5">
+                Logout
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
     </Nav>
   );
 }
