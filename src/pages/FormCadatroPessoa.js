@@ -75,19 +75,13 @@ function FormCadastroPessoa() {
       <Row>
         <Col sm={2}>{<NavBar />}</Col>
         <Col sm={10}>
-          <Container fluid>
-            <Card
-              border="primary"
-              key="primary"
-              text="dark"
-              style={{ width: "70rem", marginTop: "50px" }}
-              className="mb-2"
-            >
+          <Row>
+            <Card className="card-form">
               <Card.Header>Formulário de Cadastro</Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
-                    <Row>
+                    <Row className="justify-content-md-center">
                       <Col>
                         <Form.Group className="mb-3" controlId="nome">
                           <Form.Label>Nome</Form.Label>
@@ -223,7 +217,7 @@ function FormCadastroPessoa() {
                 </Row>
               </Card.Footer>
             </Card>
-          </Container>
+          </Row>
         </Col>
       </Row>
     </Container>
