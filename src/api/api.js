@@ -4,7 +4,7 @@ import axios from "axios";
 
 const apiURLs = {
   development: "http://localhost:8080",
-  production: "LINK da CyCLIC AQUI",
+  production: "https://projeto3gatecontrol.cyclic.app",
 };
 
 //instancia que sabe qual é a BASEURL QUE DEVE SER USADA NAS REQUISIÇÕES DO AXIOS
