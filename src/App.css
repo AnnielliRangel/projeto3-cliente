@@ -3,6 +3,15 @@
   padding: 0;
 }
 
+p {
+  font-size: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: #F0E9D2;
+}
+
 body {
   background-color: #181D31;
   color: #E6DDC4;
@@ -73,6 +82,7 @@ td * {
 
 .brand-title {
   font-size: 2.3rem;
+  color: #181D31;
   margin: 5px auto;
 }
 
@@ -112,4 +122,10 @@ td * {
 .text-item {
   font-size: 1.1rem;
   color: #181D31;
+}
+
+.profile-pic {
+  width: 70px;
+  border-radius: 5rem;
+  margin-top: 10px;
 }

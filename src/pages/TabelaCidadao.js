@@ -8,6 +8,7 @@ import {
   Container,
   Row,
   Col,
+  Card,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.js';
@@ -160,7 +161,7 @@ function TabelaCidadao() {
           <Container className="container-main">
             <div className="row">
               <div className="col-sm-3">
-                <Button
+                {/* <Button
                   variant="primary"
                   size="md"
                   onClick={() => {
@@ -169,7 +170,7 @@ function TabelaCidadao() {
                   }}
                 >
                   Reload
-                </Button>
+                </Button> */}
               </div>
               <div className="mt-2 col-sm-3">
                 <Form.Group>
@@ -196,106 +197,111 @@ function TabelaCidadao() {
               </div>
             </div>
           </Container>
-          <Container className="container-table">
-            <Table className="tabela" bordered responsive>
-              <thead>
-                <tr>
-                  <th className="col-center">Foto</th>
-                  <th>Nome</th>
-                  {/* <th>Documento</th> */}
-                  {/* <th> 👩‍🦯 👨‍🦽 </th> */}
-                  <th className="col-center">Iniciar Visita</th>
-                  <th className="col-center">Status</th>
-                  <th>info</th>
-                </tr>
-              </thead>
-              <tbody>
-                {!isLoading &&
-                  listaGeral
-                    .filter((cidadao) => filtrar(cidadao, search))
-                    .filter((cidadao) =>
-                      filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true
-                    )
-                    .map((cidadao) => {
-                      return (
-                        <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
-                          <td className="col-center">
-                            <img
-                              src={cidadao.profilePic}
-                              alt="foto cidadao"
-                              style={{ width: '50px' }}
-                            />
-                          </td>
-                          <td>
-                            <Link
-                              className="link-table"
-                              to={`/update-pessoa/${cidadao._id}`}
-                            >
-                              <p>{cidadao.nome.toUpperCase()}</p>
-                              <p>
-                                {cidadao.tipoDoc.toUpperCase()} {cidadao.numDoc}
-                              </p>
-                            </Link>
-                          </td>
-                          {/* <td>
-                        {cidadao.numDoc} {cidadao.numtipoDoc}
-                      </td> */}
-                          {/* <td
-                        style={
-                          cidadao.acessibilidade === 'nenhuma'
-                            ? {}
-                            : { color: 'red' }
-                        }
-                      >
-                        {cidadao.acessibilidade}
-                      </td> */}
-                          <td className="col-center">
-                            {!cidadao.noLocal ? (
-                              <Link to={`/novoacesso/${cidadao._id}`}>
-                                <Button variant="success">Novo Registro</Button>
-                              </Link>
-                            ) : (
-                              cidadao.acessos[0].entrada
-                            )}
-                          </td>
-
-                          <td className="col-center">
-                            {cidadao.noLocal ? (
-                              <Button
-                                variant={
-                                  cidadao.status === 'aguardando'
-                                    ? 'danger'
-                                    : 'warning'
-                                }
-                                size="sm"
-                                onClick={() => {
-                                  handleSaida(cidadao);
-                                }}
+          <Card className="card-form">
+            <Card.Header>
+              Listagem de pessoas cadastradas
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th className="col-center"><h3>FOTO PERFIL</h3></th>
+                    <th><h3>NOME COMPLETO</h3></th>
+                    {/* <th>Documento</th> */}
+                    {/* <th> 👩‍🦯 👨‍🦽 </th> */}
+                    <th className="col-center"><h3>INICIAR VISITA</h3></th>
+                    <th className="col-center"><h3>STATUS</h3></th>
+                    <th><h3>MAIS INFORMAÇÕES</h3></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {!isLoading &&
+                    listaGeral
+                      .filter((cidadao) => filtrar(cidadao, search))
+                      .filter((cidadao) =>
+                        filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true
+                      )
+                      .map((cidadao) => {
+                        return (
+                          <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
+                            <td className="col-center">
+                              <img
+                                src={cidadao.profilePic}
+                                alt="foto cidadao"
+                                className="profile-pic"
+                              />
+                            </td>
+                            <td>
+                              <Link
+                                className="link-table"
+                                to={`/update-pessoa/${cidadao._id}`}
                               >
-                                {cidadao.status}{' '}
-                                <span className="badge bg-secondary">
-                                  {cidadao.acessos[0].protocolo}
-                                </span>
-                              </Button>
-                            ) : (
-                              ''
-                            )}
-                          </td>
+                                <p>{cidadao.nome.toUpperCase()}</p>
+                                <p>
+                                  {cidadao.tipoDoc.toUpperCase()} {cidadao.numDoc}
+                                </p>
+                              </Link>
+                            </td>
+                            {/* <td>
+                          {cidadao.numDoc} {cidadao.numtipoDoc}
+                        </td> */}
+                            {/* <td
+                          style={
+                            cidadao.acessibilidade === 'nenhuma'
+                              ? {}
+                              : { color: 'red' }
+                          }
+                        >
+                          {cidadao.acessibilidade}
+                        </td> */}
+                            <td className="col-center">
+                              {!cidadao.noLocal ? (
+                                <Link to={`/novoacesso/${cidadao._id}`}>
+                                  <Button variant="success">Novo Registro</Button>
+                                </Link>
+                              ) : (
+                                <p>{cidadao.acessos[0].entrada}</p>
+                              )}
+                            </td>
 
-                          <td>
-                            {cidadao.noLocal ? cidadao.acessos[0].local : ''}{' '}
-                            <br />{' '}
-                            {cidadao.noLocal
-                              ? `obs: ${cidadao.acessos[0].obs}`
-                              : ''}
-                          </td>
-                        </tr>
-                      );
-                    })}
-              </tbody>
-            </Table>
-            {isLoading && <Spinner animation="border" variant="warning" />}
-          </Container>
+                            <td className="col-center">
+                              {cidadao.noLocal ? (
+                                <Button
+                                  variant={
+                                    cidadao.status === 'aguardando'
+                                      ? 'danger'
+                                      : 'warning'
+                                  }
+                                  size="sm"
+                                  onClick={() => {
+                                    handleSaida(cidadao);
+                                  }}
+                                >
+                                  {cidadao.status}{' '}
+                                  <span className="badge bg-secondary">
+                                    {cidadao.acessos[0].protocolo}
+                                  </span>
+                                </Button>
+                              ) : (
+                                ''
+                              )}
+                            </td>
+
+                            <td>
+                              {cidadao.noLocal ? <p>{cidadao.acessos[0].local}</p> : ''}{' '}
+                              <br />{' '}
+                              {cidadao.noLocal
+                                ? <p>{`obs: ${cidadao.acessos[0].obs}`}</p>
+                                : ''}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                </tbody>
+              </Table>
+              {isLoading && <Spinner animation="border" variant="warning" />}
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
