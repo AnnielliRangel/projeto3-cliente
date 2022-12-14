@@ -8,7 +8,7 @@ import obsMotivos from "../Motivos.json";
 
 // Instead of axios - api.js
 import api from "../api/api.js";
-import { Cpu } from "react-bootstrap-icons";
+// import { Cpu } from "react-bootstrap-icons";
 import NavBar from "../components/NavBar";
 
 //<Route

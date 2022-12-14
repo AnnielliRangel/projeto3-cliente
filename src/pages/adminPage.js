@@ -6,7 +6,7 @@ import api from "../api/api";
 //import EditUser from "../components/EditUser";
 
 import NavBar from "../components/NavBar";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 function AdminPage() {
   const navigate = useNavigate();
