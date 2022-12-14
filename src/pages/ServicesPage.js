@@ -61,9 +61,8 @@ function ServicesPage() {
   }
 
   // console.log(services);
-
   return (
-    <div>
+   <div>
       <Container className="border rounded mt-3">
         <Form>
           <Form.Group className="mt-3">
@@ -92,7 +91,7 @@ function ServicesPage() {
 
           <Col>
           <Form.Group className="mt-3">
-            <Form.Label>Unidade Prestadora</Form.Label>
+            <Form.Label>Nome da Unidade Prestadora</Form.Label>
             <Form.Control
               type="text"
               placeholder="Insira o nome do setor / local "
@@ -145,7 +144,7 @@ function ServicesPage() {
                       size="sm"
                       onClick={(e) => handleDeleteService(e, service._id)}
                     >
-                      Delete
+                      Excluir Serviço
                     </Button>
                     → Serviço Descontinuado em:{" "}
                     {service.dateFin.slice(0, 10)}

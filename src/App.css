@@ -1,4 +1,4 @@
-* {
+* > div {
   margin: 0;
   padding: 0;
 }
@@ -19,9 +19,9 @@ body {
 .card-form {
   background-color: #678983;
   color: #F0E9D2;
-  width: 90vw;
-  max-width: 90vw;
-  margin: 50px auto 50px auto;
+  width: 70vw;
+  max-width: 70vw;
+  margin: 50px auto 5px auto;
 }
 
 .card-user {
@@ -31,6 +31,11 @@ body {
 
 .card-user * {
   color: #181D31;
+}
+
+.container-principal {
+  margin: 0;
+  padding: 0;
 }
 
 .container-main {
@@ -43,9 +48,12 @@ body {
   margin: 30px auto;
 }
 
-.tabela > tr > td {
-  background-color: #E6DDC4;
-  color: #181D31;
+.tabela * {
+  color: #F0E9D2;
+}
+
+td * {
+  color: #F0E9D2;
 }
 
 .col-center {
@@ -57,4 +65,51 @@ body {
   color: #E6DDC4;
   cursor: pointer;
   font-size: 1rem;
+}
+
+.brand-nav {
+  margin: 40px auto;
+}
+
+.brand-title {
+  font-size: 2.3rem;
+  margin: 5px auto;
+}
+
+.menu-bar {
+  display: fixed;
+  background-color: #F0E9D2;
+  height: 100vh;
+  color: #181D31;
+}
+
+.logo {
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  padding: 0;
+  margin: 2px 0;
+}
+
+.menu-ico {
+  margin: 0;
+  padding: 0;
+  align-self: center;
+}
+
+.menu-text {
+  margin: 0;
+  padding: 0;
+}
+
+.text-item {
+  font-size: 1.1rem;
+  color: #181D31;
 }

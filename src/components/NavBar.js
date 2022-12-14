@@ -1,13 +1,44 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/concierge-32330_960_720.png";
+import { Col, Container, Nav, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
+import {
+  ShieldLockFill,
+  PersonPlusFill,
+  Hammer,
+  DoorOpenFill,
+  HouseDoorFill,
+  FilePersonFill,
+} from "react-bootstrap-icons";
 
 function NavBar() {
-  const { loggedInUser } = useContext(AuthContext);
+  //const { loggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { setLoggedInUser } = useContext(AuthContext);
+
+  const handleSelect = (eventKey) => {
+    switch (eventKey) {
+      case "link-1":
+        navigate("/tabela");
+        break;
+      case "link-2":
+        navigate("/novocidadao");
+        break;
+      case "link-3":
+        navigate("/services");
+        break;
+      case "link-4":
+        navigate("/profile");
+        break;
+      case "link-5":
+        signOut();
+        break;
+
+      default:
+        navigate("/tabela");
+    }
+  };
+
   function signOut() {
     //removendo o loggedInUser do localStorage
     localStorage.removeItem("loggedInUser");
@@ -19,74 +50,87 @@ function NavBar() {
   }
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand>
-          <img
-            alt="atendimento vetor"
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top "
-          />{" "}
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            {/* falta fazer: SE é ADMIM
-          {loggedInUser && LOGGEDINADMIN(
-              <>
-                <Link className="nav-link" to="/profile">
-                  TODOS OS PERFIS
-                </Link>
-                {loggedInUser && (
-              <>
-                <Link className="nav-link" to="/notificacoes">
-                  NOTIFICAÇÕES
-                </Link>
-
-          
-          */}
-            {/* Se o usuário estiver logado */}
-            {loggedInUser && (
-              <>
-                <Link className="nav-link" to="/profile">
-                  Perfil
-                </Link>
-
-                <Link className="nav-link" to="/novocidadao">
-                  Cadastra Novo Cidadão
-                </Link>
-
-                <Link className="nav-link" to="/tabela">
-                  Tabela
-                </Link>
-
-                <Link className="nav-link" to="/services">
-                  Serviços
-                </Link>
-
-                <Link className="nav-link" to="/" onClick={signOut}>
-                  Logout
-                </Link>
-              </>
-            )}
-            {/* Não está logado */}
-            {!loggedInUser && (
-              <>
-                <Link className="nav-link" to="/">
-                  Controle de Atendimento ao Cidadão e acessos ao Serviço
-                  Público
-                </Link>
-                <Link className="nav-link" to="/sign-up">
-                  Cadastre-se
-                </Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
+    <Nav
+      defaultActiveKey="/home"
+      className="menu-bar flex-lg-column"
+      onSelect={handleSelect}
+    >
+      <Container className="brand-nav">
+        <Row>
+          <Col className="logo" sm='auto'>
+            <ShieldLockFill color="royalblue" size={50}/>
+          </Col>
+          <Col sm='auto'>
+            <h3 className="brand-title">GateControl</h3>
+          </Col>
+        </Row>
       </Container>
-    </Navbar>
+
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
+              <HouseDoorFill size={30} />
+            </Col>
+            <Col lg={10} className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-1">
+                Home
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
+              <PersonPlusFill size={30} />
+            </Col>
+            <Col lg={10} className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-2">
+                Cadastrar Pessoas
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
+              <Hammer size={30} />
+            </Col>
+            <Col lg={10} className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-3">
+                Cadastrar Serviços
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
+              <FilePersonFill size={30} />
+            </Col>
+            <Col lg={10} className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-4">
+                Ver meu perfil
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+
+      <Container className="menu-item">
+        <Row className="nav-item">
+            <Col lg={2} className="menu-ico">
+              <DoorOpenFill size={30} />
+            </Col>
+            <Col lg={10} className="menu-text">
+              <Nav.Link className="text-item" eventKey="link-5">
+                Logout
+              </Nav.Link>
+            </Col>
+        </Row>
+      </Container>
+    </Nav>
   );
 }
 
