@@ -19,9 +19,9 @@ body {
 .card-form {
   background-color: #678983;
   color: #F0E9D2;
-  width: 90vw;
-  max-width: 90vw;
-  margin: 50px auto 50px auto;
+  width: 70vw;
+  max-width: 70vw;
+  margin: 50px auto 5px auto;
 }
 
 .card-user {
