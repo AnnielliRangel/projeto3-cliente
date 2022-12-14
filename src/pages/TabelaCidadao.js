@@ -233,7 +233,7 @@ function TabelaCidadao() {
                             >
                               <p>{cidadao.nome.toUpperCase()}</p>
                               <p>
-                                {cidadao.tipoDoc} {cidadao.numDoc}
+                                {cidadao.tipoDoc.toUpperCase()} {cidadao.numDoc}
                               </p>
                             </Link>
                           </td>
