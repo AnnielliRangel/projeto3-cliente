@@ -60,10 +60,10 @@ function ProfilePage() {
   }, []);
 
   return (
-    <Container fluid>
+    <Container className="container-principal" fluid>
       <Row>
         <Col sm={2}>
-          <NavBar />
+          {<NavBar />}
         </Col>
         <Col sm={10}>
           <Card className="card-user">

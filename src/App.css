@@ -1,4 +1,4 @@
-* {
+* > div {
   margin: 0;
   padding: 0;
 }
@@ -31,6 +31,11 @@ body {
 
 .card-user * {
   color: #181D31;
+}
+
+.container-principal {
+  margin: 0;
+  padding: 0;
 }
 
 .container-main {
@@ -71,7 +76,17 @@ td * {
   margin: 5px auto;
 }
 
+.menu-bar {
+  background-color: #F0E9D2;
+  color: #181D31;
+}
+
 .logo {
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
   padding: 0;
   margin: 0;
 }
@@ -94,4 +109,5 @@ td * {
 
 .text-item {
   font-size: 1.1rem;
+  color: #181D31;
 }

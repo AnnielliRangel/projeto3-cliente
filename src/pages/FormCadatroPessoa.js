@@ -72,7 +72,7 @@ function FormCadastroPessoa() {
   }
 
   return (
-    <Container fluid>
+    <Container className="container-principal" fluid>
       <Row>
         <Col sm={2}>{<NavBar />}</Col>
         <Col sm={10}>

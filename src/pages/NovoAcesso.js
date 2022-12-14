@@ -7,7 +7,9 @@ import servicos from "../Servicos.json";
 import obsMotivos from "../Motivos.json";
 
 // Instead of axios - api.js
-import api from '../api/api.js' 
+import api from "../api/api.js";
+import { Cpu } from "react-bootstrap-icons";
+import NavBar from "../components/NavBar";
 
 //<Route
 //             path="/novoacesso/:userId"
@@ -53,11 +55,12 @@ export default function NovoAcesso() {
 
   async function handleEntrance(e) {
     e.preventDefault();
-    
+
     try {
       function dataHora() {
         let agora = new Date();
-        let hora = agora.getDate() +
+        let hora =
+          agora.getDate() +
           "/" +
           (1 + Number.parseInt(agora.getMonth())).toString() +
           "/" +
@@ -70,7 +73,6 @@ export default function NovoAcesso() {
 
         return hora;
       }
-      
 
       const novoAcesso = {
         entrada: dataHora(),
@@ -91,114 +93,127 @@ export default function NovoAcesso() {
   }
 
   return (
-    <Container className="my-4">
-      <fieldset>
-        {!isLoading && (
-          <Card className="text-center" bg="light">
-            <Card.Header>
-              <Card.Title>
-                <legend> NOVO ACESSO</legend>
-                <h1>⧉{cidadao.nome} </h1>
-                <img style={{ width: "190px", borderRadius: "8%" }}
-                  src={cidadao.profilePic}
-                  alt="foto cidadao"
-                />
-              </Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
-                <legend> Nº. {cidadao.numDoc} Emissor: {cidadao.emissor}</legend>
-              </Card.Subtitle>
-            </Card.Header>
+    <Container className="container-principal my-4">
+      <Row>
+        <Col sm={3}>
+          {<NavBar />}
+        </Col>
+        <Col sm={9}>
+          <fieldset>
+            {!isLoading && (
+              <Card className="text-center" bg="light">
+                <Card.Header>
+                  <Card.Title>
+                    <legend> NOVO ACESSO</legend>
+                    <h1>⧉{cidadao.nome} </h1>
+                    <img
+                      style={{ width: "190px", borderRadius: "8%" }}
+                      src={cidadao.profilePic}
+                      alt="foto cidadao"
+                    />
+                  </Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
+                    <legend>
+                      {" "}
+                      Nº. {cidadao.numDoc} Emissor: {cidadao.emissor}
+                    </legend>
+                  </Card.Subtitle>
+                </Card.Header>
 
-            <Card.Body>
-              <Form>
-                <Row>
-                  <Col>
-                    <Form.Group className="mb-3">
-                    <Form.Label>
-                        <legend>Local de Destino</legend>
-                      </Form.Label>
-                      <Form.Select
-                        name="local"
-                        defaultValue={form.local}
-                        onChange={handleChange}
-                        autoFocus
-                      >
-                        <option>Selecione Destino</option>
-                        {listSetores.map((setor) => {
-                          return (
-                            <option key={setor.label} value={setor.label}>
-                              {setor.label}
-                            </option>
-                          );
-                        })}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col>
-                  <Form.Group className="mb-3">
-                      <Form.Label>
-                        <legend>Serviço Público</legend>
-                      </Form.Label>
-                      <Form.Select
-                        name="servicoPublico"
-                        defaultValue={form.servicoPublico}
-                        onChange={handleChange}
-                      >
-                        <option>Selecione Serviço</option>
-                        {listServices.map((service) => {
-                          return (
-                            <option key={service.label} value={service.label}>
-                              {service.label}
-                            </option>
-                          );
-                        })}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col>
-                    <Form.Group className="mb-3">
-                      <Form.Label htmlFor="obs">
-                        <legend>Observação → Motivo</legend>
-                      </Form.Label>
-                      <Form.Select
-                        id="obs"
-                        name="obs"
-                        onChange={handleChange}
-                        defaultValue={form.obs}
-                      >
-                        <option>Selecione Motivo</option>
-                        {listMotivos.map((obs) => {
-                          return (
-                            <option key={obs.label} value={obs.label}>
-                              {obs.label}
-                            </option>
-                          );
-                        })}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                </Row>
-              </Form>
-            </Card.Body>
-            <Card.Footer className="d-flex justify-content-around">
-              <Button
-                variant="success"
-                type="submit"
-                onClick={(e) => handleEntrance(e)}
-              >
-                Salvar
-              </Button>
-              <Link to={"/tabela"}>
-                <Button variant="secondary" type="submit">
-                  Cancelar
-                </Button>
-              </Link>
-            </Card.Footer>
-           
-          </Card>
-        )}
-      </fieldset>
+                <Card.Body>
+                  <Form>
+                    <Row>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>
+                            <legend>Local de Destino</legend>
+                          </Form.Label>
+                          <Form.Select
+                            name="local"
+                            defaultValue={form.local}
+                            onChange={handleChange}
+                            autoFocus
+                          >
+                            <option>Selecione Destino</option>
+                            {listSetores.map((setor) => {
+                              return (
+                                <option key={setor.label} value={setor.label}>
+                                  {setor.label}
+                                </option>
+                              );
+                            })}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>
+                            <legend>Serviço Público</legend>
+                          </Form.Label>
+                          <Form.Select
+                            name="servicoPublico"
+                            defaultValue={form.servicoPublico}
+                            onChange={handleChange}
+                          >
+                            <option>Selecione Serviço</option>
+                            {listServices.map((service) => {
+                              return (
+                                <option
+                                  key={service.label}
+                                  value={service.label}
+                                >
+                                  {service.label}
+                                </option>
+                              );
+                            })}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label htmlFor="obs">
+                            <legend>Observação → Motivo</legend>
+                          </Form.Label>
+                          <Form.Select
+                            id="obs"
+                            name="obs"
+                            onChange={handleChange}
+                            defaultValue={form.obs}
+                          >
+                            <option>Selecione Motivo</option>
+                            {listMotivos.map((obs) => {
+                              return (
+                                <option key={obs.label} value={obs.label}>
+                                  {obs.label}
+                                </option>
+                              );
+                            })}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-around">
+                  <Button
+                    variant="success"
+                    type="submit"
+                    onClick={(e) => handleEntrance(e)}
+                  >
+                    Salvar
+                  </Button>
+                  <Link to={"/tabela"}>
+                    <Button variant="secondary" type="submit">
+                      Cancelar
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
+            )}
+          </fieldset>
+        </Col>
+      </Row>
     </Container>
   );
 }

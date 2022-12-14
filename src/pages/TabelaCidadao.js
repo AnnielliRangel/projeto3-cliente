@@ -153,8 +153,7 @@ function TabelaCidadao() {
   //-------------------------------//
   //
   return (
-    <div className="mx-2">
-      <Container fluid>
+      <Container className="container-principal" fluid>
         <Row>
           <Col sm={2}>{<NavBar />}</Col>
           <Col sm={10}>
@@ -300,7 +299,6 @@ function TabelaCidadao() {
           </Col>
         </Row>
       </Container>
-    </div>
   );
 }
 
