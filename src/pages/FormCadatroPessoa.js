@@ -10,7 +10,7 @@ import NavBar from "../components/NavBar.js";
 function FormCadastroPessoa() {
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
-  //esse state vai guardar a IMAGEM escolhida pelo usuário
+
   const [img, setImg] = useState();
   const [form, setForm] = useState({
     nome: "",
@@ -27,7 +27,6 @@ function FormCadastroPessoa() {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
   function handleImage(e) {
-    //console.log(e.target.files[0]);
     setImg(e.target.files[0]);
   }
 
@@ -171,15 +170,6 @@ function FormCadastroPessoa() {
                           </Form.Select>
                         </Form.Group>
                       </Col>
-
-                      <Col>
-                        <Form.Group className="mb-3">
-                          <Form.Label>Foto de Perfil</Form.Label>
-                          <Form.Control type="file" onChange={handleImage} />
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                    <Row style={{ display: "flex", justifyContent: "initial" }}>
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label htmlFor="acessibilidade">
@@ -193,8 +183,18 @@ function FormCadastroPessoa() {
                           >
                             <option>SELECIONE</option>
                             <option value="nenhuma">Nenhuma</option>
-                            <option value="prioridade">Prioridade por Lei</option>
+                            <option value="prioridade">
+                              Prioridade por Lei
+                            </option>
                           </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row style={{ display: "flex", justifyContent: "initial" }}>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Foto de Perfil</Form.Label>
+                          <Form.Control type="file" onChange={handleImage} />
                         </Form.Group>
                       </Col>
                     </Row>
