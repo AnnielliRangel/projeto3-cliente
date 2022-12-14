@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   Button,
   Table,
@@ -8,15 +8,15 @@ import {
   Container,
   Row,
   Col,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar.js";
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar.js';
 //
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast';
 //
 // ? import { AuthContext } from '../contexts/authContext';
 // no lugar do axios:
-import api from "../api/api";
+import api from '../api/api';
 //! no app.js front
 /* 
 <Route
@@ -32,7 +32,7 @@ function TabelaCidadao() {
   const [listaGeral, setListaGeral] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [filtraNoLocal, setFiltraNoLocal] = useState(false);
   // endereço da nossa coleção
 
@@ -43,7 +43,7 @@ function TabelaCidadao() {
   // buscando a lista de cidadaos - GET
   useEffect(() => {
     async function getListaCidadaos() {
-      const response = await api.get("/cidadao/all-cidadaos/");
+      const response = await api.get('/cidadao/all-cidadaos/');
       //console.log(response.data);
 
       // ! atenção, se quebrar, retirar o sort!!
@@ -76,15 +76,15 @@ function TabelaCidadao() {
     let agora = new Date();
     let hora =
       agora.getDate() +
-      "/" +
+      '/' +
       (1 + Number.parseInt(agora.getMonth())).toString() +
-      "/" +
+      '/' +
       agora.getFullYear() +
-      " " +
+      ' ' +
       agora.getHours() +
-      "h" +
+      'h' +
       agora.getMinutes() +
-      "m";
+      'm';
 
     return hora;
   }
@@ -108,12 +108,12 @@ function TabelaCidadao() {
       //
       // ! end anterior: https://ironrest.cyclic.app/AcessCidadao/
       await api.put(`/registro/status/${cidadao._id}`, clone2);
-      let mensagem = "Atualizando Status...";
+      let mensagem = 'Atualizando Status...';
       //console.log("'Atualizando Status...'");
-      if (cidadao.status === "aguardando") {
+      if (cidadao.status === 'aguardando') {
         mensagem = `iniciando atendimento prot ${cidadao.acessos[0].protocolo}`;
       }
-      if (cidadao.status === "atendimento") {
+      if (cidadao.status === 'atendimento') {
         mensagem = `finalizando prot ${cidadao.acessos[0].protocolo} / saida`;
       }
       toast.success(mensagem);
@@ -137,15 +137,15 @@ function TabelaCidadao() {
       cidadao.nome.toLowerCase().includes(search.toLowerCase()) ||
       cidadao.numDoc
         .toLowerCase()
-        .replaceAll("-", "")
-        .replaceAll(".", "")
-        .replaceAll("/", "")
+        .replaceAll('-', '')
+        .replaceAll('.', '')
+        .replaceAll('/', '')
         .includes(
           search
             .toLowerCase()
-            .replaceAll("-", "")
-            .replaceAll(".", "")
-            .replaceAll("/", "")
+            .replaceAll('-', '')
+            .replaceAll('.', '')
+            .replaceAll('/', '')
         )
     );
   }
@@ -153,92 +153,94 @@ function TabelaCidadao() {
   //-------------------------------//
   //
   return (
-      <Container className="container-principal" fluid>
-        <Row>
-          <Col sm={2}>{<NavBar />}</Col>
-          <Col sm={10}>
-            <Container className="container-main">
-              <div className="row">
-                <div className="col-sm-3">
-                  <Button
-                    variant="primary"
-                    size="md"
-                    onClick={() => {
-                      setReload(!reload);
-                      //toast.success('Página atualizada');
-                    }}
-                  >
-                    Reload
-                  </Button>
-                </div>
-                <div className="mt-2 col-sm-3">
-                  <Form.Group>
-                    <Form.Check
-                      type="checkbox"
-                      label="pendentes"
-                      name="active"
-                      checked={filtraNoLocal}
-                      onChange={() => {
-                        setFiltraNoLocal(!filtraNoLocal);
-                      }}
-                    />
-                  </Form.Group>
-                </div>
-                <div className="col-sm-6">
-                  <InputGroup>
-                    <Form.Control
-                      type="text"
-                      placeholder="Procura por Nome, Documento"
-                      onChange={handleChange}
-                      value={search}
-                    />
-                  </InputGroup>
-                </div>
+    <Container className="container-principal" fluid>
+      <Row>
+        <Col sm={2}>{<NavBar />}</Col>
+        <Col sm={10}>
+          <Container className="container-main">
+            <div className="row">
+              <div className="col-sm-3">
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => {
+                    setReload(!reload);
+                    //toast.success('Página atualizada');
+                  }}
+                >
+                  Reload
+                </Button>
               </div>
-            </Container>
-            <Container className="container-table">
-              <Table className="tabela" bordered responsive>
-                <thead>
-                  <tr>
-                    <th className="col-center">Foto</th>
-                    <th>Nome</th>
-                    {/* <th>Documento</th> */}
-                    {/* <th> 👩‍🦯 👨‍🦽 </th> */}
-                    <th className="col-center">Iniciar Visita</th>
-                    <th className="col-center">Status</th>
-                    <th>info</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {!isLoading &&
-                    listaGeral
-                      .filter((cidadao) => filtrar(cidadao, search))
-                      .filter((cidadao) =>
-                        filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true
-                      )
-                      .map((cidadao) => {
-                        return (
-                          <tr style={{ fontSize: "0.8rem" }} key={cidadao._id}>
-                            <td className="col-center">
-                              <img
-                                src={cidadao.profilePic}
-                                alt="foto cidadao"
-                                style={{ width: "50px" }}
-                              />
-                            </td>
-                            <td>
-                              <Link
-                                className="link-table"
-                                to={`/update-pessoa/${cidadao._id}`}
-                              >
-                                <p>{cidadao.nome.toUpperCase()}</p>
-                                <p>Num. doc: {cidadao.numDoc}</p>
-                              </Link>
-                            </td>
-                            {/* <td>
+              <div className="mt-2 col-sm-3">
+                <Form.Group>
+                  <Form.Check
+                    type="checkbox"
+                    label="pendentes"
+                    name="active"
+                    checked={filtraNoLocal}
+                    onChange={() => {
+                      setFiltraNoLocal(!filtraNoLocal);
+                    }}
+                  />
+                </Form.Group>
+              </div>
+              <div className="col-sm-6">
+                <InputGroup>
+                  <Form.Control
+                    type="text"
+                    placeholder="Procura por Nome, Documento"
+                    onChange={handleChange}
+                    value={search}
+                  />
+                </InputGroup>
+              </div>
+            </div>
+          </Container>
+          <Container className="container-table">
+            <Table className="tabela" bordered responsive>
+              <thead>
+                <tr>
+                  <th className="col-center">Foto</th>
+                  <th>Nome</th>
+                  {/* <th>Documento</th> */}
+                  {/* <th> 👩‍🦯 👨‍🦽 </th> */}
+                  <th className="col-center">Iniciar Visita</th>
+                  <th className="col-center">Status</th>
+                  <th>info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {!isLoading &&
+                  listaGeral
+                    .filter((cidadao) => filtrar(cidadao, search))
+                    .filter((cidadao) =>
+                      filtraNoLocal ? cidadao.noLocal === filtraNoLocal : true
+                    )
+                    .map((cidadao) => {
+                      return (
+                        <tr style={{ fontSize: '0.8rem' }} key={cidadao._id}>
+                          <td className="col-center">
+                            <img
+                              src={cidadao.profilePic}
+                              alt="foto cidadao"
+                              style={{ width: '50px' }}
+                            />
+                          </td>
+                          <td>
+                            <Link
+                              className="link-table"
+                              to={`/update-pessoa/${cidadao._id}`}
+                            >
+                              <p>{cidadao.nome.toUpperCase()}</p>
+                              <p>
+                                {cidadao.tipoDoc} {cidadao.numDoc}
+                              </p>
+                            </Link>
+                          </td>
+                          {/* <td>
                         {cidadao.numDoc} {cidadao.numtipoDoc}
                       </td> */}
-                            {/* <td
+                          {/* <td
                         style={
                           cidadao.acessibilidade === 'nenhuma'
                             ? {}
@@ -247,58 +249,56 @@ function TabelaCidadao() {
                       >
                         {cidadao.acessibilidade}
                       </td> */}
-                            <td className="col-center">
-                              {!cidadao.noLocal ? (
-                                <Link to={`/novoacesso/${cidadao._id}`}>
-                                  <Button variant="success">
-                                    Novo Registro
-                                  </Button>
-                                </Link>
-                              ) : (
-                                cidadao.acessos[0].entrada
-                              )}
-                            </td>
+                          <td className="col-center">
+                            {!cidadao.noLocal ? (
+                              <Link to={`/novoacesso/${cidadao._id}`}>
+                                <Button variant="success">Novo Registro</Button>
+                              </Link>
+                            ) : (
+                              cidadao.acessos[0].entrada
+                            )}
+                          </td>
 
-                            <td className="col-center">
-                              {cidadao.noLocal ? (
-                                <Button
-                                  variant={
-                                    cidadao.status === "aguardando"
-                                      ? "danger"
-                                      : "warning"
-                                  }
-                                  size="sm"
-                                  onClick={() => {
-                                    handleSaida(cidadao);
-                                  }}
-                                >
-                                  {cidadao.status}{" "}
-                                  <span className="badge bg-secondary">
-                                    {cidadao.acessos[0].protocolo}
-                                  </span>
-                                </Button>
-                              ) : (
-                                ""
-                              )}
-                            </td>
+                          <td className="col-center">
+                            {cidadao.noLocal ? (
+                              <Button
+                                variant={
+                                  cidadao.status === 'aguardando'
+                                    ? 'danger'
+                                    : 'warning'
+                                }
+                                size="sm"
+                                onClick={() => {
+                                  handleSaida(cidadao);
+                                }}
+                              >
+                                {cidadao.status}{' '}
+                                <span className="badge bg-secondary">
+                                  {cidadao.acessos[0].protocolo}
+                                </span>
+                              </Button>
+                            ) : (
+                              ''
+                            )}
+                          </td>
 
-                            <td>
-                              {cidadao.noLocal ? cidadao.acessos[0].local : ""}{" "}
-                              <br />{" "}
-                              {cidadao.noLocal
-                                ? `obs: ${cidadao.acessos[0].obs}`
-                                : ""}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                </tbody>
-              </Table>
-              {isLoading && <Spinner animation="border" variant="warning" />}
-            </Container>
-          </Col>
-        </Row>
-      </Container>
+                          <td>
+                            {cidadao.noLocal ? cidadao.acessos[0].local : ''}{' '}
+                            <br />{' '}
+                            {cidadao.noLocal
+                              ? `obs: ${cidadao.acessos[0].obs}`
+                              : ''}
+                          </td>
+                        </tr>
+                      );
+                    })}
+              </tbody>
+            </Table>
+            {isLoading && <Spinner animation="border" variant="warning" />}
+          </Container>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
