@@ -161,11 +161,17 @@ export default function FormUpdatePessoa() {
                     <Row className="justify-content-md-center">
                       <Col>
                         <Form.Group className="mb-3">
-                          <Form.Label>Foto de Perfil</Form.Label>
-                          <Form.Control
-                            type="file"
-                            onChange={(e) => handleImage(e)}
-                          />
+                          <Form.Label>Genero</Form.Label>
+                          <Form.Select
+                            name="genero"
+                            value={form.genero}
+                            onChange={handleChange}
+                          >
+                            <option>Selecione</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="outro">Outro</option>
+                          </Form.Select>
                         </Form.Group>
                       </Col>
                       <Col>
@@ -190,24 +196,18 @@ export default function FormUpdatePessoa() {
                     <Row className="justify-content-md-center">
                       <Col>
                         <Form.Group className="mb-3">
-                          <Form.Label>Genero</Form.Label>
-                          <Form.Select
-                            name="genero"
-                            value={form.genero}
-                            onChange={handleChange}
-                          >
-                            <option>Selecione</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="outro">Outro</option>
-                          </Form.Select>
+                          <Form.Label>Foto de Perfil</Form.Label>
+                          <Form.Control
+                            type="file"
+                            onChange={(e) => handleImage(e)}
+                          />
                         </Form.Group>
                       </Col>
                     </Row>
 
                     <Container>
-                      <Row>
-                        <Col md={{ span: 4, offset: 4 }}>
+                      <Row className="justify-content-md-center">
+                        <Col md="auto">
                           <Button
                             style={{ marginRight: "25px" }}
                             variant="success"
