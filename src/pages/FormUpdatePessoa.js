@@ -20,7 +20,7 @@ import ListAcessos from "../components/listAcessos.js";
 export default function FormUpdatePessoa() {
   const { userId } = useParams();
   const navigate = useNavigate();
-  const [profilePic, setProfilePic] = useState();
+  const [profile, setProfilePic] = useState();
 
   const [form, setForm] = useState({
     nome: "",
@@ -50,15 +50,32 @@ export default function FormUpdatePessoa() {
     navigate("/tabela");
   }
 
+  async function handleUpload(e) {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", profile);
+
+      const response = await api.post("/uploadImage/upload", uploadData);
+
+
+      return response.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async function handleSubimit(e) {
     e.preventDefault();
+    const imgURL = await handleUpload();
+
+
     try {
       const clone = { ...form };
 
       delete clone._id;
       delete clone.acessos;
 
-      await api.put(`/cidadao/edit/${userId}`, clone);
+      await api.put(`/cidadao/edit/${userId}`, {...clone, profilePic: imgURL });
 
       navigate("/tabela");
 
@@ -199,7 +216,7 @@ export default function FormUpdatePessoa() {
                           <Form.Label>Foto de Perfil</Form.Label>
                           <Form.Control
                             type="file"
-                            onChange={(e) => handleImage(e)}
+                            onChange={handleImage}
                           />
                         </Form.Group>
                       </Col>
