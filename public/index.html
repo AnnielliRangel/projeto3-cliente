@@ -8,11 +8,24 @@
       name="description"
       content="Web site created using create-react-app"
     />
-   
+
     <title>Controle de Atendimento ao Cidadão</title>
   </head>
+
+  <!-- utilizar a acessibilidade de libras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget("https://vlibras.gov.br/app");
+  </script>
+  <!-- final do use acessibilidade de libras -->
+
   <body>
     <div id="root"></div>
-    
   </body>
 </html>
