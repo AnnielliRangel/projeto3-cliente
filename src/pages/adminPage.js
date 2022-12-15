@@ -8,10 +8,10 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 
 import api from "../api/api";
-import EditUser from "../components/EditUser";
+
 import NavBar from "../components/NavBar";
 // import toast from "react-hot-toast";
 
@@ -20,10 +20,7 @@ function AdminPage() {
   const { idUser } = useParams();
 
   const [todosUser, setTodosUser] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    role: "",
-  });
+
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
 
@@ -32,7 +29,7 @@ function AdminPage() {
       try {
         const response = await api.get("/user/all-users");
         console.log(response.data);
-
+        console.log(setReload);
         setTodosUser(response.data);
       } catch (error) {
         console.log(error);
@@ -68,7 +65,7 @@ function AdminPage() {
                         <th className="col-center">Foto</th>
                         <th>Nome</th>
                         <th>Login</th>
-                        <th>Editar</th>
+
                         <th>Atividades</th>
                         <th>Excluir</th>
                       </tr>
@@ -85,7 +82,14 @@ function AdminPage() {
                                   style={{ width: "50px" }}
                                 />
                               </td>
-                              <td>{user.name.toUpperCase()}</td>
+                              <td>
+                                <Link
+                                  className="link-table"
+                                  to={`/update-user/${user._id}`}
+                                >
+                                  {user.name.toUpperCase()}{" "}
+                                </Link>
+                              </td>
                               <td>{user.email}</td>
                               <td>
                                 <Button variant="warning">Registros</Button>
@@ -189,7 +193,6 @@ function AdminPage() {
           </Row>
         </Col>
       </Row>
-      <Button> Voltar</Button>
     </Container>
   );
 }

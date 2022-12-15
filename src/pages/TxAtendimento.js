@@ -21,7 +21,7 @@ function TxAtendimento() {
     async function fetchService() {
       try {
         const response = await api.get("/service/my-services");
-
+        console.log(setReload);
         setlistService(response.data);
         console.log(response.data);
       } catch (error) {
@@ -48,7 +48,7 @@ function TxAtendimento() {
                       <tr>
                         <th>Setor</th>
                         <th>Serviço</th>
-                        <th>Responsável</th>
+
                         <th>Taxa Média de Atendimento</th>
                       </tr>
                     </thead>
@@ -63,8 +63,12 @@ function TxAtendimento() {
                               <td>{service.localSetor.toUpperCase()}</td>
                               <td>{service.details.toUpperCase()}</td>
 
-                              <td>{service.user.name.toUpperCase()}</td>
-                              <td> {Math.random().toFixed(3)} por hora </td>
+                              <td>
+                                {" "}
+                                Em média, um atendimento consome{" "}
+                                {Math.floor(Math.random() * 120) +
+                                  1} minutos{" "}
+                              </td>
                             </tr>
                           );
                         })}

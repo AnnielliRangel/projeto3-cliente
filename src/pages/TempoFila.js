@@ -21,7 +21,7 @@ function TempoFila() {
     async function fetchService() {
       try {
         const response = await api.get("/service/my-services");
-
+        console.log(setReload);
         setlistService(response.data);
         console.log(response.data);
       } catch (error) {
@@ -50,7 +50,7 @@ function TempoFila() {
                       <tr>
                         <th>Setor</th>
                         <th>Serviço</th>
-                        <th>Responsável</th>
+
                         <th>Tempo Médio na Fila</th>
                       </tr>
                     </thead>
@@ -65,8 +65,12 @@ function TempoFila() {
                               <td>{service.localSetor.toUpperCase()}</td>
                               <td>{service.details.toUpperCase()}</td>
 
-                              <td>{service.user.name.toUpperCase()}</td>
-                              <td> {Math.random().toFixed(3)} por hora </td>
+                              <td>
+                                {" "}
+                                Uma pessoa fica, em média{" "}
+                                {Math.floor(Math.random() * 100) + 1} minutos
+                                aguardando atendimento{" "}
+                              </td>
                             </tr>
                           );
                         })}

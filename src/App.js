@@ -22,6 +22,7 @@ import NunPessoasFila from "./pages/NumPessoasFila";
 import TempoFila from "./pages/TempoFila";
 import TempoPredio from "./pages/TempoPredio";
 import NunPessoasSis from "./pages/NunPessoasSis";
+import FormUpdateUser from "./pages/FormUpdateUser";
 
 function App() {
   return (
@@ -80,6 +81,10 @@ function App() {
           <Route
             path="/update-pessoa/:userId"
             element={<ProtectRoute Component={FormUpdatePessoa} />}
+          />
+          <Route
+            path="/update-user/:userId"
+            element={<ProtectRoute Component={FormUpdateUser} />}
           />
           <Route
             path="/notificacoes"
