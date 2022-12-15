@@ -74,8 +74,8 @@ export default function FormUpdatePessoa() {
   }
 
   return (
-    <Container className="container-principal" fluid>
-      <Row>
+    <Container className="container-principal" fluid="sm">
+      <Row className="justify-content-sm-center">
         <Col sm={2}>{<NavBar />}</Col>
         <Col sm={10}>
           <Row>
@@ -84,7 +84,7 @@ export default function FormUpdatePessoa() {
               <Card.Body>
                 <Card.Text>
                   <Form>
-                    <Row className="justify-content-md-center">
+                    <Row className="justify-content-sm-center">
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>Nome</Form.Label>
@@ -110,7 +110,7 @@ export default function FormUpdatePessoa() {
                           <Form.Text className="text-muted"></Form.Text>
                         </Form.Group>
                       </Col>
-                      <Col md="auto">
+                      <Col sm="auto">
                         <Form.Group className="mb-3">
                           <Figure.Image
                             width={171}
@@ -122,7 +122,7 @@ export default function FormUpdatePessoa() {
                       </Col>
                     </Row>
 
-                    <Row className="justify-content-md-center">
+                    <Row className="justify-content-sm-center">
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label htmlFor="tipoDoc">
@@ -158,7 +158,7 @@ export default function FormUpdatePessoa() {
                       </Col>
                     </Row>
 
-                    <Row className="justify-content-md-center">
+                    <Row className="justify-content-sm-center">
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>Genero</Form.Label>
@@ -193,7 +193,7 @@ export default function FormUpdatePessoa() {
                       </Col>
                     </Row>
 
-                    <Row className="justify-content-md-center">
+                    <Row className="justify-content-sm-center">
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>Foto de Perfil</Form.Label>
@@ -206,8 +206,8 @@ export default function FormUpdatePessoa() {
                     </Row>
 
                     <Container>
-                      <Row className="justify-content-md-center">
-                        <Col md="auto">
+                      <Row className="justify-content-sm-center">
+                        <Col sm="auto">
                           <Button
                             style={{ marginRight: "25px" }}
                             variant="success"
