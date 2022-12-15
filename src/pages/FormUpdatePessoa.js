@@ -74,7 +74,7 @@ export default function FormUpdatePessoa() {
   }
 
   return (
-    <Container className="container-principal" fluid="sm">
+    <Container className="container-principal" fluid>
       <Row className="justify-content-sm-center">
         <Col sm={2}>{<NavBar />}</Col>
         <Col sm={10}>
@@ -204,35 +204,36 @@ export default function FormUpdatePessoa() {
                         </Form.Group>
                       </Col>
                     </Row>
-
-                    <Container>
-                      <Row className="justify-content-sm-center">
-                        <Col sm="auto">
-                          <Button
-                            style={{ marginRight: "25px" }}
-                            variant="success"
-                            type="submit"
-                            onClick={handleSubimit}
-                          >
-                            Salvar
-                          </Button>
-                          <Link to={"/tabela"}>
-                            <Button
-                              variant="warning"
-                              style={{ marginRight: "25px" }}
-                            >
-                              Cancelar
-                            </Button>
-                          </Link>
-                          <Button variant="danger" onClick={handleDelete}>
-                            Delete
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Container>
                   </Form>
                 </Card.Text>
               </Card.Body>
+              <Card.Footer>
+                <Container>
+                  <Row className="justify-content-sm-center">
+                    <Col sm="auto">
+                      <Button
+                        style={{ marginRight: "25px" }}
+                        variant="success"
+                        type="submit"
+                        onClick={handleSubimit}
+                      >
+                        Salvar
+                      </Button>
+                      <Link to={"/tabela"}>
+                        <Button
+                          variant="warning"
+                          style={{ marginRight: "25px" }}
+                        >
+                          Cancelar
+                        </Button>
+                      </Link>
+                      <Button variant="danger" onClick={handleDelete}>
+                        Delete
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Card.Footer>
             </Card>
           </Row>
           <Row>
