@@ -3,6 +3,7 @@ import { Button, Container, Form, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 import { AuthContext } from "../contexts/authContext";
+import brasao from '../assets/brasaooficialcolorido.png'
 
 function HomeLoginPage() {
   const navigate = useNavigate();
@@ -50,9 +51,16 @@ function HomeLoginPage() {
       className="d-flex flex-column align-items-center justify-content-center"
     >
       <Card className="card-login">
+
           <Card.Header>
-            Bem Vindo ao Sistema de Controle de Acessos
+            <Row className="justify-content-center">
+              <img className="brasao" src={brasao} alt="Brasão da República"></img>
+            </Row>
+            <Row className="text-sm-center">
+              <h3 className="mt-3 mb-3">Bem Vindo ao Sistema de Controle de Acessos</h3>
+            </Row>
           </Card.Header>
+
           <Card.Body>
           
             <Card.Title>Faça seu Login</Card.Title>
