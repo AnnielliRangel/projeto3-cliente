@@ -75,14 +75,14 @@ function ServicesPage() {
         <Col sm={10}>
           <Row>
             <Card className="card-form">
-              <Card.Header>FORMULÁRIO DE CADASTRO DE SERVIÇO</Card.Header>
+              <Card.Header>Formulário de Cadastro de Serviço </Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
                     <Row>
                       <Col>
                         <Form.Group className="mt-3">
-                          <Form.Label>Serviço Público *</Form.Label>
+                          <Form.Label>Serviço *</Form.Label>
                           <Form.Control
                             type="text"
                             placeholder="Insira o nome do serviço prestado..."
@@ -113,7 +113,7 @@ function ServicesPage() {
                     <Row>
                       <Col>
                         <Form.Group className="mt-3">
-                          <Form.Label>Vigência → Disponibilidade *</Form.Label>
+                          <Form.Label>Vigência *</Form.Label>
                           <Form.Control
                             type="date"
                             name="dateFin"
@@ -166,7 +166,7 @@ function ServicesPage() {
           </Row>
           <Row>
             <Card className="card-form">
-              <Card.Header>FORMULÁRIO DE GESTÃO DOS SERVIÇOS</Card.Header>
+              <Card.Header>Formulário de Gestão de Serviço</Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
@@ -174,7 +174,7 @@ function ServicesPage() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>
-                            {" Serviço ⟷ Unidade Administrativa - UA "}
+                            {" Serviço ⟷ Unidade Administrativa / Setor"}
                           </Form.Label>
 
                           {services.map((service) => {
