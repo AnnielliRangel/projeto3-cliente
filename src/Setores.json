@@ -1,32 +1,84 @@
 [
     {
-        "label": "Administração", 
-        "value": "administracao"
+        "label": "Presidência", 
+        "value": "Presidência"
     },
     {
-        "label": "Atermação", 
-        "value": "atermacao"
+        "label": "Corregedoria Geral", 
+        "value": "Corregedoria Geral"
+    },
+    {
+        "label": "Ouvidoria Geral", 
+        "value": "Ouvidoria Geral"
+    },
+    {
+        "label": "Administração Estratégica", 
+        "value": "Administração Estratégica"
+    },
+    {
+        "label": "Administração de Veículos", 
+        "value": "Administração de Veículos"
+    },
+    {
+        "label": "ESJUD - Escola do Servidor", 
+        "value": "ESJUD - Escola do Servidor"
+    },
+    {
+        "label": "GEVID - Gerência de Qualidade de Vida", 
+        "value": "GEVID - Gerência de Qualidade de Vida"
+    },
+    
+    {
+        "label": "GECAD - Gerência de Recursos Humanos", 
+        "value": "GECAD - Gerência de Recursos Humanos"
+    },
+    {
+        "label": "GESEG - Gerência de Segurança da Informação", 
+        "value": "GESEG - Gerência de Segurança da Informação"
+    },
+    {
+        "label": "Atermação Cível", 
+        "value": "Atermação Cível"
     },
     {
         "label": "1ª Vara Cível", 
-        "value": "1-vara-civil"
-    }
-    ,
-    {
-        "label": "Câmara Cível", 
-        "value": "camara-civil"
+        "value": "1ª Vara Cível"
     },
     {
-        "label": "Sala de Audiências", 
-        "value": "sala-de-audiencias"
+        "label": "1ª Vara Criminal", 
+        "value": "1ª Vara Criminal"
     },
     {
-        "label": "Protocolo", 
-        "value": "protocolo"
-    }
-    ,
+        "label": "Atermação Criminal", 
+        "value": "Atermação Criminal"
+    },
+   
     {
-        "label": "Restaurante", 
-        "value": "restaurante"
+        "label": "1ª Câmara Cível", 
+        "value": "1ª Câmara Cível"
+    },
+    {
+        "label": "2ª Câmara Cível", 
+        "value": "2ª Câmara Cível"
+    },
+    {
+        "label": "Sala de Audiências A", 
+        "value": "Sala de Audiências A"
+    },
+    {
+        "label": "Sala de Audiências B", 
+        "value": "Sala de Audiências B"
+    },
+    {
+        "label": "Protocolo Geral", 
+        "value": "protocolo Geral"
+    },
+    {
+        "label": "Protocolo da OAB", 
+        "value": "protocolo da OAB"
+    },    
+    {
+        "label": "Restaurante Corporativo", 
+        "value": "Restaurante Corporativo"
     }
 ]
