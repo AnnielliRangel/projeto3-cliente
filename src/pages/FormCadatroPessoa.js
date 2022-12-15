@@ -37,8 +37,6 @@ function FormCadastroPessoa() {
 
       const response = await api.post("/uploadImage/upload", uploadData);
 
-      console.log(uploadData);
-
       return response.data.url;
     } catch (error) {
       console.log(error);
