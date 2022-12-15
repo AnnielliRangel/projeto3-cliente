@@ -17,6 +17,11 @@ import ServicesPage from "./pages/ServicesPage";
 import { Toaster } from "react-hot-toast";
 import AdminPage from "./pages/adminPage";
 import RelatorioPage from "./pages/RelatorioPage";
+import TxAtendimento from "./pages/TxAtendimento";
+import NunPessoasFila from "./pages/NumPessoasFila";
+import TempoFila from "./pages/TempoFila";
+import TempoPredio from "./pages/TempoPredio";
+import NunPessoasSis from "./pages/NunPessoasSis";
 
 function App() {
   return (
@@ -39,10 +44,29 @@ function App() {
             element={<ProtectRoute Component={TabelaCidadao} />}
           />
           <Route
-            path="/relatorio"
+            path="/taxachegada"
             element={<ProtectRoute Component={RelatorioPage} />}
           />
-
+          <Route
+            path="/taxaatendimento"
+            element={<ProtectRoute Component={TxAtendimento} />}
+          />
+          <Route
+            path="/numfila"
+            element={<ProtectRoute Component={NunPessoasFila} />}
+          />
+          <Route
+            path="/numsis"
+            element={<ProtectRoute Component={NunPessoasSis} />}
+          />
+          <Route
+            path="/tempofila"
+            element={<ProtectRoute Component={TempoFila} />}
+          />
+          <Route
+            path="/tempopredio"
+            element={<ProtectRoute Component={TempoPredio} />}
+          />
           <Route
             path="/novocidadao"
             element={<ProtectRoute Component={FormCadastroPessoa} />}

@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import api from "../api/api";
 import NavBar from "../components/NavBar";
 
-function RelatorioPage() {
+function NunPessoasSis() {
   const [listService, setlistService] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
@@ -32,7 +32,6 @@ function RelatorioPage() {
 
     fetchService();
   }, [reload]);
-
   return (
     <Container className="container-principal" fluid>
       <Row>
@@ -40,7 +39,7 @@ function RelatorioPage() {
         <Col sm={10}>
           <Row>
             <Card className="card-form">
-              <Card.Header>Taxa Média de Chegada por setor</Card.Header>
+              <Card.Header>Número médio de Pessoas no Prédio</Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Table>
@@ -49,7 +48,7 @@ function RelatorioPage() {
                         <th>Setor</th>
                         <th>Serviço</th>
                         <th>Responsável</th>
-                        <th>Taxa Média de Chegada</th>
+                        <th>Número Médio de Pessoas</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -94,4 +93,4 @@ function RelatorioPage() {
     </Container>
   );
 }
-export default RelatorioPage;
+export default NunPessoasSis;
