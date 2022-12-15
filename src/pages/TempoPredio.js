@@ -21,7 +21,7 @@ function TempoPredio() {
     async function fetchService() {
       try {
         const response = await api.get("/service/my-services");
-
+        console.log(setReload);
         setlistService(response.data);
         console.log(response.data);
       } catch (error) {
@@ -48,7 +48,7 @@ function TempoPredio() {
                       <tr>
                         <th>Setor</th>
                         <th>Serviço</th>
-                        <th>Responsável</th>
+
                         <th>Tempo Médio no Prédio</th>
                       </tr>
                     </thead>
@@ -63,8 +63,12 @@ function TempoPredio() {
                               <td>{service.localSetor.toUpperCase()}</td>
                               <td>{service.details.toUpperCase()}</td>
 
-                              <td>{service.user.name.toUpperCase()}</td>
-                              <td> {Math.random().toFixed(3)} por hora </td>
+                              <td>
+                                {" "}
+                                Uma pessoa gasta, em média,{" "}
+                                {Math.floor(Math.random() * 100) + 1} minutos no
+                                local{" "}
+                              </td>
                             </tr>
                           );
                         })}

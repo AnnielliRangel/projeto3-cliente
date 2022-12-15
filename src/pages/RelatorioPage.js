@@ -21,7 +21,7 @@ function RelatorioPage() {
     async function fetchService() {
       try {
         const response = await api.get("/service/my-services");
-
+        console.log(setReload);
         setlistService(response.data);
         console.log(response.data);
       } catch (error) {
@@ -48,7 +48,7 @@ function RelatorioPage() {
                       <tr>
                         <th>Setor</th>
                         <th>Serviço</th>
-                        <th>Responsável</th>
+
                         <th>Taxa Média de Chegada</th>
                       </tr>
                     </thead>
@@ -63,8 +63,12 @@ function RelatorioPage() {
                               <td>{service.localSetor.toUpperCase()}</td>
                               <td>{service.details.toUpperCase()}</td>
 
-                              <td>{service.user.name.toUpperCase()}</td>
-                              <td> {Math.random().toFixed(3)} por hora </td>
+                              <td>
+                                {" "}
+                                Em média {Math.floor(Math.random() * 30) +
+                                  1}{" "}
+                                pessoas solicitam este serviço, por hora{" "}
+                              </td>
                             </tr>
                           );
                         })}

@@ -21,7 +21,7 @@ function NunPessoasSis() {
     async function fetchService() {
       try {
         const response = await api.get("/service/my-services");
-
+        console.log(setReload);
         setlistService(response.data);
         console.log(response.data);
       } catch (error) {
@@ -47,7 +47,7 @@ function NunPessoasSis() {
                       <tr>
                         <th>Setor</th>
                         <th>Serviço</th>
-                        <th>Responsável</th>
+
                         <th>Número Médio de Pessoas</th>
                       </tr>
                     </thead>
@@ -62,8 +62,13 @@ function NunPessoasSis() {
                               <td>{service.localSetor.toUpperCase()}</td>
                               <td>{service.details.toUpperCase()}</td>
 
-                              <td>{service.user.name.toUpperCase()}</td>
-                              <td> {Math.random().toFixed(3)} por hora </td>
+                              <td>
+                                {" "}
+                                A quantidade média de pessoas esperando e em
+                                atendimento é{" "}
+                                {Math.floor(Math.random() * 38) + 1} pessoas por
+                                hora{" "}
+                              </td>
                             </tr>
                           );
                         })}
