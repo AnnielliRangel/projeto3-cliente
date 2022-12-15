@@ -116,8 +116,8 @@ export default function NovoAcesso() {
               <Card className="text-center" bg="light">
                 <Card.Header>
                   <Card.Title>
-                    <legend> NOVO ACESSO</legend>
-                    <h1>⧉{cidadao.nome.toUpperCase()} </h1>
+                    <h3> Registro Novo Acesso</h3>
+                    <h2>⧉{cidadao.nome.toUpperCase()} </h2>
                     <img
                       style={{ width: "190px", borderRadius: "8%" }}
                       src={cidadao.profilePic}
@@ -125,7 +125,7 @@ export default function NovoAcesso() {
                     />
                   </Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    <p>Documento: {cidadao.tipoDoc.toUpperCase()}</p>
+                    <p>Documento → {cidadao.tipoDoc.toUpperCase()}</p>
                     <p>Nº → {cidadao.numDoc}</p>
                   </Card.Subtitle>
                 </Card.Header>
@@ -136,7 +136,7 @@ export default function NovoAcesso() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>
-                            <legend>Local de Destino</legend>
+                            <legend>Local de destino</legend>
                           </Form.Label>
                           <Form.Select
                             name="local"
@@ -158,7 +158,7 @@ export default function NovoAcesso() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>
-                            <legend>Serviço Público</legend>
+                            <legend>Serviço público</legend>
                           </Form.Label>
                           <Form.Select
                             name="servicoPublico"
@@ -182,7 +182,7 @@ export default function NovoAcesso() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label htmlFor="obs">
-                            <legend>Observação → Motivo</legend>
+                            <legend>Observação</legend>
                           </Form.Label>
                           <Form.Select
                             id="obs"
