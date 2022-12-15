@@ -16,12 +16,16 @@
         "value": "Vacinação Dependente"
     },
     {
-        "label": "Petição Inicial", 
-        "value": "peticao-inicial"
+        "label": "Petição Inicial Cível", 
+        "value": "peticao Inicial Cível"
     },
     {
-        "label": "Senha de Acesso", 
-        "value": "senha-de-acesso"
+        "label": "Petição Inicial Criminal", 
+        "value": "peticao Inicial Criminal"
+    },
+    {
+        "label": "Senha de Acesso à Internet", 
+        "value": "senha-de-acesso à Internet"
     },
     {
         "label": "Almoço Corporativo", 

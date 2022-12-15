@@ -27,6 +27,7 @@ export default function NovoAcesso() {
   //Instanciando o useNavigate() na constante navigate
   const navigate = useNavigate();
 
+  const [services, setServices] = useState([]);
   const [cidadao, setCidadao] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -51,6 +52,17 @@ export default function NovoAcesso() {
       setIsLoading(false);
     }
     getCidadao();
+
+    async function fetchServices() {
+      try {
+        const response = await api.get("/service/my-services");
+        setServices(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchServices();
+
   }, [reload, cidadaoID]);
 
   async function handleEntrance(e) {
@@ -104,8 +116,8 @@ export default function NovoAcesso() {
               <Card className="text-center" bg="light">
                 <Card.Header>
                   <Card.Title>
-                    <legend> NOVO ACESSO</legend>
-                    <h1>⧉{cidadao.nome} </h1>
+                    <h3> Registro Novo Acesso</h3>
+                    <h2>⧉{cidadao.nome.toUpperCase()} </h2>
                     <img
                       style={{ width: "190px", borderRadius: "8%" }}
                       src={cidadao.profilePic}
@@ -113,11 +125,8 @@ export default function NovoAcesso() {
                     />
                   </Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    <legend>Documento: {cidadao.tipoDoc.toUpperCase()}</legend>
-                    <legend>
-                      {" "}
-                      Nº. {cidadao.numDoc} Emissor: {cidadao.emissor}
-                    </legend>
+                    <p>Documento → {cidadao.tipoDoc.toUpperCase()}</p>
+                    <p>Nº → {cidadao.numDoc}</p>
                   </Card.Subtitle>
                 </Card.Header>
 
@@ -127,7 +136,7 @@ export default function NovoAcesso() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>
-                            <legend>Local de Destino</legend>
+                            <legend>Local de destino</legend>
                           </Form.Label>
                           <Form.Select
                             name="local"
@@ -149,7 +158,7 @@ export default function NovoAcesso() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>
-                            <legend>Serviço Público</legend>
+                            <legend>Serviço público</legend>
                           </Form.Label>
                           <Form.Select
                             name="servicoPublico"
@@ -157,7 +166,7 @@ export default function NovoAcesso() {
                             onChange={handleChange}
                           >
                             <option>Selecione Serviço</option>
-                            {listServices.map((service) => {
+                            {services.map((service) => {
                               return (
                                 <option
                                   key={service.label}
@@ -173,7 +182,7 @@ export default function NovoAcesso() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label htmlFor="obs">
-                            <legend>Observação → Motivo</legend>
+                            <legend>Observação</legend>
                           </Form.Label>
                           <Form.Select
                             id="obs"

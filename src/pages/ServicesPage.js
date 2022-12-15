@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api/api";
 import NavBar from "../components/NavBar";
+import setores from "../Setores.json";
 
 function ServicesPage() {
   const [form, setForm] = useState({
     details: "",
+    status: "",
     dateFin: Date.now,
     localSetor: "",
     unidade: 0,
   });
+  const listSetores = setores;
   const [services, setServices] = useState([]);
   const [reload, setReload] = useState(false);
 
@@ -38,12 +41,13 @@ function ServicesPage() {
       setForm({
         details: "",
         dateFin: "",
+        status: "",
         localSetor: "",
         unidade: "",
       });
     } catch (error) {
       console.log(error);
-      alert("Algo deu errado! Serviço já cadastrado");
+      alert("Já cadastrado ou campos * sem preenchimento!! Tente novamente!");
     }
   }
 
@@ -71,42 +75,77 @@ function ServicesPage() {
         <Col sm={10}>
           <Row>
             <Card className="card-form">
-              <Card.Header>FORMULÁRIO DE CADASTRO DE SERVIÇO</Card.Header>
+              <Card.Header>Formulário de Cadastro de Serviço </Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
-                    <Form.Group className="mt-3">
-                      <Form.Label>Nome do Serviço Público</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Insira o nome do serviço prestado..."
-                        name="details"
-                        value={form.details}
-                        onChange={handleChange}
-                        autoFocus
-                      />
-                    </Form.Group>
-                    <Form.Group className="mt-3">
-                      <Form.Label>
-                        Vigência → Disponibilidade do Serviço
-                      </Form.Label>
-                      <Form.Control
-                        type="date"
-                        name="dateFin"
-                        value={form.dateFin}
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                    <Form.Group className="mt-3">
-                      <Form.Label>Unidade Prestadora</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Insira o nome do setor ou local... "
-                        name="localSetor"
-                        value={form.localSetor}
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
+                    <Row>
+                      <Col>
+                        <Form.Group className="mt-3">
+                          <Form.Label>Serviço *</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="Insira o nome do serviço prestado..."
+                            name="details"
+                            value={form.details}
+                            onChange={handleChange}
+                            autoFocus
+                          />
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mt-3">
+                          <Form.Label htmlFor="status">Situação *</Form.Label>
+                          <Form.Select
+                            id="status"
+                            name="status"
+                            value={form.status}
+                            onChange={handleChange}
+                          >
+                            <option>Selecione</option>
+                            <option value="Disponivel">Aprovado</option>
+                            <option value="Em Aprovação">Em Aprovação</option>
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col>
+                        <Form.Group className="mt-3">
+                          <Form.Label>Vigência *</Form.Label>
+                          <Form.Control
+                            type="date"
+                            name="dateFin"
+                            value={form.dateFin}
+                            onChange={handleChange}
+                          />
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mt-3">
+                          <Form.Label htmlFor="localSetor">
+                            Unidade Administrativa {"(UA) *"}
+                          </Form.Label>
+                          <Form.Select
+                            id="localSetor"
+                            name="localSetor"
+                            value={form.localSetor}
+                            onChange={handleChange}
+                            autofocus
+                          >
+                            <option>Selecione</option>
+                            {listSetores.map((setor) => {
+                              return (
+                                <option key={setor.label} value={setor.label}>
+                                  {setor.label}
+                                </option>
+                              );
+                            })}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
 
                     <Button
                       variant="primary"
@@ -127,7 +166,7 @@ function ServicesPage() {
           </Row>
           <Row>
             <Card className="card-form">
-              <Card.Header>FORMULÁRIO DE GESTÃO DOS SERVIÇOS</Card.Header>
+              <Card.Header>Formulário de Gestão de Serviço</Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
@@ -135,8 +174,7 @@ function ServicesPage() {
                       <Col>
                         <Form.Group className="mb-3">
                           <Form.Label>
-                            {" "}
-                            Serviço ⟷ Unidade Administrativa - UA
+                            {" Serviço ⟷ Unidade Administrativa / Setor"}
                           </Form.Label>
 
                           {services.map((service) => {
