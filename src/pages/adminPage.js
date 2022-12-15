@@ -124,44 +124,60 @@ function AdminPage() {
                   <tbody style={{ fontSize: "0.8rem" }}>
                     <tr>
                       <th>
-                        <Link to={"/relatorio"}>Taxa média de chegada</Link>
+                        <Link to={"/taxachegada"}>Taxa média de chegada</Link>
                       </th>
                       <th>
                         <Button>Salvar</Button>
                       </th>
                     </tr>
                     <tr>
-                      <th>Taxa média de atendimento</th>
+                      <th>
+                        <Link to={"/taxaatendimento"}>
+                          Taxa média de atendimento
+                        </Link>
+                      </th>
+                      <th>
+                        <Button>Salvar</Button>
+                      </th>
+                    </tr>
+
+                    <tr>
+                      <th>
+                        <Link to={"/numsis"}>
+                          {" "}
+                          Número médio de pessoas no sistema
+                        </Link>
+                      </th>
+                      <th>
+                        <Button>Salvar</Button>
+                      </th>
+                    </tr>
+
+                    <tr>
+                      <th>
+                        <Link to={"/numfila"}>
+                          Número médio de pessoas na fila de espera
+                        </Link>
+                      </th>
                       <th>
                         <Button>Salvar</Button>
                       </th>
                     </tr>
                     <tr>
-                      <th>Número médio de pessoas no sistema</th>
+                      <th>
+                        <Link to={"/tempopredio"}>Tempo médio no prédio</Link>
+                      </th>
                       <th>
                         <Button>Salvar</Button>
                       </th>
                     </tr>
                     <tr>
-                      <th>Número médio de pessoas aguardando atendimento</th>
                       <th>
-                        <Button>Salvar</Button>
+                        {" "}
+                        <Link to={"/tempofila"}>
+                          Tempo médio de espera na fila
+                        </Link>
                       </th>
-                    </tr>
-                    <tr>
-                      <th>Número médio de pessoas na fila de espera</th>
-                      <th>
-                        <Button>Salvar</Button>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>Tempo médio no prédio</th>
-                      <th>
-                        <Button>Salvar</Button>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>Tempo médio de espera na fila</th>
                       <th>
                         <Button>Salvar</Button>
                       </th>
@@ -173,6 +189,7 @@ function AdminPage() {
           </Row>
         </Col>
       </Row>
+      <Button> Voltar</Button>
     </Container>
   );
 }
