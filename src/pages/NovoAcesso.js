@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import toast from "react-hot-toast";
 import setores from "../Setores.json";
-import servicos from "../Servicos.json";
+// import servicos from "../Servicos.json";
 import obsMotivos from "../Motivos.json";
 
 // Instead of axios - api.js
@@ -18,7 +18,7 @@ import NavBar from "../components/NavBar";
 
 export default function NovoAcesso() {
   const listSetores = setores;
-  const listServices = servicos;
+
   const listMotivos = obsMotivos;
 
   //Pegando o userID definido como parametro em <Route> do (registro.routes.js backend)
@@ -96,7 +96,7 @@ export default function NovoAcesso() {
 
       await api.post(`/registro/create-registro/${cidadaoID}`, novoAcesso);
 
-      toast.success(`Acesso de ${cidadao} registrado com sucesso!`);
+      toast.success(`Acesso de ${cidadao.nome.toUpperCase()}! Foi registrado com sucesso ;)!`);
       setReload(!reload);
       navigate("/tabela");
     } catch (error) {
@@ -169,10 +169,10 @@ export default function NovoAcesso() {
                             {services.map((service) => {
                               return (
                                 <option
-                                  key={service.label}
-                                  value={service.label}
+                                  key={service.details}
+                                  value={service.details}
                                 >
-                                  {service.label}
+                                  {service.details}
                                 </option>
                               );
                             })}

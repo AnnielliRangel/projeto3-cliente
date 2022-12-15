@@ -103,7 +103,7 @@ function ServicesPage() {
                             onChange={handleChange}
                           >
                             <option>Selecione</option>
-                            <option value="Disponivel">Aprovado</option>
+                            <option value="Disponivel">Disponível</option>
                             <option value="Em Aprovação">Em Aprovação</option>
                           </Form.Select>
                         </Form.Group>
