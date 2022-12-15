@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Button, Container, Form, Card, Alert } from "react-bootstrap";
+import { Button, Container, Form, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 import { AuthContext } from "../contexts/authContext";
@@ -41,11 +41,15 @@ function HomeLoginPage() {
     }
   }
 
+  function btnSignup(){
+    navigate("/sign-up")
+  }
+
   return (
     <Container
       className="d-flex flex-column align-items-center justify-content-center"
     >
-        <Card className="card-login">
+      <Card className="card-login">
           <Card.Header>
             Bem Vindo ao Sistema de Controle de Acessos
           </Card.Header>
@@ -76,17 +80,27 @@ function HomeLoginPage() {
                 />
               </Form.Group>
               
-              <Button className="my-3" variant="success" type="submit">
-                Entrar
-              </Button>
             </Form>
           </Card.Body>
-      </Card>
+          <Card.Footer>
+            <Container fluid="sm">
+              <Row className="justify-content-sm-center">
+                <Col sm="auto">
+                  <Button onClick={handleSubmit} variant="success" type="submit">
+                    Entrar
+                  </Button>
+                </Col>
+                <Col sm="auto">
+                  <Button onClick={btnSignup} variant="outline-warning" type="submit">
+                    Sign-up
+                  </Button>
+                </Col>
+              </Row>
 
-      <Alert variant='warning'>
-        Se esse é o seu primeiro acesso,{' '}
-        <Alert.Link to="/sign-up">Clique aqui</Alert.Link>
-      </Alert>
+            </Container>
+
+          </Card.Footer>
+      </Card>
     </Container>
   );
 }
