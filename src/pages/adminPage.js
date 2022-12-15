@@ -7,24 +7,25 @@ import {
   Container,
   Spinner,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
-import { AuthContext } from "../contexts/authContext";
-import api from "../api/api";
 
+import api from "../api/api";
+import EditUser from "../components/EditUser";
 import NavBar from "../components/NavBar";
 // import toast from "react-hot-toast";
 
 function AdminPage() {
   const navigate = useNavigate();
+  const { idUser } = useParams();
 
-  const { setLoggedInUser } = useContext(AuthContext);
-  const [user, setUser] = useState({});
   const [todosUser, setTodosUser] = useState([]);
-
+  const [form, setForm] = useState({
+    name: "",
+    role: "",
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [reload, setReload] = useState(false);
-  console.table(user, setReload);
 
   useEffect(() => {
     async function fetchUser() {
@@ -33,8 +34,6 @@ function AdminPage() {
         console.log(response.data);
 
         setTodosUser(response.data);
-
-        console.log(setTodosUser);
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +45,7 @@ function AdminPage() {
 
   async function handleDeleteUser() {
     try {
-      await api.delete("/user/delete");
+      await api.delete(`/user/delete/${idUser}`);
       return navigate("/admin");
     } catch (error) {
       console.log(error);
@@ -69,6 +68,7 @@ function AdminPage() {
                         <th className="col-center">Foto</th>
                         <th>Nome</th>
                         <th>Login</th>
+                        <th>Editar</th>
                         <th>Atividades</th>
                         <th>Excluir</th>
                       </tr>
@@ -123,7 +123,9 @@ function AdminPage() {
                   </thead>
                   <tbody style={{ fontSize: "0.8rem" }}>
                     <tr>
-                      <th>Taxa média de chegada</th>
+                      <th>
+                        <Link to={"/relatorio"}>Taxa média de chegada</Link>
+                      </th>
                       <th>
                         <Button>Salvar</Button>
                       </th>
