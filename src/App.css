@@ -25,6 +25,10 @@ body {
   margin: 50px auto 50px auto;
 }
 
+.brasao {
+  width: 200px;
+}
+
 .card-form {
   background-color: #678983;
   color: #F0E9D2;
