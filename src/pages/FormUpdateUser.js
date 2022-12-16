@@ -20,7 +20,7 @@ export default function FormUpdateUser() {
   const { userId } = useParams();
   const navigate = useNavigate();
 
-  const [profile, setProfilePic] = useState();
+  const [profile, setProfilePic] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -53,6 +53,9 @@ export default function FormUpdateUser() {
   async function handleUpload(e) {
     try {
       const uploadData = new FormData();
+      if(!profile) {
+        setProfilePic("../assets/profile.png")
+      }
       uploadData.append("picture", profile);
 
       const response = await api.post("/uploadImage/upload", uploadData);
@@ -60,7 +63,7 @@ export default function FormUpdateUser() {
       return response.data.url;
     } catch (error) {
       console.log(error);
-      toast.error("Algo deu errado. Tente novamente.");
+      toast.error(`Algo deu errado. Tente novamente. ${error}`);
     }
   }
 
