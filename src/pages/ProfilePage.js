@@ -56,7 +56,6 @@ function ProfilePage() {
     }
 
     fetchUser();
-    console.log(user);
   }, []);
 
   return (
