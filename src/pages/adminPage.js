@@ -43,7 +43,7 @@ function AdminPage() {
   async function handleDeleteUser() {
     try {
       await api.delete(`/user/delete/${idUser}`);
-      return navigate("/admin");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
       alert("Algo deu errado no delete do user");

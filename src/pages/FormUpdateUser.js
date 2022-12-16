@@ -19,13 +19,21 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 export default function FormUpdateUser() {
   const { userId } = useParams();
   const navigate = useNavigate();
+
   const [profile, setProfilePic] = useState();
-  const [reload, setReload] = useState(false);
+
   const [form, setForm] = useState({
-    nome: "",
+    name: "",
     role: "",
     active: "",
   });
+
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  // const [reload, setReload] = useState(false);
+
   useEffect(() => {
     async function getUser() {
       const response = await api.get(`/user/oneUser/${userId}`);
@@ -34,19 +42,12 @@ export default function FormUpdateUser() {
     getUser();
   }, [userId]);
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
   async function handleDelete(e) {
-    try {
-      await api.delete(`/user/delete/${userId}`);
-      toast.success("Usuário deletado com sucesso.");
-    } catch (error) {
-      console.log(error);
-      return alert(error.response.status);
-    }
-    return navigate("/admin");
+    // console.log("Teste")
+    await api.delete(`/user/delete/${userId}`);
+    // console.log(e);
+    toast.success("Usuário deletado com sucesso!");
+    navigate("/admin");
   }
 
   async function handleUpload(e) {
@@ -59,14 +60,15 @@ export default function FormUpdateUser() {
       return response.data.url;
     } catch (error) {
       console.log(error);
+      toast.error("Algo deu errado. Tente novamente.");
     }
   }
 
   async function handleSubimit(e) {
     e.preventDefault();
-    const imgURL = await handleUpload();
 
     try {
+      const imgURL = await handleUpload();
       const clone = { ...form };
 
       delete clone._id;
@@ -97,7 +99,7 @@ export default function FormUpdateUser() {
         <Col sm={10}>
           <Row>
             <Card className="card-form">
-              <Card.Header>Formulário de atualização</Card.Header>
+              <Card.Header>Formulário de Atualização de Usuário</Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
@@ -111,6 +113,7 @@ export default function FormUpdateUser() {
                             name="name"
                             value={form.name}
                             onChange={handleChange}
+                            autofocus
                           />
                           <Form.Text className="text-muted"></Form.Text>
                         </Form.Group>
