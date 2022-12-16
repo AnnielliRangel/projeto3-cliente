@@ -21,13 +21,18 @@ export default function FormUpdateUser() {
   const navigate = useNavigate();
 
   const [profile, setProfilePic] = useState();
-  const [reload, setReload] = useState(false);
 
   const [form, setForm] = useState({
-    nome: "",
+    name: "",
     role: "",
     active: "",
   });
+
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  // const [reload, setReload] = useState(false);
 
   useEffect(() => {
     async function getUser() {
@@ -37,15 +42,18 @@ export default function FormUpdateUser() {
     getUser();
   }, [userId]);
 
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
 
-  async function handleDelete(e) {
-    await api.delete(`/user/delete/${userId}`);
-    toast.success("Usuário deletado com sucesso!");
-    navigate("/admin");
-  }
+  async function handleDelete(e) {   
+
+      // console.log("Teste")
+      await api.delete(`/user/delete/${userId}`);
+      // console.log(e);
+      toast.success("Usuário deletado com sucesso!");
+      navigate("/admin");    
+  
+    }
+      
+
 
   async function handleUpload(e) {
     try {
@@ -57,14 +65,15 @@ export default function FormUpdateUser() {
       return response.data.url;
     } catch (error) {
       console.log(error);
+      toast.error("Algo deu errado. Tente novamente.");
     }
   }
 
   async function handleSubimit(e) {
     e.preventDefault();
-    const imgURL = await handleUpload();
 
     try {
+      const imgURL = await handleUpload();
       const clone = { ...form };
 
       delete clone._id;
