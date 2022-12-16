@@ -20,8 +20,6 @@ export default function FormUpdateUser() {
   const { userId } = useParams();
   const navigate = useNavigate();
 
-  const [profile, setProfilePic] = useState("");
-
   const [form, setForm] = useState({
     name: "",
     role: "",
@@ -50,36 +48,17 @@ export default function FormUpdateUser() {
     navigate("/admin");
   }
 
-  async function handleUpload(e) {
-    try {
-      const uploadData = new FormData();
-      if(!profile) {
-        setProfilePic("../assets/profile.png")
-      }
-      uploadData.append("picture", profile);
-
-      const response = await api.post("/uploadImage/upload", uploadData);
-
-      return response.data.url;
-    } catch (error) {
-      console.log(error);
-      toast.error(`Algo deu errado. Tente novamente. ${error}`);
-    }
-  }
 
   async function handleSubimit(e) {
     e.preventDefault();
 
     try {
-      const imgURL = await handleUpload();
       const clone = { ...form };
 
       delete clone._id;
-      delete clone.acessos;
 
       await api.put(`/user/edit/${userId}`, {
-        ...clone,
-        profilePic: imgURL,
+        ...clone
       });
 
       navigate("/admin");
@@ -89,10 +68,6 @@ export default function FormUpdateUser() {
       console.log(error);
       toast.error("Algo deu errado. Tente novamente.");
     }
-  }
-
-  function handleImage(e) {
-    setProfilePic(e.target.files[0]);
   }
 
   return (
@@ -132,6 +107,19 @@ export default function FormUpdateUser() {
                           />
                           <Form.Text className="text-muted"></Form.Text>
                         </Form.Group>
+                        <Form.Group className="mb-3">
+                          <Form.Label htmlFor="tipoDoc">Situação</Form.Label>
+                          <Form.Select
+                            id="active"
+                            name="active"
+                            value={form.active}
+                            onChange={handleChange}
+                          >
+                            <option>SELECIONE</option>
+                            <option value="true">Ativo</option>
+                            <option value="false">Inativo</option>
+                          </Form.Select>
+                        </Form.Group>
                       </Col>
                       <Col sm="auto">
                         <Form.Group className="mb-3">
@@ -147,28 +135,6 @@ export default function FormUpdateUser() {
 
                     <Row className="justify-content-sm-center">
                       <Col>
-                        <Form.Group className="mb-3">
-                          <Form.Label htmlFor="tipoDoc">Situação</Form.Label>
-                          <Form.Select
-                            id="active"
-                            name="active"
-                            value={form.active}
-                            onChange={handleChange}
-                          >
-                            <option>SELECIONE</option>
-                            <option value="true">Ativo</option>
-                            <option value="false">Inativo</option>
-                          </Form.Select>
-                        </Form.Group>
-                      </Col>
-                    </Row>
-
-                    <Row className="justify-content-sm-center">
-                      <Col>
-                        <Form.Group className="mb-3">
-                          <Form.Label>Foto de Perfil</Form.Label>
-                          <Form.Control type="file" onChange={handleImage} />
-                        </Form.Group>
                       </Col>
                     </Row>
                   </Form>
