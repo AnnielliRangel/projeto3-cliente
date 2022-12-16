@@ -19,13 +19,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 export default function FormUpdateUser() {
   const { userId } = useParams();
   const navigate = useNavigate();
+
   const [profile, setProfilePic] = useState();
   const [reload, setReload] = useState(false);
+
   const [form, setForm] = useState({
     nome: "",
     role: "",
     active: "",
   });
+
   useEffect(() => {
     async function getUser() {
       const response = await api.get(`/user/oneUser/${userId}`);
@@ -40,7 +43,7 @@ export default function FormUpdateUser() {
 
   async function handleDelete(e) {
     await api.delete(`/user/delete/${userId}`);
-    toast.success("Usuário deletado com sucesso.");
+    toast.success("Usuário deletado com sucesso!");
     navigate("/admin");
   }
 
@@ -92,7 +95,7 @@ export default function FormUpdateUser() {
         <Col sm={10}>
           <Row>
             <Card className="card-form">
-              <Card.Header>Formulário de atualização</Card.Header>
+              <Card.Header>Formulário de Atualização de Usuário</Card.Header>
               <Card.Body>
                 <Card.Text>
                   <Form>
@@ -106,6 +109,7 @@ export default function FormUpdateUser() {
                             name="name"
                             value={form.name}
                             onChange={handleChange}
+                            autofocus
                           />
                           <Form.Text className="text-muted"></Form.Text>
                         </Form.Group>
