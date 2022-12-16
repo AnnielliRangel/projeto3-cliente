@@ -1,6 +1,6 @@
 import { Col, Container, Nav, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/authContext";
 import {
   ShieldLockFill,
@@ -9,12 +9,14 @@ import {
   DoorOpenFill,
   HouseDoorFill,
   FilePersonFill,
+  UnlockFill,
 } from "react-bootstrap-icons";
 
 function NavBar() {
   //const { loggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { setLoggedInUser } = useContext(AuthContext);
+  const [user, setUser] = useState("")
 
   const handleSelect = (eventKey) => {
     switch (eventKey) {
@@ -31,6 +33,9 @@ function NavBar() {
         navigate("/profile");
         break;
       case "link-5":
+        navigate("/admin");
+        break;
+      case "link-6":
         signOut();
         break;
 
@@ -48,6 +53,22 @@ function NavBar() {
 
     navigate("/");
   }
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const userLogged = localStorage.getItem("loggedInUser");
+        const user = JSON.parse(userLogged);
+        setUser(user.user.role);
+
+        //console.log(userRole)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchUser();
+  }, [])
 
   return (
     <Nav
@@ -118,13 +139,28 @@ function NavBar() {
         </Row>
       </Container>
 
+      {user === "ADMIN" ? 
+        <Container className="menu-item">
+          <Row className="nav-item">
+              <Col lg={2} className="menu-ico">
+                <UnlockFill size={30} />
+              </Col>
+              <Col lg={10} className="menu-text">
+                <Nav.Link className="text-item" eventKey="link-5">
+                  Admin
+                </Nav.Link>
+              </Col>
+          </Row>
+        </Container> : ""
+      }
+
       <Container className="menu-item">
         <Row className="nav-item">
             <Col lg={2} className="menu-ico">
               <DoorOpenFill size={30} />
             </Col>
             <Col lg={10} className="menu-text">
-              <Nav.Link className="text-item" eventKey="link-5">
+              <Nav.Link className="text-item" eventKey="link-6">
                 Logout
               </Nav.Link>
             </Col>

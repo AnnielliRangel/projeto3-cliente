@@ -81,11 +81,12 @@ td * {
 }
 
 .brand-nav {
-  margin: 40px auto;
+  margin: 40px 10px;
 }
 
 .brand-title {
-  font-size: 2.3rem;
+  font-size: 1.8rem;
+  font-weight: 700;
   color: #181D31;
   margin: 5px auto;
 }
@@ -109,7 +110,7 @@ td * {
 
 .nav-item {
   padding: 0;
-  margin: 2px 0;
+  margin: 2px 20px;
 }
 
 .menu-ico {
@@ -124,7 +125,7 @@ td * {
 }
 
 .text-item {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #181D31;
 }
 
