@@ -47,12 +47,12 @@ function AdminPage() {
               <Card.Header>Controle de Funcionários Autorizados</Card.Header>
               <Card.Body>
                 <Card.Text>
-                  <Table>
+                  <Table responsive>
                     <thead>
                       <tr>
-                        <th className="col-center">Foto</th>
-                        <th>Nome</th>
-                        <th>Login</th>
+                        <th className="col-center"><h3>FOTO</h3></th>
+                        <th><h3>NOME</h3></th>
+                        <th><h3>LOGIN</h3></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -60,11 +60,11 @@ function AdminPage() {
                         todosUser.map((user) => {
                           return (
                             <tr style={{ fontSize: "0.8rem" }} key={user._id}>
-                              <td>
+                              <td className="col-center">
                                 <img
                                   src={user.profilePic}
                                   alt="Foto Usuario"
-                                  style={{ width: "50px" }}
+                                  className="profile-pic"
                                 />
                               </td>
                               <td>
@@ -75,7 +75,7 @@ function AdminPage() {
                                   {user.name.toUpperCase()}{" "}
                                 </Link>
                               </td>
-                              <td>{user.email}</td>
+                              <td><p>{user.email}</p></td>
                             </tr>
                           );
                         })}
