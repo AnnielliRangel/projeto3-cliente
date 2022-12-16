@@ -82,7 +82,7 @@ function NavBar() {
             <ShieldLockFill color="royalblue" size={50}/>
           </Col>
           <Col sm='auto'>
-            <h3 className="brand-title">GateControl</h3>
+            <h3 className="brand-title">Gate Control</h3>
           </Col>
         </Row>
       </Container>
