@@ -65,9 +65,6 @@ function AdminPage() {
                         <th className="col-center">Foto</th>
                         <th>Nome</th>
                         <th>Login</th>
-
-                        <th>Atividades</th>
-                        <th>Excluir</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -91,17 +88,6 @@ function AdminPage() {
                                 </Link>
                               </td>
                               <td>{user.email}</td>
-                              <td>
-                                <Button variant="warning">Registros</Button>
-                              </td>
-                              <td>
-                                <Button
-                                  variant="danger"
-                                  onClick={handleDeleteUser}
-                                >
-                                  Excluir perfil
-                                </Button>
-                              </td>
                             </tr>
                           );
                         })}
