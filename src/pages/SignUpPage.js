@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api.js";
 
 function SignUpPage() {
@@ -48,82 +49,101 @@ function SignUpPage() {
     }
 
     //vou chamar a função handleUpload()
-
     const imgURL = await handleUpload();
     //disparo a requisição de cadastro para o meu servidor
+
     try {
       await api.post("/user/sign-up", { ...form, profilePic: imgURL });
 
       navigate("/");
     } catch (error) {
-      console.log(error);
-      if (error.response.status === 400) {
-        return alert(
-          "A senha deve ser alfanumérica, com mais de 8 caracteres, incluindo caracter especial",
-        );
-      }
+      console.log(error)
+      toast.error(error)
     }
   }
 
   return (
     <Container
-      style={{ height: "100vh" }}
-      className="d-flex flex-column align-items-center justify-content-center"
+      className="container-principal" fluid
     >
-      <Form className="w-50" onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Nome completo</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Insira um nome para identificação"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-          />
-        </Form.Group>
+      <Row className="justify-content-sm-center">
+        <Col sm="auto">
+          <Card className="card-form">
+            <Card.Header>Formulário de cadastro de Usuário</Card.Header>
+            <Card.Body>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Nome completo</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Insira um nome para identificação"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Endereço de e-mail</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Insira o seu melhor endereço de e-mail"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Endereço de e-mail</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Insira o seu melhor endereço de e-mail"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insira uma senha válida"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Senha</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Insira uma senha válida"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Confirmar senha</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirme a senha válida criada anteriormente"
-            name="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-          />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Confirmar senha</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Confirme a senha válida criada anteriormente"
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Foto de Perfil</Form.Label>
-          <Form.Control type="file" onChange={handleImage} />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Foto de Perfil</Form.Label>
+                  <Form.Control type="file" onChange={handleImage} />
+                </Form.Group>
 
-        <Button className="my-3" variant="dark" type="submit">
-          Cadastrar usuário
-        </Button>
-      </Form>
+              </Form>
+            </Card.Body>
+            <Card.Footer>
+              <Container>
+                <Row className="justify-content-sm-center">
+                  <Col sm="auto">
+                    <Button className="my-3" variant="dark" type="submit">
+                      Cadastrar usuário
+                    </Button>
+                  </Col>
+                  <Col sm="auto">
+                    <Link to={"/"}>
+                      <Button className="my-3" variant="warning">
+                        Voltar
+                      </Button>
+                    </Link>
+                  </Col>
+                </Row>
+              </Container>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 }

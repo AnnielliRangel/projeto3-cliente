@@ -1,5 +1,4 @@
 import { Container, Card, Row, Col } from "react-bootstrap";
-// import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import NavBar from "../components/NavBar.js";
@@ -26,20 +25,6 @@ function ProfilePage() {
     }
   }
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   const imgURL = await handleUpload();
-  //   //disparo a requisição de cadastro para o meu servidor
-  //   try {
-  //     await api.post("/user/profile", { ...form, profilePic: imgURL });
-
-  //     navigate("/profile");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -60,7 +45,7 @@ function ProfilePage() {
 
   return (
     <Container className="container-principal" fluid>
-      <Row>
+      <Row className="justify-content-sm-center">
         <Col sm={2}>
           {<NavBar />}
         </Col>
@@ -68,14 +53,11 @@ function ProfilePage() {
           <Card className="card-user">
             <Card.Img onClick={handleImage} variant="top" src={user.profilePic} />
             <Card.Body>
-              <Card.Text>Usuário: {user.name}</Card.Text>
-              <Card.Text>E-mail: {user.email}</Card.Text>
               <Card.Text>
-                Tipo de usuário:{" "}
-                {user.role === "USER" ? "Usuário Padrão" : "Administrador"}
-              </Card.Text>
-              <Card.Text>
-                Status do usuário: {user.active === true ? "Ativo" : "Desativado"}
+                <h3>Usuário: {user.name}</h3>
+                <h3>E-mail: {user.email}</h3>
+                <h3>Tipo de usuário:{" "}{user.role === "USER" ? "Usuário Padrão" : "Administrador"}</h3>
+                <h3>Status do usuário: {user.active === true ? "Ativo" : "Desativado"}</h3>
               </Card.Text>
             </Card.Body>
           </Card>
