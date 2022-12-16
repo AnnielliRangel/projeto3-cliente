@@ -1,6 +1,14 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+  Figure,
+} from "react-bootstrap";
 import toast from "react-hot-toast";
 import setores from "../Setores.json";
 // import servicos from "../Servicos.json";
@@ -62,7 +70,6 @@ export default function NovoAcesso() {
       }
     }
     fetchServices();
-
   }, [reload, cidadaoID]);
 
   async function handleEntrance(e) {
@@ -96,7 +103,9 @@ export default function NovoAcesso() {
 
       await api.post(`/registro/create-registro/${cidadaoID}`, novoAcesso);
 
-      toast.success(`Acesso de ${cidadao.nome.toUpperCase()}! Foi registrado com sucesso ;)!`);
+      toast.success(
+        `Acesso de ${cidadao.nome.toUpperCase()}! Foi registrado com sucesso ;)!`
+      );
       setReload(!reload);
       navigate("/tabela");
     } catch (error) {
@@ -105,36 +114,46 @@ export default function NovoAcesso() {
   }
 
   return (
-    <Container className="container-principal my-4">
+    <Container className="container-principal" fluid>
       <Row>
-        <Col sm={3}>
-          {<NavBar />}
-        </Col>
+        <Col sm={3}>{<NavBar />}</Col>
         <Col sm={9}>
-          <fieldset>
+          <Row>
             {!isLoading && (
-              <Card className="text-center" bg="light">
-                <Card.Header>
-                  <Card.Title>
-                    <h3> Registro Novo Acesso</h3>
-                    <h2>⧉{cidadao.nome.toUpperCase()} </h2>
-                    <img
-                      style={{ width: "190px", borderRadius: "8%" }}
-                      src={cidadao.profilePic}
-                      alt="foto cidadao"
-                    />
-                  </Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    <p>Documento → {cidadao.tipoDoc.toUpperCase()}</p>
-                    <p>Nº → {cidadao.numDoc}</p>
-                  </Card.Subtitle>
-                </Card.Header>
+              <Card className="card-form">
+                <Card.Header>Registro → Novo Acesso do Cidadão</Card.Header>
 
                 <Card.Body>
                   <Form>
                     <Row>
                       <Col>
-                        <Form.Group className="mb-3">
+                        <Card.Title className="mt-3">
+                          <h2>{cidadao.nome.toUpperCase()} </h2>
+                          <Col sm="auto">
+                            <Form.Group className="mb-3 ta-center">
+                              <Figure.Image
+                                width={200}
+                                height={180}
+                                alt="foto"
+                                src={cidadao.profilePic}
+                              />
+                            </Form.Group>
+                          </Col>
+                          {/* <img className="ta-center"
+                            style={{ width: "200px", borderRadius: "8%" }}
+                            src={cidadao.profilePic}
+                            alt="foto cidadao"
+                          /> */}
+                          <p className="mt-4">
+                            {` ${cidadao.tipoDoc.toUpperCase()} Nº →  ${
+                              cidadao.numDoc
+                            } `}
+                          </p>
+                        </Card.Title>
+                      </Col>
+
+                      <Col sm="auto">
+                        <Form.Group className="mt-3">
                           <Form.Label>
                             <legend>Local de destino</legend>
                           </Form.Label>
@@ -154,8 +173,8 @@ export default function NovoAcesso() {
                             })}
                           </Form.Select>
                         </Form.Group>
-                      </Col>
-                      <Col>
+                        {/* </Col>
+                      <Col> */}
                         <Form.Group className="mb-3">
                           <Form.Label>
                             <legend>Serviço público</legend>
@@ -178,8 +197,8 @@ export default function NovoAcesso() {
                             })}
                           </Form.Select>
                         </Form.Group>
-                      </Col>
-                      <Col>
+                        {/* </Col>
+                      <Col> */}
                         <Form.Group className="mb-3">
                           <Form.Label htmlFor="obs">
                             <legend>Observação</legend>
@@ -204,6 +223,7 @@ export default function NovoAcesso() {
                     </Row>
                   </Form>
                 </Card.Body>
+
                 <Card.Footer className="d-flex justify-content-around">
                   <Button
                     variant="success"
@@ -220,7 +240,7 @@ export default function NovoAcesso() {
                 </Card.Footer>
               </Card>
             )}
-          </fieldset>
+          </Row>
         </Col>
       </Row>
     </Container>
