@@ -49,16 +49,17 @@ function SignUpPage() {
     }
 
     //vou chamar a função handleUpload()
-    const imgURL = await handleUpload();
     //disparo a requisição de cadastro para o meu servidor
-
+    
     try {
+      const imgURL = await handleUpload();
       await api.post("/user/sign-up", { ...form, profilePic: imgURL });
+      toast.success("Usuario cadastrado com sucesso")
 
       navigate("/");
     } catch (error) {
-      console.log(error)
-      toast.error(error)
+      console.log({ error })
+      toast.error({ error })
     }
   }
 
@@ -68,7 +69,7 @@ function SignUpPage() {
     >
       <Row className="justify-content-sm-center">
         <Col sm="auto">
-          <Card className="card-form">
+          <Card className="card-signup">
             <Card.Header>Formulário de cadastro de Usuário</Card.Header>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
@@ -127,7 +128,7 @@ function SignUpPage() {
               <Container>
                 <Row className="justify-content-sm-center">
                   <Col sm="auto">
-                    <Button className="my-3" variant="dark" type="submit">
+                    <Button className="my-3" variant="dark" onClick={handleSubmit}>
                       Cadastrar usuário
                     </Button>
                   </Col>
