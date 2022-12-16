@@ -105,7 +105,7 @@ function HomeLoginPage() {
                   variant="outline-warning"
                   type="submit"
                 >
-                  Sign-up
+                  Cadastre-se
                 </Button>
               </Col>
             </Row>

@@ -42,18 +42,13 @@ export default function FormUpdateUser() {
     getUser();
   }, [userId]);
 
-
-  async function handleDelete(e) {   
-
-      // console.log("Teste")
-      await api.delete(`/user/delete/${userId}`);
-      // console.log(e);
-      toast.success("Usuário deletado com sucesso!");
-      navigate("/admin");    
-  
-    }
-      
-
+  async function handleDelete(e) {
+    // console.log("Teste")
+    await api.delete(`/user/delete/${userId}`);
+    // console.log(e);
+    toast.success("Usuário deletado com sucesso!");
+    navigate("/admin");
+  }
 
   async function handleUpload(e) {
     try {

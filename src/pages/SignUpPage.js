@@ -59,6 +59,11 @@ function SignUpPage() {
       navigate("/");
     } catch (error) {
       console.log(error);
+      if (error.response.status === 400) {
+        return alert(
+          "A senha deve ser alfanumérica, com mais de 8 caracteres, incluindo caracter especial",
+        );
+      }
     }
   }
 
