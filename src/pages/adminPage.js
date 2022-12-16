@@ -7,7 +7,7 @@ import {
   Container,
   Spinner,
 } from "react-bootstrap";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import api from "../api/api";
@@ -16,9 +16,6 @@ import NavBar from "../components/NavBar";
 // import toast from "react-hot-toast";
 
 function AdminPage() {
-  const navigate = useNavigate();
-  const { idUser } = useParams();
-
   const [todosUser, setTodosUser] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -40,15 +37,6 @@ function AdminPage() {
     fetchUser();
   }, [reload]);
 
-  async function handleDeleteUser() {
-    try {
-      await api.delete(`/user/delete/${idUser}`);
-      navigate("/admin");
-    } catch (error) {
-      console.log(error);
-      alert("Algo deu errado no delete do user");
-    }
-  }
   return (
     <Container className="container-principal" fluid>
       <Row>
@@ -114,7 +102,15 @@ function AdminPage() {
                   <tbody style={{ fontSize: "0.8rem" }}>
                     <tr>
                       <th>
-                        <Link to={"/taxachegada"}>Taxa média de chegada</Link>
+                        <Link
+                          to={"/taxachegada"}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
+                          Taxa média de chegada
+                        </Link>
                       </th>
                       <th>
                         <Button>Salvar</Button>
@@ -122,7 +118,13 @@ function AdminPage() {
                     </tr>
                     <tr>
                       <th>
-                        <Link to={"/taxaatendimento"}>
+                        <Link
+                          to={"/taxaatendimento"}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
                           Taxa média de atendimento
                         </Link>
                       </th>
@@ -133,7 +135,13 @@ function AdminPage() {
 
                     <tr>
                       <th>
-                        <Link to={"/numsis"}>
+                        <Link
+                          to={"/numsis"}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
                           {" "}
                           Número médio de pessoas no sistema
                         </Link>
@@ -145,7 +153,13 @@ function AdminPage() {
 
                     <tr>
                       <th>
-                        <Link to={"/numfila"}>
+                        <Link
+                          to={"/numfila"}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
                           Número médio de pessoas na fila de espera
                         </Link>
                       </th>
@@ -155,7 +169,15 @@ function AdminPage() {
                     </tr>
                     <tr>
                       <th>
-                        <Link to={"/tempopredio"}>Tempo médio no prédio</Link>
+                        <Link
+                          to={"/tempopredio"}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
+                          Tempo médio no prédio
+                        </Link>
                       </th>
                       <th>
                         <Button>Salvar</Button>
@@ -164,7 +186,13 @@ function AdminPage() {
                     <tr>
                       <th>
                         {" "}
-                        <Link to={"/tempofila"}>
+                        <Link
+                          to={"/tempofila"}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
                           Tempo médio de espera na fila
                         </Link>
                       </th>
