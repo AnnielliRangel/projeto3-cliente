@@ -109,6 +109,13 @@ function HomeLoginPage() {
                 </Button>
               </Col>
             </Row>
+            <Row>
+              <Card.Footer className="mt-3">
+                <p>
+                  By Ironhack/Enap WDFT92: Annielli, Anderson, Bruno & Sérgio
+                </p>
+              </Card.Footer>
+            </Row>
           </Container>
         </Card.Footer>
       </Card>
